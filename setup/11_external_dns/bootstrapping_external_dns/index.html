@@ -1,0 +1,1455 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Project documentation with Markdown.">
+      
+      
+      
+        <meta name="author" content="maehachi08">
+      
+      
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/setup/11_external_dns/bootstrapping_external_dns/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
+    
+    
+      
+        <title>11. bootstrapping external-dns - maehachi08/k8s-study</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.db9e7362.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bootstrapping-external-dns" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-header__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            maehachi08/k8s-study
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11. bootstrapping external-dns
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/maehachi08/k8s-study" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    maehachi08/k8s-study
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/maehachi08/k8s-study" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Setup" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Setup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01_setup_RaspberryPi/" class="md-nav__link">
+        01. Raspberry Pi 構成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_setup_ubuntu20-04-LTS/" class="md-nav__link">
+        02. OS Install
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03_common_settings/" class="md-nav__link">
+        03. master/nodeで共通手順
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_creation_certificate/" class="md-nav__link">
+        04. 認証局の設定とTLS証明書の作成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05_creating_config/" class="md-nav__link">
+        05. 認証のためのkubeconfigの作成
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_6">
+          06. master node
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="06. master node" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          06. master node
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_master/01_bootstrapping_kubelet/" class="md-nav__link">
+        01. bootstrapping kubelet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_master/02_bootstrapping_etcd/" class="md-nav__link">
+        02. bootstrapping etcd
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
+        03. bootstrapping kube-apiserver
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
+        04. bootstrapping kube-controller-manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
+        05. bootstrapping kube-scheduler
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
+        06. kube-apiserver から kubelet へのアクセス権を設定する
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06_master/07_controller_health_check/" class="md-nav__link">
+        07. Kubernetes API のヘルスチェック
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_7" type="checkbox" id="__nav_2_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_7">
+          07. worker node
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="07. worker node" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          07. worker node
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
+        01. bootstrapping kubelet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
+        02. bootstrapping kube-proxy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08_flannel/bootstrapping_flannel/" class="md-nav__link">
+        08. bootstrapping flannel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09_coredns/bootstrapping_coredns/" class="md-nav__link">
+        09. bootstrapping coredns
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
+        10. bootstrapping nginx ingress controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          11. bootstrapping external-dns
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        11. bootstrapping external-dns
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考情報
+  </a>
+  
+    <nav class="md-nav" aria-label="参考情報">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-122" class="md-nav__link">
+    kubernetes 1.22 対応状況について
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-route53external-dns-controller" class="md-nav__link">
+    オンプレでAWS Route53向けexternal-dns controllerの起動方法について
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan-ipdns-provider" class="md-nav__link">
+    オンプレなど自宅環境のWAN IPアドレスをDNS Providerに通知したい
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-iproute53" class="md-nav__link">
+    オンプレなど自宅環境におけるPublic IPを払い出しつつroute53へレコード登録する
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    構築手順
+  </a>
+  
+    <nav class="md-nav" aria-label="構築手順">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-aws-iam-policy" class="md-nav__link">
+    1. AWS IAM Policy作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aws-iam-user" class="md-nav__link">
+    2. AWS IAM User作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-external-dns-controller" class="md-nav__link">
+    3. external-dns controllerをデプロイ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    動作確認
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    Appendix
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingressannotations" class="md-nav__link">
+    Ingressリソースで使用可能なannotations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-dnsacname" class="md-nav__link">
+    external-dnsでAレコードではなくCNAMEレコードを作成する
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12_metrics_server/bootstrapping_metrics_server/" class="md-nav__link">
+        12. bootstrapping metrics_server
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../failure_stories/" class="md-nav__link">
+        Failure Stories
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tips/index.md" class="md-nav__link">
+        Tips
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考情報
+  </a>
+  
+    <nav class="md-nav" aria-label="参考情報">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-122" class="md-nav__link">
+    kubernetes 1.22 対応状況について
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-route53external-dns-controller" class="md-nav__link">
+    オンプレでAWS Route53向けexternal-dns controllerの起動方法について
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan-ipdns-provider" class="md-nav__link">
+    オンプレなど自宅環境のWAN IPアドレスをDNS Providerに通知したい
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-iproute53" class="md-nav__link">
+    オンプレなど自宅環境におけるPublic IPを払い出しつつroute53へレコード登録する
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    構築手順
+  </a>
+  
+    <nav class="md-nav" aria-label="構築手順">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-aws-iam-policy" class="md-nav__link">
+    1. AWS IAM Policy作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aws-iam-user" class="md-nav__link">
+    2. AWS IAM User作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-external-dns-controller" class="md-nav__link">
+    3. external-dns controllerをデプロイ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    動作確認
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    Appendix
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingressannotations" class="md-nav__link">
+    Ingressリソースで使用可能なannotations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-dnsacname" class="md-nav__link">
+    external-dnsでAレコードではなくCNAMEレコードを作成する
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="bootstrapping-external-dns">bootstrapping external-dns</h1>
+<h2 id="_1">参考情報</h2>
+<ul>
+<li><a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/integrations/external_dns/">https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/integrations/external_dns/</a></li>
+</ul>
+<h3 id="kubernetes-122">kubernetes 1.22 対応状況について</h3>
+<ul>
+<li><a href="https://github.com/kubernetes-sigs/external-dns/releases/tag/v0.10.0">v0.10.0</a> で対応済み</li>
+</ul>
+<h3 id="aws-route53external-dns-controller">オンプレでAWS Route53向けexternal-dns controllerの起動方法について</h3>
+<ul>
+<li><a href="https://stackoverflow.com/questions/60267737/is-it-possible-to-use-aws-route-53-as-a-dns-provider-for-a-bare-metal-k8s-cluste">https://stackoverflow.com/questions/60267737/is-it-possible-to-use-aws-route-53-as-a-dns-provider-for-a-bare-metal-k8s-cluste</a></li>
+<li><a href="https://github.com/kubernetes-sigs/external-dns/issues/539">https://github.com/kubernetes-sigs/external-dns/issues/539</a></li>
+</ul>
+<h3 id="wan-ipdns-provider">オンプレなど自宅環境のWAN IPアドレスをDNS Providerに通知したい</h3>
+<ul>
+<li><a href="https://github.com/kubernetes-sigs/external-dns/issues/1394">https://github.com/kubernetes-sigs/external-dns/issues/1394</a></li>
+</ul>
+<h3 id="public-iproute53">オンプレなど自宅環境におけるPublic IPを払い出しつつroute53へレコード登録する</h3>
+<ul>
+<li>k8s cluster内部のIPアドレスではなく、worker nodeのinterface(wlan0)に設定しているIPアドレス(便宜的にpublic ipと仮定)と同じレンジでIPアドレスを払い出すような構成<ul>
+<li>これは将来用</li>
+<li><a href="https://metallb.universe.tf/">metallb</a> でk8s clusterの外側にLoadBalancerを作成しPublic IPアドレスを割り当てる</li>
+<li><a href="https://blog.web-apps.tech/type-loadbalancer_by_metallb/">https://blog.web-apps.tech/type-loadbalancer_by_metallb/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="_2">構築手順</h2>
+<h3 id="1-aws-iam-policy">1. AWS IAM Policy作成</h3>
+<ol>
+<li>
+<p><code>external-dns-controller-policy-document.json</code> を作成</p>
+<p><details><summary>external-dns-controller-policy-document.json</summary></p>
+<pre><code>```
+sudo tee external-dns-controller-policy-document.json &lt;&lt; EOF &gt; /dev/null
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "route53:ChangeResourceRecordSets"
+      ],
+      "Resource": [
+        "arn:aws:route53:::hostedzone/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "route53:ListHostedZones",
+        "route53:ListResourceRecordSets"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
+EOF
+```
+</code></pre>
+</li>
+<li>
+<p>policyを作成
+    <div class="highlight"><pre><span></span><code>aws iam create-policy --policy-name k8s-external-dns-policy  --policy-document file://external-dns-controller-policy-document.json
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="2-aws-iam-user">2. AWS IAM User作成</h3>
+<ol>
+<li>
+<p>userを作成
+    <div class="highlight"><pre><span></span><code>aws iam create-user --user-name k8s-external-dns
+</code></pre></div></p>
+</li>
+<li>
+<p>作成したIAM Policyをアタッチする
+    <div class="highlight"><pre><span></span><code>aws iam attach-user-policy --user-name k8s-external-dns --policy-arn arn:aws:iam::&lt;AWS_ACCOUNT_ID&gt;:policy/k8s-external-dns-policy
+</code></pre></div></p>
+</li>
+<li>
+<p>作成したIAM Userのcredentialを確認する(Deploymentsマニフェストで環境変数としてセットする)</p>
+<ul>
+<li><code>AWS_ACCESS_KEY_ID</code></li>
+<li><code>AWS_SECRET_ACCESS_KEY</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="3-external-dns-controller">3. external-dns controllerをデプロイ</h3>
+<ul>
+<li>
+<p>point</p>
+<ul>
+<li><a href="https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md">https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md</a> をベースにbare-metal向けに修正</li>
+<li>namespaceは <code>kube-system</code></li>
+<li>aws credentialは <code>k8s-external-dns</code> iam userのもの</li>
+<li>hosted_zone_id はexternal-dnsでレコード登録させたいRoute53 zone</li>
+</ul>
+</li>
+<li>
+<p>manifestsに代入する変数を定義</p>
+<table>
+<thead>
+<tr>
+<th align="left">variable name</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>DOMAIN</code></td>
+<td align="left">external-dnsで登録したいゾーンのドメイン</td>
+</tr>
+<tr>
+<td align="left"><code>HOSTED_ZONE_ID</code></td>
+<td align="left">external-dnsで登録したいゾーンのHosted Zone ID</td>
+</tr>
+<tr>
+<td align="left"><code>AWS_ACCESS_KEY_ID</code></td>
+<td align="left">external-dnsでroute53へのレコード登録に使用するAWS IAM Userのcredential情報</td>
+</tr>
+<tr>
+<td align="left"><code>AWS_SECRET_ACCESS_KEY</code></td>
+<td align="left">external-dnsでroute53へのレコード登録に使用するAWS IAM Userのcredential情報</td>
+</tr>
+<tr>
+<td align="left"><code>AWS_DEFAULT_REGION</code></td>
+<td align="left">external-dnsでroute53へのレコード登録に使用するAWS IAM Userのcredential情報</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>DOMAIN=&quot;XXXXXXX.com&quot;
+HOSTED_ZONE_ID=&quot;XXXXXXX&quot;
+AWS_ACCESS_KEY_ID=&quot;XXXXXXX&quot;
+AWS_SECRET_ACCESS_KEY=&quot;XXXXXXX&quot;
+AWS_DEFAULT_REGION=&quot;XXXXXXX&quot;
+</code></pre></div>
+</li>
+<li>
+<p>manifestsファイル作成
+    <details><summary>/etc/kubernetes/manifests/external-dns.yaml</summary></p>
+<pre><code>```
+AWS_DEFAULT_REGION="ap-north-east-1"
+
+sudo tee /etc/kubernetes/manifests/external-dns.yaml &lt;&lt;  EOF &gt; /dev/null
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: external-dns
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: external-dns
+rules:
+- apiGroups: [""]
+  resources: ["services","endpoints","pods"]
+  verbs: ["get","watch","list"]
+- apiGroups: ["extensions","networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["get","watch","list"]
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["list","watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: external-dns-viewer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: external-dns
+subjects:
+- kind: ServiceAccount
+  name: external-dns
+  namespace: kube-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+  namespace: kube-system
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: external-dns
+  template:
+    metadata:
+      labels:
+        app: external-dns
+    spec:
+      serviceAccountName: external-dns
+      containers:
+      - name: external-dns
+        image: k8s.gcr.io/external-dns/external-dns:v0.10.0
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          value: &lt;k8s-external-dns AWSアカウントのAWS_ACCESS_KEY_ID&gt;
+        - name: AWS_SECRET_ACCESS_KEY
+          value:  &lt;k8s-external-dns AWSアカウントのAWS_SECRET_ACCESS_KEY&gt;
+        - name: AWS_DEFAULT_REGION
+          value: "${AWS_DEFAULT_REGION}"
+        args:
+        - --source=service
+        - --source=ingress
+        - --domain-filter=${DOMAIN} # will make ExternalDNS see only the hosted zones matching provided domain, omit to process all available hosted zones
+        - --provider=aws
+        - --policy=upsert-only # would prevent ExternalDNS from deleting any records, omit to enable full synchronization
+        - --aws-zone-type=public # only look at public hosted zones (valid values are public, private or no value for both)
+        - --registry=txt
+        - --txt-owner-id=&lt;HOSTED_ZONE_ID&gt;
+        - --txt-prefix=prefix_
+        - --log-level=debug
+      securityContext:
+        fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes and AWS token files
+EOF
+```
+</code></pre>
+</details>
+</li>
+<li>
+<p>デプロイ
+    <div class="highlight"><pre><span></span><code>kubectl apply -f /etc/kubernetes/manifests/external-dns.yaml
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="_3">動作確認</h3>
+<ul>
+<li>
+<p>external-dns コンテナログ</p>
+<ul>
+<li>デプロイ済みingressのhostnameでroute53へのレコード登録を確認
+    <div class="highlight"><pre><span></span><code>time=&quot;2021-09-26T04:59:24Z&quot; level=info msg=&quot;Instantiating new Kubernetes client&quot;
+time=&quot;2021-09-26T04:59:24Z&quot; level=debug msg=&quot;apiServerURL: &quot;
+time=&quot;2021-09-26T04:59:24Z&quot; level=debug msg=&quot;kubeConfig: &quot;
+time=&quot;2021-09-26T04:59:24Z&quot; level=info msg=&quot;Using inCluster-config based on serviceaccount-token&quot;
+time=&quot;2021-09-26T04:59:24Z&quot; level=info msg=&quot;Created Kubernetes client https://10.32.0.1:443&quot;
+time=&quot;2021-09-26T04:59:30Z&quot; level=debug msg=&quot;Refreshing zones list cache&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;Considering zone: /hostedzone/&lt;HOSTED_ZONE_ID&gt; (domain: example.com.)&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;No endpoints could be generated from service kube-system/kube-dns&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;No endpoints could be generated from service kube-system/metrics-server&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;No endpoints could be generated from service default/kubernetes&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;No endpoints could be generated from service default/nginx-service&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;No endpoints could be generated from service ingress-nginx/ingress-nginx-controller&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;No endpoints could be generated from service ingress-nginx/ingress-nginx-controller-admission&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;Endpoints generated from ingress: default/nginx-test-ingress: [dev1.example.com 0 IN A  192.168.10.51 []]&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;Refreshing zones list cache&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;Considering zone: /hostedzone/&lt;HOSTED_ZONE_ID&gt; (domain: example.com.)&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=info msg=&quot;Applying provider record filter for domains: [example.com. .example.com.]&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;Refreshing zones list cache&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;Considering zone: /hostedzone/&lt;HOSTED_ZONE_ID&gt; (domain: example.com.)&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;Adding dev1.example.com. to zone example.com. [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;]&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=debug msg=&quot;Adding dev1.example.com. to zone example.com. [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;]&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=info msg=&quot;Desired change: CREATE dev1.example.com A [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;]&quot;
+time=&quot;2021-09-26T04:59:31Z&quot; level=info msg=&quot;Desired change: CREATE dev1.example.com TXT [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;]&quot;
+time=&quot;2021-09-26T04:59:32Z&quot; level=info msg=&quot;2 record(s) in zone example.com. [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;] were successfully updated&quot;
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>route53 record set</p>
+<ul>
+<li>対象のhosted zoneにingressのhostで指定したhostnameでレコードが作成されていることを確認
+    <div class="highlight"><pre><span></span><code>$ aws route53 list-resource-record-sets --output json --hosted-zone-id &lt;HOSTED_ZONE_ID&gt; | jq &#39;.ResourceRecordSets | map(select(.Name == &quot;dev1.example.com.&quot;))&#39;
+[
+  {
+    &quot;Name&quot;: &quot;dev1.example.com.&quot;,
+    &quot;Type&quot;: &quot;A&quot;,
+    &quot;TTL&quot;: 300,
+    &quot;ResourceRecords&quot;: [
+      {
+        &quot;Value&quot;: &quot;192.168.10.51&quot;
+      }
+    ]
+  },
+  {
+    &quot;Name&quot;: &quot;dev1.example.com.&quot;,
+    &quot;Type&quot;: &quot;TXT&quot;,
+    &quot;TTL&quot;: 300,
+    &quot;ResourceRecords&quot;: [
+      {
+        &quot;Value&quot;: &quot;\&quot;heritage=external-dns,external-dns/owner=&lt;HOSTED_ZONE_ID&gt;,external-dns/resource=ingress/default/nginx-test-ingress\&quot;&quot;
+      }
+    ]
+  }
+]
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>登録されたAレコードのhostnameが名前解決できることを確認</p>
+<ul>
+<li>k8s serviceリソースから見るとnode portに対するnode addressは自宅環境のWifiルータで払い出すレンジ(192.168.10.0/24)なので想定通り
+    <div class="highlight"><pre><span></span><code>$ dig +noall +answer dev1.example.com
+dev1.example.com.      283     IN      A       192.168.10.51
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h2 id="appendix">Appendix</h2>
+<h3 id="ingressannotations">Ingressリソースで使用可能なannotations</h3>
+<ul>
+<li>
+<p><a href="https://github.com/kubernetes-sigs/external-dns/blob/v0.10.0/source/source.go#L40-L68">https://github.com/kubernetes-sigs/external-dns/blob/v0.10.0/source/source.go#L40-L68</a></p>
+<table>
+<thead>
+<tr>
+<th align="left">annotations</th>
+<th align="left">describe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>external-dns.alpha.kubernetes.io/controller</code></td>
+<td align="left">複数のDNS Controllerがデプロイされている場合にどのDNS Controllerが責任を負っているのかを把握するために指定する</td>
+</tr>
+<tr>
+<td align="left"><code>external-dns.alpha.kubernetes.io/hostname</code></td>
+<td align="left">使用するホスト名を指定する<br>Serviceリソースの場合はこのannotationsで指定する<br>Ingressリソースの場合はこのannotationsかruleのhost attrで指定する</td>
+</tr>
+<tr>
+<td align="left"><code>external-dns.alpha.kubernetes.io/access</code></td>
+<td align="left">パブリックインターフェイスアドレスとプライベートインターフェイスアドレスのどちらを使用するかを指定する</td>
+</tr>
+<tr>
+<td align="left"><code>external-dns.alpha.kubernetes.io/target</code></td>
+<td align="left">CNAME recordを作成する場合にCNAME recordのvalueとなる値を指定する</td>
+</tr>
+<tr>
+<td align="left"><code>external-dns.alpha.kubernetes.io/ttl</code></td>
+<td align="left">DNS recordのTTLを指定する(default: 300)</td>
+</tr>
+<tr>
+<td align="left"><code>external-dns.alpha.kubernetes.io/alias</code></td>
+<td align="left"><code>true</code> でALIAS recordを作成する</td>
+</tr>
+<tr>
+<td align="left"><code>external-dns.alpha.kubernetes.io/ingress-hostname-source</code></td>
+<td align="left">Ingressリソースの場合にhostnameの指定方法をannotationsかruleのhost attrかを限定できる</td>
+</tr>
+<tr>
+<td align="left"><code>external-dns.alpha.kubernetes.io/internal-hostname</code></td>
+<td align="left">Target IPアドレスをCluster IPアドレスとする場合に指定する</td>
+</tr>
+<tr>
+<td align="left"><code>external-dns.alpha.kubernetes.io/set-identifier</code></td>
+<td align="left">AWS Route53においてDNS NameとTypeが同じ場合に重み付けなどによるルーティングポリシーを定義する際の識別子<br>Record IDとなる値</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="external-dnsacname">external-dnsでAレコードではなくCNAMEレコードを作成する</h3>
+<ol>
+<li>
+<p>controllerの起動引数に <code>--txt-prefix=&lt;prefix文字列&gt;</code> を追加</p>
+<ul>
+<li>指定した文字列がTXT recordのレコード名(Aレコードの場合はAレコードと同名)のprefixとして追加されます</li>
+<li>CNAMEレコードは(TXTレコードであっても)他のレコードと共存できない仕様です(<a href="https://datatracker.ietf.org/doc/html/rfc1034#section-3.6.2">RFC 1034セクション3.6.2</a>、<a href="https://datatracker.ietf.org/doc/html/rfc1912#section-2.4">RFC 1912セクション2.4</a></li>
+<li><a href="https://github.com/kubernetes-sigs/external-dns/blob/master/docs/faq.md#im-using-an-elb-with-txt-registry-but-the-cname-record-clashes-with-the-txt-record-how-to-avoid-this">https://github.com/kubernetes-sigs/external-dns/blob/master/docs/faq.md#im-using-an-elb-with-txt-registry-but-the-cname-record-clashes-with-the-txt-record-how-to-avoid-this</a></li>
+</ul>
+</li>
+<li>
+<p>Ingressリソースのannotationsを以下のように設定する</p>
+<ul>
+<li><code>external-dns.alpha.kubernetes.io/hostname</code> にCNAMEレコードのFQDNを指定</li>
+<li>
+<p><code>external-dns.alpha.kubernetes.io/target</code> にCNAMEレコードのValueとなる参照先のFQDNまたはIPアドレスなど指定</p>
+<div class="highlight"><pre><span></span><code>external-dns.alpha.kubernetes.io/hostname: dev1.example.com
+external-dns.alpha.kubernetes.io/target: alias1.example.com
+</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p><code>--txt-prefix=prefix_</code> で動作確認</p>
+<ol>
+<li>
+<p>Ingressリソース
+    <details></p>
+<div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-test-ingress
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: dev1.example.com
+    external-dns.alpha.kubernetes.io/target: alias1.example.com
+spec:
+  ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: nginx-service
+      port:
+        number: 8080
+  rules:
+    - host: dev1.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 8080
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>external-dns log
+    <details></p>
+<div class="highlight"><pre><span></span><code>time=&quot;2021-10-01T09:05:18Z&quot; level=debug msg=&quot;Endpoints generated from ingress: default/nginx-test-ingress: [dev1.example.com 0 IN CNAME  alias1.example.com [] dev1.example.com 0 IN CNAME  alias1.example.com []]&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=debug msg=&quot;Removing duplicate endpoint dev1.example.com 0 IN CNAME  alias1.example.com []&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=debug msg=&quot;Refreshing zones list cache&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=debug msg=&quot;Considering zone: /hostedzone/&lt;HOSTED_ZONE_ID&gt; (domain: example.com.)&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=info msg=&quot;Applying provider record filter for domains: [example.com. .example.com.]&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=debug msg=&quot;Refreshing zones list cache&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=debug msg=&quot;Considering zone: /hostedzone/&lt;HOSTED_ZONE_ID&gt; (domain: example.com.)&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=debug msg=&quot;Adding dev1.example.com. to zone example.com. [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;]&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=debug msg=&quot;Adding prefix_dev1.example.com. to zone example.com. [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;]&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=info msg=&quot;Desired change: CREATE dev1.example.com CNAME [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;]&quot;
+time=&quot;2021-10-01T09:05:18Z&quot; level=info msg=&quot;Desired change: CREATE prefix_dev1.example.com TXT [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;]&quot;
+time=&quot;2021-10-01T09:05:19Z&quot; level=info msg=&quot;2 record(s) in zone example.com. [Id: /hostedzone/&lt;HOSTED_ZONE_ID&gt;] were successfully updated&quot;
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>route53 レコード確認
+    <details></p>
+<div class="highlight"><pre><span></span><code>$ aws route53 list-resource-record-sets --output json --hosted-zone-id &lt;HOSTED_ZONE_ID&gt; | jq &#39;.ResourceRecordSets | map(select(.Name == &quot;dev1.example.com.&quot; or .Name == &quot;prefix_dev1.example.com.&quot;))&#39;
+[
+  {
+    &quot;Name&quot;: &quot;prefix_dev1.example.com.&quot;,
+    &quot;Type&quot;: &quot;TXT&quot;,
+    &quot;TTL&quot;: 300,
+    &quot;ResourceRecords&quot;: [
+      {
+        &quot;Value&quot;: &quot;\&quot;heritage=external-dns,external-dns/owner=&lt;HOSTED_ZONE_ID&gt;,external-dns/resource=ingress/default/nginx-test-ingress\&quot;&quot;
+      }
+    ]
+  },
+  {
+    &quot;Name&quot;: &quot;dev1.example.com.&quot;,
+    &quot;Type&quot;: &quot;CNAME&quot;,
+    &quot;TTL&quot;: 300,
+    &quot;ResourceRecords&quot;: [
+      {
+        &quot;Value&quot;: &quot;alias1.example.com&quot;
+      }
+    ]
+  }
+]
+
+$ dig +noall +answer dev1.example.com
+dev1.example.com.      300     IN      CNAME   alias1.example.com.
+</code></pre></div>
+</details>
+</li>
+</ol>
+</li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 10. bootstrapping nginx ingress controller" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              10. bootstrapping nginx ingress controller
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../12_metrics_server/bootstrapping_metrics_server/" class="md-footer__link md-footer__link--next" aria-label="Next: 12. bootstrapping metrics_server" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              12. bootstrapping metrics_server
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      
+    
+  </body>
+</html>
