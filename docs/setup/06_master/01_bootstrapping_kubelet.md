@@ -1,0 +1,1 @@
+../07_worker/01_bootstrapping_kubelet.md

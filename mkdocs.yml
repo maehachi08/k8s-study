@@ -1,0 +1,73 @@
+site_name: maehachi08/k8s-study
+site_url: https://maehachi08.github.io/k8s-study
+site_description: Project documentation with Markdown.
+site_author: maehachi08
+
+repo_url: https://github.com/maehachi08/k8s-study
+edit_uri: ""
+
+# theme: readthedocs
+theme:
+  name: material
+
+  # https://squidfunk.github.io/mkdocs-material/reference/admonitions/#admonition-icons
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+
+# https://facelessuser.github.io/pymdown-extensions/
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.magiclink
+  - attr_list
+  - admonition
+
+nav:
+  - Home: index.md
+  - Setup:
+    - 01. Raspberry Pi 構成: setup/01_setup_RaspberryPi.md
+    - 02. OS Install: setup/02_setup_ubuntu20-04-LTS.md
+    - 03. master/nodeで共通手順: setup/03_common_settings.md
+    - 04. 認証局の設定とTLS証明書の作成: setup/04_creation_certificate.md
+    - 05. 認証のためのkubeconfigの作成: setup/05_creating_config.md
+    - 06. master node:
+      - 01. bootstrapping kubelet: setup/06_master/01_bootstrapping_kubelet.md
+      - 02. bootstrapping etcd: setup/06_master/02_bootstrapping_etcd.md
+      - 03. bootstrapping kube-apiserver: setup/06_master/03_bootstrapping_kube-apiserver.md
+      - 04. bootstrapping kube-controller-manager: setup/06_master/04_bootstrapping_kube-controller-manager.md
+      - 05. bootstrapping kube-scheduler: setup/06_master/05_bootstrapping_kube-scheduler.md
+      - 06. kube-apiserver から kubelet へのアクセス権を設定する: setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet.md
+      - 07. Kubernetes API のヘルスチェック: setup/06_master/07_controller_health_check.md
+    - 07. worker node:
+      - 01. bootstrapping kubelet: setup/07_worker/01_bootstrapping_kubelet.md
+      - 02. bootstrapping kube-proxy: setup/07_worker/02_bootstrapping_kube-proxy.md
+    - 08. bootstrapping flannel: setup/08_flannel/bootstrapping_flannel.md
+    - 09. bootstrapping coredns: setup/09_coredns/bootstrapping_coredns.md
+    - 10. bootstrapping nginx ingress controller: setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller.md
+    - 11. bootstrapping external-dns: setup/11_external_dns/bootstrapping_external_dns.md
+    - 12. bootstrapping metrics_server: setup/12_metrics_server/bootstrapping_metrics_server.md
+  - Failure Test:
+    - Failure Story: failure_test/failure_story.md
+    - Point of failure: failure_test/point_of_failure.md
+    - Failure Scenario:
+      - Node: failure_test/failure_scenario_of_node.md
+  - Kyverno:
+    - 01. About Kyverno: kyverno/about_kyverno.md
+    - 02. Installation Kyverno: kyverno/installation_kyverno.md
+  - Tips: tips/index.md
+
+plugins:
+  - search
