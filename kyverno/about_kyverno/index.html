@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://maehachi08.github.io/k8s-study/kyverno/about_kyverno/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.5">
     
     
       
@@ -23,7 +23,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.816931ca.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a617204b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.9204c3b2.min.css">
@@ -40,10 +40,9 @@
       
     
     
-    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"../..":"../.."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-
 
     
     
@@ -615,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_story.md" class="md-nav__link">
+      <a href="../../failure_test/failure_story/" class="md-nav__link">
         Failure Story
       </a>
     </li>
@@ -629,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/point_of_failure.md" class="md-nav__link">
+      <a href="../../failure_test/point_of_failure/" class="md-nav__link">
         Point of failure
       </a>
     </li>
@@ -669,7 +668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_scenario_of_node.md" class="md-nav__link">
+      <a href="../../failure_test/failure_scenario_of_node/" class="md-nav__link">
         Node
       </a>
     </li>
@@ -775,6 +774,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#kind-of-policy" class="md-nav__link">
+    Kind of Policy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kind-of-resources" class="md-nav__link">
+    Kind of Resources
+  </a>
+  
+    <nav class="md-nav" aria-label="Kind of Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#select-resources" class="md-nav__link">
     Select Resources
   </a>
@@ -813,11 +827,44 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
     </ul>
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_kyverno/" class="md-nav__link">
+        02. Installation Kyverno
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage_kyverno/" class="md-nav__link">
+        03. Usage Kyverno
+      </a>
     </li>
   
 
@@ -886,6 +933,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#kind-of-policy" class="md-nav__link">
+    Kind of Policy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kind-of-resources" class="md-nav__link">
+    Kind of Resources
+  </a>
+  
+    <nav class="md-nav" aria-label="Kind of Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#select-resources" class="md-nav__link">
     Select Resources
   </a>
@@ -917,6 +979,11 @@
   <a href="#verifyimages-resources" class="md-nav__link">
     VerifyImages Resources
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -973,7 +1040,16 @@
 </ol>
 </li>
 </ul>
-<h3 id="select-resources"><a href="https://kyverno.io/docs/writing-policies/match-exclude/">Select Resources</a></h3>
+<h3 id="kind-of-policy">Kind of Policy</h3>
+<ul>
+<li>Cluster wideに適用される <code>ClusterPolicy</code> と namespace単位に適用される <code>Policy</code> がある<ul>
+<li><a href="https://htmlpreview.github.io/?https://github.com/kyverno/kyverno/blob/main/docs/crd/v1/index.html#kyverno.io/v1.ClusterPolicy">kyverno.io/v1.ClusterPolicy</a></li>
+<li><a href="https://htmlpreview.github.io/?https://github.com/kyverno/kyverno/blob/main/docs/crd/v1/index.html#kyverno.io/v1.Policy">kyverno.io/v1.Policy</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="kind-of-resources">Kind of Resources</h3>
+<h4 id="select-resources"><a href="https://kyverno.io/docs/writing-policies/match-exclude/">Select Resources</a></h4>
 <ul>
 <li>Mutate/VerifyImages/Validate/Generate などのpolicyを適用する対象リソースを指定する<ul>
 <li>対象としたいリソースを<code>match</code>で、対象外としたいリソースを<code>exclude</code> で指定する</li>
@@ -987,7 +1063,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="mutate-resources"><a href="https://kyverno.io/docs/writing-policies/mutate/">Mutate Resources</a></h3>
+<h4 id="mutate-resources"><a href="https://kyverno.io/docs/writing-policies/mutate/">Mutate Resources</a></h4>
 <ul>
 <li>ruleに応じてマニフェストを書き換える<ul>
 <li>書き換えたい内容は <code>RFC 6902 JSON Patch</code>、<code>a strategic merge patch</code>、<code>an overlay pattern</code> のいずれかで定義可能</li>
@@ -1001,7 +1077,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="validate-resources"><a href="https://kyverno.io/docs/writing-policies/validate/">Validate Resources</a></h3>
+<h4 id="validate-resources"><a href="https://kyverno.io/docs/writing-policies/validate/">Validate Resources</a></h4>
 <ul>
 <li>リソースがpolicyに準拠しているかどうかを検証する</li>
 <li>policyに準拠していない場合の動作<ul>
@@ -1029,7 +1105,7 @@
 </ol>
 </li>
 </ul>
-<h3 id="generate-resources"><a href="https://kyverno.io/docs/writing-policies/generate/">Generate Resources</a></h3>
+<h4 id="generate-resources"><a href="https://kyverno.io/docs/writing-policies/generate/">Generate Resources</a></h4>
 <ul>
 <li>リソースの作成・更新に基づいて追加のリソースを作成する</li>
 <li>リソース作成方法<ol>
@@ -1049,7 +1125,7 @@
 <p>kyverno policy ruleによって作成されたリソースはマニフェスト管理されていません。
 <code>spec.rules.generate.synchronize=true</code> の場合、必要な権限を持つユーザやServiceAccountなどから作成されたリソースが変更・削除されても元のリソース状態に戻すように更新・再作成してくれます。</p>
 </div>
-<h3 id="verifyimages-resources"><a href="https://kyverno.io/docs/writing-policies/verify-images/">VerifyImages Resources</a></h3>
+<h4 id="verifyimages-resources"><a href="https://kyverno.io/docs/writing-policies/verify-images/">VerifyImages Resources</a></h4>
 <ul>
 <li>imageのシグネチャ(署名) をチェックし、ダイジェストを追加する</li>
 </ul>
@@ -1066,7 +1142,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../../setup/12_metrics_server/bootstrapping_metrics_server/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 12. bootstrapping metrics_server" rel="prev">
+        <a href="../../failure_test/failure_scenario_of_node/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Node" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1075,11 +1151,26 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              12. bootstrapping metrics_server
+              Node
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../installation_kyverno/" class="md-footer__link md-footer__link--next" aria-label="Next: 02. Installation Kyverno" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              02. Installation Kyverno
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
@@ -1103,10 +1194,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.01824240.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.cefbb252.min.js"}</script>
     
     
-      <script src="../../assets/javascripts/bundle.a87c2adc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f8ea78.min.js"></script>
       
     
   </body>

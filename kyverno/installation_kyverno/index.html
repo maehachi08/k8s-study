@@ -15,15 +15,15 @@
         <link rel="canonical" href="https://maehachi08.github.io/k8s-study/kyverno/installation_kyverno/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.1">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.5">
     
     
       
-        <title>Kyverno - maehachi08/k8s-study</title>
+        <title>02. Installation Kyverno - maehachi08/k8s-study</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.816931ca.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a617204b.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.9204c3b2.min.css">
@@ -40,10 +40,9 @@
       
     
     
-    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"../..":"../.."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-
 
     
     
@@ -98,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Kyverno
+              02. Installation Kyverno
             
           </span>
         </div>
@@ -615,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_story.md" class="md-nav__link">
+      <a href="../../failure_test/failure_story/" class="md-nav__link">
         Failure Story
       </a>
     </li>
@@ -629,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/point_of_failure.md" class="md-nav__link">
+      <a href="../../failure_test/point_of_failure/" class="md-nav__link">
         Point of failure
       </a>
     </li>
@@ -669,7 +668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_scenario_of_node.md" class="md-nav__link">
+      <a href="../../failure_test/failure_scenario_of_node/" class="md-nav__link">
         Node
       </a>
     </li>
@@ -696,12 +695,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -726,6 +727,122 @@
     <li class="md-nav__item">
       <a href="../about_kyverno/" class="md-nav__link">
         01. About Kyverno
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          02. Installation Kyverno
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        02. Installation Kyverno
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-kyverno" class="md-nav__link">
+    Installation Kyverno
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Kyverno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    コンポーネント
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-configuration" class="md-nav__link">
+    TLS Configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstallation-kyverno" class="md-nav__link">
+    Uninstallation Kyverno
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    Appendix
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kube-controller-manager" class="md-nav__link">
+    kube-controller-manager で自己署名証明書作成
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage_kyverno/" class="md-nav__link">
+        03. Usage Kyverno
       </a>
     </li>
   
@@ -784,12 +901,52 @@
     Installation Kyverno
   </a>
   
+    <nav class="md-nav" aria-label="Installation Kyverno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    コンポーネント
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-configuration" class="md-nav__link">
+    TLS Configuration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#uninstallation-kyverno" class="md-nav__link">
     Uninstallation Kyverno
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    Appendix
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kube-controller-manager" class="md-nav__link">
+    kube-controller-manager で自己署名証明書作成
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -810,8 +967,51 @@
 <h2 id="installation-kyverno">Installation Kyverno</h2>
 <ul>
 <li><a href="https://kyverno.io/docs/installation/">https://kyverno.io/docs/installation/</a></li>
+<li>インストール方法は大きく以下2パターン<ol>
+<li>helm chart</li>
+<li>manifests(yaml)</li>
+</ol>
+</li>
+</ul>
+<h3 id="_1">コンポーネント</h3>
+<ul>
+<li>以下図は <a href="https://kyverno.io/docs/installation/#customize-the-installation-of-kyverno">こちら</a> から抜粋<ul>
+<li><img alt="" src="../kyverno-installation.png" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="tls-configuration">TLS Configuration</h3>
+<ul>
+<li>Kyverno policy engine はAdmission Webhookとして動作し、kube-apiserverとの通信でTLS通信を行うために認証局の署名がされた証明書が必要</li>
+<li>自己署名証明書の作成<ul>
+<li>(helm chartsの) <code>createSelfSignedCert</code> (defailt: false)<ul>
+<li><code>false</code>: <code>kube-controller-manager</code> で自己署名証明書作成</li>
+<li><code>true</code>: 作成済み自己署名証明書を使用する<ul>
+<li><a href="https://kyverno.io/docs/installation/#option-2-use-your-own-ca-signed-certificate">https://kyverno.io/docs/installation/#option-2-use-your-own-ca-signed-certificate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>参考<ul>
+<li><a href="https://kyverno.io/docs/installation/#customize-the-installation-of-kyverno">https://kyverno.io/docs/installation/#customize-the-installation-of-kyverno</a></li>
+<li><a href="https://github.com/kyverno/kyverno/blob/v1.5.1/charts/kyverno/README.md#tls-configuration">https://github.com/kyverno/kyverno/blob/v1.5.1/charts/kyverno/README.md#tls-configuration</a></li>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/">https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/</a></li>
+<li><a href="https://github.com/kyverno/kyverno/blob/v1.5.1/charts/kyverno/values.yaml#L228-L238">https://github.com/kyverno/kyverno/blob/v1.5.1/charts/kyverno/values.yaml#L228-L238</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="uninstallation-kyverno">Uninstallation Kyverno</h2>
+<ul>
+<li><a href="https://kyverno.io/docs/installation/#uninstalling-kyverno">https://kyverno.io/docs/installation/#uninstalling-kyverno</a></li>
+<li><a href="https://kyverno.io/docs/installation/#clean-up-webhook-configurations">https://kyverno.io/docs/installation/#clean-up-webhook-configurations</a></li>
+</ul>
+<h2 id="appendix">Appendix</h2>
+<h3 id="kube-controller-manager"><code>kube-controller-manager</code> で自己署名証明書作成</h3>
+<ul>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/">https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/</a></li>
+</ul>
 
               
             </article>
@@ -821,6 +1021,41 @@
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../about_kyverno/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 01. About Kyverno" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              01. About Kyverno
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../usage_kyverno/" class="md-footer__link md-footer__link--next" aria-label="Next: 03. Usage Kyverno" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              03. Usage Kyverno
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -842,10 +1077,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.01824240.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.cefbb252.min.js"}</script>
     
     
-      <script src="../../assets/javascripts/bundle.a87c2adc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f8ea78.min.js"></script>
       
     
   </body>
