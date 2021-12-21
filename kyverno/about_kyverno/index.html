@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://maehachi08.github.io/k8s-study/kyverno/about_kyverno/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.5">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
     
     
       
@@ -23,10 +23,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.a617204b.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.9204c3b2.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -856,20 +856,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../usage_kyverno/" class="md-nav__link">
-        03. Usage Kyverno
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -1079,19 +1065,27 @@
 </ul>
 <h4 id="validate-resources"><a href="https://kyverno.io/docs/writing-policies/validate/">Validate Resources</a></h4>
 <ul>
-<li>リソースがpolicyに準拠しているかどうかを検証する</li>
-<li>policyに準拠していない場合の動作<ul>
-<li><code>validationFailureAction</code><ul>
-<li><code>enforce</code>: 強制する</li>
-<li><code>audit</code>: レポートに記録する</li>
+<li>これから適用するmanifests、または作成済みリソースに関してポリシー違反がないかどうかを検証する</li>
+<li><code>spec.validationFailureAction</code><ul>
+<li><code>enforce</code><ul>
+<li>新規作成の場合は拒否する</li>
+</ul>
+</li>
+<li><code>audit</code><ul>
+<li>作成は拒否しない</li>
+<li><code>ClusterPolicyReport</code> または <code>PolicyReport</code> を作成しポリシー違反を記録する</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>リソースの検証方法<ol>
-<li>パターン<ul>
-<li><code>pattern</code></li>
-<li><code>anyPattern</code></li>
+<li><code>spec.background</code><ul>
+<li>当該 <code>ClusterPolicy</code> または <code>Policy</code> に関してポリシー違反をしていないかどうかを作成済みリソースに検証する</li>
+<li>(<code>enforce</code>の場合でも) 作成済みリソースのポリシー違反は<code>ClusterPolicyReport</code> または <code>PolicyReport</code> を作成しポリシー違反を記録する</li>
+</ul>
+</li>
+<li>Patterns<ul>
+<li><code>spec.rules[*].va1lidate.pattern</code></li>
+<li><code>spec.rules[*].va1lidate.anyPattern</code></li>
 </ul>
 </li>
 <li>ルールの拒否<ul>
@@ -1101,8 +1095,6 @@
 </ul>
 </li>
 </ul>
-</li>
-</ol>
 </li>
 </ul>
 <h4 id="generate-resources"><a href="https://kyverno.io/docs/writing-policies/generate/">Generate Resources</a></h4>
@@ -1194,10 +1186,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.cefbb252.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
     
     
-      <script src="../../assets/javascripts/bundle.a5f8ea78.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
       
     
   </body>
