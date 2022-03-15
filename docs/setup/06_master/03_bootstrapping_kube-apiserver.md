@@ -28,6 +28,9 @@
            service-account-key.pem \
            service-account.pem \
            encryption-config.yaml \
+           front-proxy-ca.pem \
+           front-proxy.pem \
+           front-proxy-key.pem \
            /var/lib/kubernetes/
 
       COPY authorization-config.yaml /etc/kubernetes/webhook/
@@ -160,7 +163,6 @@
               - --kubelet-certificate-authority=/var/lib/kubernetes/ca.pem
               - --kubelet-client-certificate=/var/lib/kubernetes/kubernetes.pem
               - --kubelet-client-key=/var/lib/kubernetes/kubernetes-key.pem
-              - --kubelet-https=true
               - --runtime-config=authentication.k8s.io/v1beta1=true
               - --feature-gates=APIPriorityAndFairness=false
               - --service-account-key-file=/var/lib/kubernetes/service-account.pem
@@ -174,6 +176,14 @@
               - --http2-max-streams-per-connection=3000
               - --max-requests-inflight=3000
               - --max-mutating-requests-inflight=1000
+              - --enable-aggregator-routing=true
+              - --requestheader-client-ca-file=/var/lib/kubernetes/front-proxy-ca.pem
+              - --requestheader-allowed-names=front-proxy-ca
+              - --requestheader-extra-headers-prefix=X-Remote-Extra
+              - --requestheader-group-headers=X-Remote-Group
+              - --requestheader-username-headers=X-Remote-User
+              - --proxy-client-cert-file=/var/lib/kubernetes/front-proxy.pem
+              - --proxy-client-key-file=/var/lib/kubernetes/front-proxy-key.pem
               - --v=2
       EOF
       ```

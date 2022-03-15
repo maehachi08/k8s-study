@@ -37,6 +37,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Container Runtime: container-runtime.md
   - Setup:
     - 01. Raspberry Pi 構成: setup/01_setup_RaspberryPi.md
     - 02. OS Install: setup/02_setup_ubuntu20-04-LTS.md
@@ -58,16 +59,22 @@ nav:
     - 09. bootstrapping coredns: setup/09_coredns/bootstrapping_coredns.md
     - 10. bootstrapping nginx ingress controller: setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller.md
     - 11. bootstrapping external-dns: setup/11_external_dns/bootstrapping_external_dns.md
-    - 12. bootstrapping metrics_server: setup/12_metrics_server/bootstrapping_metrics_server.md
   - Failure Test:
     - Failure Story: failure_test/failure_story.md
     - Point of failure: failure_test/point_of_failure.md
     - Failure Scenario:
       - Node: failure_test/failure_scenario_of_node.md
+  - cert-manager: cert-manager/bootstrapping_cert-manager.md
   - Kyverno:
     - 01. About Kyverno: kyverno/about_kyverno.md
     - 02. Installation Kyverno: kyverno/installation_kyverno.md
-  - Tips: tips/index.md
+  - Monitoring:
+    - about monitoring: monitoring/index.md
+    - bootstrapping metrics_server: monitoring/metrics-server/bootstrapping_metrics_server.md
+    - bootstrapping kubernetes-dashboard: monitoring/kubernetes-dashboard/bootstrapping_kubernetes_dashboard.md
+    - bootstrapping node-problem-detector: monitoring/node-problem-detector/bootstrapping_node_problem_detector.md
+  - Operations:
+    - etcd: operations/backup_etcd.md
 
 plugins:
   - search

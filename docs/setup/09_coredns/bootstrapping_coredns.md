@@ -72,3 +72,8 @@ CoreDNSはあらゆる処理をPluginとして実装しています。CoreDNS単
     ```
     failed to set bridge addr: "cni0" already has an IP address different from 10.200.1.1/24
     ```
+
+
+```
+[FATAL] plugin/loop: Loop (127.0.0.1:36286 -> :53) detected for zone ".", see https://coredns.io/plugins/loop#troubleshooting. Query: "HINFO 1048258276942848743.906062863108256161."
+```

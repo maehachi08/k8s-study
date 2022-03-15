@@ -80,7 +80,7 @@
   clusterDNS:
     - "10.32.0.10"
   podCIDR: "10.200.0.0/24"
-  resolvConf: "/etc/resolv.conf"
+  resolvConf: "/run/systemd/resolve/resolv.conf"
   runtimeRequestTimeout: "15m"
   tlsCertFile: "/var/lib/kubelet/${host}.pem"
   tlsPrivateKeyFile: "/var/lib/kubelet/${host}-key.pem"
@@ -139,6 +139,7 @@
      /sys/fs/cgroup/cpu,cpuacct/kube.slice
 
    ExecStart=/usr/bin/kubelet \
+     --authentication-token-webhook=true \
      --config=/var/lib/kubelet/kubelet-config.yaml \
      --kubeconfig=/var/lib/kubelet/kubeconfig \
      --network-plugin=cni \
