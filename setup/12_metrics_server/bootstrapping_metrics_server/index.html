@@ -12,14 +12,14 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/monitoring/kubernetes-dashboard/bootstrapping_kubernetes_dashboard/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/setup/12_metrics_server/bootstrapping_metrics_server/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
-        <title>bootstrapping kubernetes-dashboard - maehachi08/k8s-study</title>
+        <title>12. bootstrapping metrics_server - maehachi08/k8s-study</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubernetes-dashboard" class="md-skip">
+        <a href="#metrics-server" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              bootstrapping kubernetes-dashboard
+              12. bootstrapping metrics_server
             
           </span>
         </div>
@@ -221,38 +221,25 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../../../container-runtime/" class="md-nav__link">
-        Container Runtime
-      </a>
-    </li>
-  
-
     
-      
-      
-      
-
-  
   
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
       
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_2">
           Setup
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Setup" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Setup
         </label>
@@ -264,7 +251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/01_setup_RaspberryPi/" class="md-nav__link">
+      <a href="../../01_setup_RaspberryPi/" class="md-nav__link">
         01. Raspberry Pi 構成
       </a>
     </li>
@@ -278,7 +265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
+      <a href="../../02_setup_ubuntu20-04-LTS/" class="md-nav__link">
         02. OS Install
       </a>
     </li>
@@ -292,7 +279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/03_common_settings/" class="md-nav__link">
+      <a href="../../03_common_settings/" class="md-nav__link">
         03. master/nodeで共通手順
       </a>
     </li>
@@ -306,7 +293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/04_creation_certificate/" class="md-nav__link">
+      <a href="../../04_creation_certificate/" class="md-nav__link">
         04. 認証局の設定とTLS証明書の作成
       </a>
     </li>
@@ -320,7 +307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/05_creating_config/" class="md-nav__link">
+      <a href="../../05_creating_config/" class="md-nav__link">
         05. 認証のためのkubeconfigの作成
       </a>
     </li>
@@ -337,18 +324,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_3_6">
+        <label class="md-nav__link" for="__nav_2_6">
           06. master node
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="06. master node" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_6">
+        <label class="md-nav__title" for="__nav_2_6">
           <span class="md-nav__icon md-icon"></span>
           06. master node
         </label>
@@ -360,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../06_master/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -374,7 +361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
+      <a href="../../06_master/02_bootstrapping_etcd/" class="md-nav__link">
         02. bootstrapping etcd
       </a>
     </li>
@@ -388,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
+      <a href="../../06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
         03. bootstrapping kube-apiserver
       </a>
     </li>
@@ -402,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
+      <a href="../../06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
         04. bootstrapping kube-controller-manager
       </a>
     </li>
@@ -416,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
+      <a href="../../06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
         05. bootstrapping kube-scheduler
       </a>
     </li>
@@ -430,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
+      <a href="../../06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
         06. kube-apiserver から kubelet へのアクセス権を設定する
       </a>
     </li>
@@ -444,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/06_master/07_controller_health_check/" class="md-nav__link">
+      <a href="../../06_master/07_controller_health_check/" class="md-nav__link">
         07. Kubernetes API のヘルスチェック
       </a>
     </li>
@@ -468,18 +455,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_7" type="checkbox" id="__nav_2_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_3_7">
+        <label class="md-nav__link" for="__nav_2_7">
           07. worker node
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="07. worker node" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_7">
+        <label class="md-nav__title" for="__nav_2_7">
           <span class="md-nav__icon md-icon"></span>
           07. worker node
         </label>
@@ -491,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -505,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
+      <a href="../../07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
         02. bootstrapping kube-proxy
       </a>
     </li>
@@ -526,7 +513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
+      <a href="../../08_flannel/bootstrapping_flannel/" class="md-nav__link">
         08. bootstrapping flannel
       </a>
     </li>
@@ -540,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
+      <a href="../../09_coredns/bootstrapping_coredns/" class="md-nav__link">
         09. bootstrapping coredns
       </a>
     </li>
@@ -554,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
+      <a href="../../10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
         10. bootstrapping nginx ingress controller
       </a>
     </li>
@@ -568,9 +555,71 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
+      <a href="../../11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
         11. bootstrapping external-dns
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          12. bootstrapping metrics_server
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        12. bootstrapping metrics_server
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    構築手順
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -593,18 +642,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_3">
           Failure Test
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Failure Test" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Failure Test
         </label>
@@ -647,18 +696,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_4_3">
+        <label class="md-nav__link" for="__nav_3_3">
           Failure Scenario
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Failure Scenario" data-md-level="2">
-        <label class="md-nav__title" for="__nav_4_3">
+        <label class="md-nav__title" for="__nav_3_3">
           <span class="md-nav__icon md-icon"></span>
           Failure Scenario
         </label>
@@ -698,37 +747,22 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../../cert-manager/bootstrapping_cert-manager/" class="md-nav__link">
-        cert-manager
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_6">
+        <label class="md-nav__link" for="__nav_4">
           Kyverno
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Kyverno" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Kyverno
         </label>
@@ -774,218 +808,11 @@
 
   
   
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_7">
-          Monitoring
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Monitoring" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
-          <span class="md-nav__icon md-icon"></span>
-          Monitoring
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
-        about monitoring
+      <a href="../../../tips/index.md" class="md-nav__link">
+        Tips
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
-        bootstrapping metrics_server
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          bootstrapping kubernetes-dashboard
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        bootstrapping kubernetes-dashboard
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    参考
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    構築手順
-  </a>
-  
-    <nav class="md-nav" aria-label="構築手順">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manual" class="md-nav__link">
-    インストール (manual)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    起動
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sample-user" class="md-nav__link">
-    sample user作成
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#helm" class="md-nav__link">
-    インストール (helm)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../node-problem-detector/bootstrapping_node_problem_detector/" class="md-nav__link">
-        bootstrapping node-problem-detector
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_8">
-          Operations
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Operations" data-md-level="1">
-        <label class="md-nav__title" for="__nav_8">
-          <span class="md-nav__icon md-icon"></span>
-          Operations
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../operations/backup_etcd/" class="md-nav__link">
-        etcd
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -1028,40 +855,6 @@
     構築手順
   </a>
   
-    <nav class="md-nav" aria-label="構築手順">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manual" class="md-nav__link">
-    インストール (manual)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    起動
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sample-user" class="md-nav__link">
-    sample user作成
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#helm" class="md-nav__link">
-    インストール (helm)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1078,210 +871,37 @@
                 
 
 
-<h1 id="kubernetes-dashboard">kubernetes dashboard</h1>
+<h1 id="metrics-server">metrics server</h1>
+<p><code>metrics-server</code>とはkubeletやkube-apiserverから各種リソースのメトリックスを収集します。
+収集したメトリックス情報はautoscaling(<a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/">HPA</a> や <a href="https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/">VPA</a>)を行うために使用されます。</p>
 <h2 id="_1">参考</h2>
 <ul>
-<li><a href="https://github.com/kubernetes/dashboard">https://github.com/kubernetes/dashboard</a></li>
-<li><a href="https://kubernetes.io/ja/docs/tasks/access-application-cluster/web-ui-dashboard/">https://kubernetes.io/ja/docs/tasks/access-application-cluster/web-ui-dashboard/</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/">https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/</a></li>
+<li><a href="https://github.com/kubernetes-sigs/metrics-server">https://github.com/kubernetes-sigs/metrics-server</a></li>
 </ul>
 <h2 id="_2">構築手順</h2>
-<h3 id="manual">インストール (manual)</h3>
-<ol>
-<li>
-<p>デプロイ
-    <div class="highlight"><pre><span></span><code>$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.0/aio/deploy/recommended.yaml
-namespace/kubernetes-dashboard created
-serviceaccount/kubernetes-dashboard created
-service/kubernetes-dashboard created
-secret/kubernetes-dashboard-certs created
-secret/kubernetes-dashboard-csrf created
-secret/kubernetes-dashboard-key-holder created
-configmap/kubernetes-dashboard-settings created
-role.rbac.authorization.k8s.io/kubernetes-dashboard created
-clusterrole.rbac.authorization.k8s.io/kubernetes-dashboard created
-rolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
-clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
-deployment.apps/kubernetes-dashboard created
-service/dashboard-metrics-scraper created
-deployment.apps/dashboard-metrics-scraper created
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>$ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+serviceaccount/metrics-server created
+clusterrole.rbac.authorization.k8s.io/system:aggregated-metrics-reader created
+clusterrole.rbac.authorization.k8s.io/system:metrics-server created
+rolebinding.rbac.authorization.k8s.io/metrics-server-auth-reader created
+clusterrolebinding.rbac.authorization.k8s.io/metrics-server:system:auth-delegator created
+clusterrolebinding.rbac.authorization.k8s.io/system:metrics-server created
+service/metrics-server created
+deployment.apps/metrics-server created
+apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io created
+</code></pre></div>
 <ul>
-<li>log(kubernetes-dashboard)
-      <div class="highlight"><pre><span></span><code>$ kubectl logs -n kubernetes-dashboard kubernetes-dashboard-764b4dd7-qsq28 -f
-2022/02/19 12:14:19 Starting overwatch
-2022/02/19 12:14:19 Using namespace: kubernetes-dashboard
-2022/02/19 12:14:19 Using in-cluster config to connect to apiserver
-2022/02/19 12:14:19 Using secret token for csrf signing
-2022/02/19 12:14:19 Initializing csrf token from kubernetes-dashboard-csrf secret
-2022/02/19 12:14:20 Empty token. Generating and storing in a secret kubernetes-dashboard-csrf
-2022/02/19 12:14:20 Successful initial request to the apiserver, version: v1.22.0
-2022/02/19 12:14:20 Generating JWE encryption key
-2022/02/19 12:14:20 New synchronizer has been registered: kubernetes-dashboard-key-holder-kubernetes-dashboard. Starting
-2022/02/19 12:14:20 Starting secret synchronizer for kubernetes-dashboard-key-holder in namespace kubernetes-dashboard
-2022/02/19 12:14:21 Initializing JWE encryption key from synchronized object
-2022/02/19 12:14:21 Creating in-cluster Sidecar client
-2022/02/19 12:14:21 Metric client health check failed: the server is currently unable to handle the request (get services dashboard-metrics-scraper). Retrying in 30 seconds.
-2022/02/19 12:14:21 Auto-generating certificates
-2022/02/19 12:14:21 Successfully created certificates
-2022/02/19 12:14:21 Serving securely on HTTPS port: 8443
-2022/02/19 12:14:51 Successful request to sidecar
-2022/02/19 12:19:28 Getting application global configuration
-2022/02/19 12:19:28 Application configuration {&quot;serverTime&quot;:1645273168318}
-</code></pre></div></li>
-<li>log(dashboard-metrics-scraper)
-      <div class="highlight"><pre><span></span><code>$ kubectl logs -n kubernetes-dashboard dashboard-metrics-scraper-c45b7869d-x465w -f
-{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Kubernetes host: https://10.32.0.1:443&quot;,&quot;time&quot;:&quot;2022-02-19T12:14:49Z&quot;}
-{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Namespace(s): []&quot;,&quot;time&quot;:&quot;2022-02-19T12:14:49Z&quot;}
-10.200.1.0 - - [19/Feb/2022:12:14:51 +0000] &quot;GET /healthz HTTP/1.1&quot; 200 13 &quot;&quot; &quot;dashboard/v2.5.0&quot;
-10.200.1.0 - - [19/Feb/2022:12:15:21 +0000] &quot;GET /healthz HTTP/1.1&quot; 200 13 &quot;&quot; &quot;dashboard/v2.5.0&quot;
-10.200.0.1 - - [19/Feb/2022:12:15:26 +0000] &quot;GET / HTTP/1.1&quot; 200 6 &quot;&quot; &quot;kube-probe/1.22&quot;
-10.200.0.1 - - [19/Feb/2022:12:15:36 +0000] &quot;GET / HTTP/1.1&quot; 200 6 &quot;&quot; &quot;kube-probe/1.22&quot;
-{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Database updated: 2 nodes, 10 pods&quot;,&quot;time&quot;:&quot;2022-02-19T12:15:50Z&quot;}
-10.200.1.0 - - [19/Feb/2022:12:15:51 +0000] &quot;GET /healthz HTTP/1.1&quot; 200 13 &quot;&quot; &quot;dashboard/v2.5.0&quot;
-10.200.0.1 - - [19/Feb/2022:12:15:56 +0000] &quot;GET / HTTP/1.1&quot; 200 6 &quot;&quot; &quot;kube-probe/1.22&quot;
-</code></pre></div></li>
+<li><code>kubectl top pod</code> などで以下エラー</li>
 </ul>
-</li>
-<li>
-<p>httpsアクセス用証明書の作成</p>
+<div class="highlight"><pre><span></span><code>Error from server (ServiceUnavailable): the server is currently unable to handle the request (get pods.metrics.k8s.io)
+</code></pre></div>
 <ul>
-<li><a href="https://github.com/kubernetes/dashboard/tree/master/docs/user/accessing-dashboard">Accessing Dashboard</a> では<code>kubectl proxy</code>を使用したアクセス方法を提示していますが、
-  Cluster外からアクセスするためにはIngressを作成し指定したドメインでアクセスする必要があります
-    <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF &gt; dashboard-csr.json
-{
-    &quot;CN&quot;: &quot;dashboard&quot;,
-    &quot;hosts&quot;: [&quot;kubernetes-dashboard.local&quot;],
-    &quot;key&quot;: {
-        &quot;algo&quot;: &quot;rsa&quot;,
-        &quot;size&quot;: 2048
-    },
-    &quot;names&quot;: [
-        {
-            &quot;C&quot;: &quot;JP&quot;,
-            &quot;L&quot;: &quot;Tokyo&quot;,
-            &quot;O&quot;: &quot;system:dashboard&quot;,
-            &quot;OU&quot;: &quot;Kubernetes The HardWay&quot;,
-            &quot;ST&quot;: &quot;Sample&quot;
-        }
-    ]
-}
-EOF
-
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -profile=kubernetes \
-  dashboard-csr.json | cfssljson -bare dashboard
-</code></pre></div></li>
-<li>以下ファイルが作成されます<ul>
-<li>dashboard-key.pem</li>
-<li>dashboard.pem</li>
+<li><code>kube-apiserver</code> で以下ログ</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>
-<p>証明書と鍵をsecretで管理する
-    <div class="highlight"><pre><span></span><code>kubectl create secret tls kubernetes-dashboard-certs --key dashboard-key.pem --cert dashboard.pem -n kube-system
-</code></pre></div></p>
-</li>
-<li>
-<p>dashboardへアクセスするためのIngressを作成する
-    <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF | kubectl apply --kubeconfig admin.kubeconfig -f -
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-    nginx.ingress.kubernetes.io/configuration-snippet: |-
-      proxy_ssl_server_name on;
-      proxy_ssl_name kubernetes-dashboard.local;
-  name: dashboard-ingress
-  namespace: kubernetes-dashboard
-spec:
-  tls:
-  - hosts:
-      - kubernetes-dashboard.local
-    secretName: dashboard-tls
-  rules:
-  - host: kubernetes-dashboard.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kubernetes-dashboard
-            port:
-              number: 443
-EOF
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="_3">起動</h3>
-<ol>
-<li>
-<p>kube-apiserver` へCluster外からアクセスできるようにproxyサーバを起動する</p>
-<ul>
-<li><a href="https://kubernetes.io/ja/docs/tasks/access-application-cluster/web-ui-dashboard/">https://kubernetes.io/ja/docs/tasks/access-application-cluster/web-ui-dashboard/</a></li>
-<li><a href="https://github.com/kubernetes/dashboard/blob/master/docs/user/accessing-dashboard/README.md#kubectl-proxy">https://github.com/kubernetes/dashboard/blob/master/docs/user/accessing-dashboard/README.md#kubectl-proxy</a>
-    <div class="highlight"><pre><span></span><code>kubectl proxy --address 0.0.0.0 --accept-hosts=192.168.10.*
-</code></pre></div></li>
-</ul>
-</li>
-<li>
-<p>ブラウザから <code>http://192.168.10.50:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</code> へアクセスする</p>
-<ul>
-<li><em>ServiceAccountのTokenやkubeconfigのいずれかを指定してログインする</em></li>
-<li><img alt="" src="../kubernetes-dashboard_01.png" /></li>
-</ul>
-</li>
-</ol>
-<h3 id="sample-user">sample user作成</h3>
-<p><a href="https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md">https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md</a></p>
-<ol>
-<li>
-<p><code>admin-user</code> ServiceAccountにスーパーユーザ権限である<code>cluster-admin</code> cluster roleを設定し作成する
-    <div class="highlight"><pre><span></span><code>cat &lt;&lt;EOF | kubectl apply -f -
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: admin-user
-  namespace: kubernetes-dashboard
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: admin-user
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: admin-user
-  namespace: kubernetes-dashboard
-EOF
-</code></pre></div></p>
-</li>
-<li>
-<p>Bearer Token取得
-    <div class="highlight"><pre><span></span><code>kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath=&quot;{.secrets[0].name}&quot;) -o go-template=&quot;{{.data.token | base64decode}}&quot;
-</code></pre></div></p>
-</li>
-</ol>
-<h3 id="helm">インストール (helm)</h3>
-<div class="highlight"><pre><span></span><code>helm upgrade kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard \
-  --set=ingress.enabled=true \
-  --set=ingress.className=nginx \
-  --set=service.type=NodePort \
-  --set=service.nodePort=30001 \
-  --set=protocolHttp=true
+<div class="highlight"><pre><span></span><code>E0829 14:15:26.199732       1 controller.go:116] loading OpenAPI spec for &quot;v1beta1.metrics.k8s.io&quot; failed with: failed to retrieve openAPI spec, http error: ResponseCode: 503, Body: service unavailable
+, Header: map[Content-Type:[text/plain; charset=utf-8] X-Content-Type-Options:[nosniff]]
+I0829 14:15:26.199769       1 controller.go:129] OpenAPI AggregationController: action for item v1beta1.metrics.k8s.io: Rate Limited Requeue.
 </code></pre></div>
 
               
@@ -1296,7 +916,7 @@ EOF
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../../metrics-server/bootstrapping_metrics_server/" class="md-footer__link md-footer__link--prev" aria-label="Previous: bootstrapping metrics_server" rel="prev">
+        <a href="../../11_external_dns/bootstrapping_external_dns/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 11. bootstrapping external-dns" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1305,20 +925,20 @@ EOF
               <span class="md-footer__direction">
                 Previous
               </span>
-              bootstrapping metrics_server
+              11. bootstrapping external-dns
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../node-problem-detector/bootstrapping_node_problem_detector/" class="md-footer__link md-footer__link--next" aria-label="Next: bootstrapping node-problem-detector" rel="next">
+        <a href="../../../failure_test/failure_story/" class="md-footer__link md-footer__link--next" aria-label="Next: Failure Story" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              bootstrapping node-problem-detector
+              Failure Story
             </div>
           </div>
           <div class="md-footer__button md-icon">
