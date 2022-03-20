@@ -287,6 +287,20 @@ container_manager_linux.go:490] [ContainerManager]: Discovered runtime cgroups n
    - 既知らしい
       - https://github.com/kubernetes/kubernetes/issues/95039
 
+### cni plugin not initialized
+
+- `/opt/cni/bin` ディレクトリ以下のCNI Pluginもしくは `/etc/cni/net.d` 以下のCNI Configに設定不備がある可能性が考えられる
+    ```
+    "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: cni plugin not initialized"
+    ```
+
+### cni config uninitialized
+
+- `/opt/cni/bin` ディレクトリ以下のCNI Pluginもしくは `/etc/cni/net.d` 以下のCNI Configに設定不備がある可能性が考えられる
+    ```
+    "Container runtime network not ready" networkReady="NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: cni config uninitialized"
+    ```
+
 ## 参考
 
 - https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/
