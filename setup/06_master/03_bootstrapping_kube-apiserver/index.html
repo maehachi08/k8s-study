@@ -627,20 +627,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../12_metrics_server/bootstrapping_metrics_server/" class="md-nav__link">
-        12. bootstrapping metrics_server
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -825,10 +811,91 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Monitoring
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Monitoring" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Monitoring
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../tips/index.md" class="md-nav__link">
-        Tips
+      <a href="../../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+        bootstrapping metrics_server
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Operations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Operations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operations/backup_etcd/" class="md-nav__link">
+        etcd
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -931,6 +998,9 @@ COPY ca.pem \
      service-account-key.pem \
      service-account.pem \
      encryption-config.yaml \
+     front-proxy-ca.pem \
+     front-proxy.pem \
+     front-proxy-key.pem \
      /var/lib/kubernetes/
 
 COPY authorization-config.yaml /etc/kubernetes/webhook/
@@ -1071,7 +1141,6 @@ spec:
         - --kubelet-certificate-authority=/var/lib/kubernetes/ca.pem
         - --kubelet-client-certificate=/var/lib/kubernetes/kubernetes.pem
         - --kubelet-client-key=/var/lib/kubernetes/kubernetes-key.pem
-        - --kubelet-https=true
         - --runtime-config=authentication.k8s.io/v1beta1=true
         - --feature-gates=APIPriorityAndFairness=false
         - --service-account-key-file=/var/lib/kubernetes/service-account.pem
@@ -1085,6 +1154,14 @@ spec:
         - --http2-max-streams-per-connection=3000
         - --max-requests-inflight=3000
         - --max-mutating-requests-inflight=1000
+        - --enable-aggregator-routing=true
+        - --requestheader-client-ca-file=/var/lib/kubernetes/front-proxy-ca.pem
+        - --requestheader-allowed-names=front-proxy-ca
+        - --requestheader-extra-headers-prefix=X-Remote-Extra
+        - --requestheader-group-headers=X-Remote-Group
+        - --requestheader-username-headers=X-Remote-User
+        - --proxy-client-cert-file=/var/lib/kubernetes/front-proxy.pem
+        - --proxy-client-key-file=/var/lib/kubernetes/front-proxy-key.pem
         - --v=2
 EOF
 </code></pre></div>

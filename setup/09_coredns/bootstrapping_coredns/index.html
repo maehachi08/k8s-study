@@ -638,20 +638,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../12_metrics_server/bootstrapping_metrics_server/" class="md-nav__link">
-        12. bootstrapping metrics_server
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -836,10 +822,91 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Monitoring
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Monitoring" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Monitoring
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../tips/index.md" class="md-nav__link">
-        Tips
+      <a href="../../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+        bootstrapping metrics_server
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Operations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Operations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operations/backup_etcd/" class="md-nav__link">
+        etcd
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -991,6 +1058,14 @@ bash deploy.sh -i 10.32.0.10  -s -t coredns.yaml.sed | kubectl apply -f -
 <p>cni0(flannel)の起動に失敗している可能性がある
     <div class="highlight"><pre><span></span><code>failed to set bridge addr: &quot;cni0&quot; already has an IP address different from 10.200.1.1/24
 </code></pre></div></p>
+</li>
+<li>
+<p>名前解決に失敗している可能性がある</p>
+<ul>
+<li><a href="https://coredns.io/plugins/loop/#troubleshooting">https://coredns.io/plugins/loop/#troubleshooting</a>
+    <div class="highlight"><pre><span></span><code>[FATAL] plugin/loop: Loop (127.0.0.1:36286 -&gt; :53) detected for zone &quot;.&quot;, see https://coredns.io/plugins/loop#troubleshooting. Query: &quot;HINFO 1048258276942848743.906062863108256161.&quot;
+</code></pre></div></li>
+</ul>
 </li>
 </ol>
 

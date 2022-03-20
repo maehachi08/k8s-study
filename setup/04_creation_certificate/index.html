@@ -399,6 +399,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#kube-apiserver-front-proxyfor-aggregation-layer" class="md-nav__link">
+    kube-apiserver front-proxy(for aggregation layer)のサーバー証明書
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#service-account" class="md-nav__link">
     service-accountの証明書
   </a>
@@ -700,20 +707,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../12_metrics_server/bootstrapping_metrics_server/" class="md-nav__link">
-        12. bootstrapping metrics_server
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -898,10 +891,91 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Monitoring
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Monitoring" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Monitoring
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../tips/index.md" class="md-nav__link">
-        Tips
+      <a href="../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+        bootstrapping metrics_server
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Operations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Operations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/backup_etcd/" class="md-nav__link">
+        etcd
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1000,6 +1074,13 @@
           <li class="md-nav__item">
   <a href="#kube-apiserver" class="md-nav__link">
     kube-apiserverのサーバー証明書
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kube-apiserver-front-proxyfor-aggregation-layer" class="md-nav__link">
+    kube-apiserver front-proxy(for aggregation layer)のサーバー証明書
   </a>
   
 </li>
@@ -1341,6 +1422,90 @@ cfssl gencert \
 </ul>
 </li>
 </ul>
+<h4 id="kube-apiserver-front-proxyfor-aggregation-layer">kube-apiserver front-proxy(for aggregation layer)のサーバー証明書</h4>
+<ol>
+<li>
+<p>CA(認証局)作成
+    <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF &gt; front-proxy-ca-config.json
+{
+    &quot;signing&quot;: {
+        &quot;default&quot;: {
+            &quot;expiry&quot;: &quot;8760h&quot;
+        },
+        &quot;profiles&quot;: {
+            &quot;kubernetes&quot;: {
+                &quot;usages&quot;: [
+                    &quot;signing&quot;,
+                    &quot;key encipherment&quot;,
+                    &quot;server auth&quot;,
+                    &quot;client auth&quot;
+                ],
+                &quot;expiry&quot;: &quot;8760h&quot;
+            }
+        }
+    }
+}
+EOF
+
+cat &lt;&lt; EOF &gt; front-proxy-ca-csr.json
+{
+    &quot;CN&quot;: &quot;Kubernetes&quot;,
+    &quot;key&quot;: {
+        &quot;algo&quot;: &quot;rsa&quot;,
+        &quot;size&quot;: 2048
+    },
+    &quot;names&quot;: [
+        {
+            &quot;C&quot;: &quot;JP&quot;,
+            &quot;L&quot;: &quot;Tokyo&quot;,
+            &quot;O&quot;: &quot;Kubernetes&quot;,
+            &quot;OU&quot;: &quot;CA&quot;,
+            &quot;ST&quot;: &quot;Sample&quot;
+        }
+    ]
+}
+EOF
+
+cfssl gencert -initca front-proxy-ca-csr.json | cfssljson -bare front-proxy-ca
+</code></pre></div></p>
+</li>
+<li>
+<p>front-proxy用証明書の作成
+    <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF &gt; front-proxy-csr.json
+{
+    &quot;CN&quot;: &quot;front-proxy-ca&quot;,
+    &quot;key&quot;: {
+        &quot;algo&quot;: &quot;rsa&quot;,
+        &quot;size&quot;: 2048
+    },
+    &quot;names&quot;: [
+        {
+            &quot;C&quot;: &quot;JP&quot;,
+            &quot;L&quot;: &quot;Tokyo&quot;,
+            &quot;O&quot;: &quot;Kubernetes&quot;,
+            &quot;OU&quot;: &quot;Kubernetes The Hard Way&quot;,
+            &quot;ST&quot;: &quot;Sample&quot;
+        }
+    ]
+}
+EOF
+
+cfssl gencert \
+  -ca=front-proxy-ca.pem \
+  -ca-key=front-proxy-ca-key.pem \
+  -config=front-proxy-ca-config.json \
+  -profile=kubernetes \
+  front-proxy-csr.json | cfssljson -bare front-proxy
+</code></pre></div></p>
+</li>
+<li>
+<p>以下ファイルが生成されていることを確認</p>
+<ul>
+<li><code>front-proxy-key.pem</code></li>
+<li><code>front-proxy.pem</code></li>
+</ul>
+</li>
+</ol>
 <h4 id="service-account">service-accountの証明書</h4>
 <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF &gt; service-account-csr.json
 {

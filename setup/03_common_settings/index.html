@@ -635,20 +635,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../12_metrics_server/bootstrapping_metrics_server/" class="md-nav__link">
-        12. bootstrapping metrics_server
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -833,10 +819,91 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Monitoring
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Monitoring" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Monitoring
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../tips/index.md" class="md-nav__link">
-        Tips
+      <a href="../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+        bootstrapping metrics_server
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Operations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Operations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/backup_etcd/" class="md-nav__link">
+        etcd
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1250,10 +1317,41 @@ sudo rm -f /etc/cni/net.d/87-podman-bridge.conflist
    <div class="highlight"><pre><span></span><code>VERSION=&quot;v1.0.0&quot;
 ARCH=&quot;arm64&quot;
 DOWNLOAD_URL=&quot;https://github.com/containernetworking/plugins/releases/download/${VERSION}/cni-plugins-linux-${ARCH}-${VERSION}.tgz&quot;
-curl -L ${DOWNLOAD_URL} | sudo tar -zxvf -C /opt/cni/bin
+curl -L ${DOWNLOAD_URL} | sudo tar -zx -C /opt/cni/bin
 
 ls -l /opt/cni/bin/
 </code></pre></div></li>
+<li>cni configを作成する<ul>
+<li><a href="https://www.cni.dev/plugins/current/main/bridge/">https://www.cni.dev/plugins/current/main/bridge/</a>
+    <div class="highlight"><pre><span></span><code>POD_CIDR=&quot;10.200.0.0/24&quot;
+cat &lt;&lt;EOF | sudo tee /etc/cni/net.d/10-bridge.conf
+{
+    &quot;cniVersion&quot;: &quot;0.4.0&quot;,
+    &quot;name&quot;: &quot;bridge&quot;,
+    &quot;type&quot;: &quot;bridge&quot;,
+    &quot;bridge&quot;: &quot;cnio0&quot;,
+    &quot;isGateway&quot;: true,
+    &quot;ipMasq&quot;: true,
+    &quot;ipam&quot;: {
+        &quot;type&quot;: &quot;host-local&quot;,
+        &quot;ranges&quot;: [
+          [{&quot;subnet&quot;: &quot;${POD_CIDR}&quot;}]
+        ],
+        &quot;routes&quot;: [{&quot;dst&quot;: &quot;0.0.0.0/0&quot;}]
+    }
+}
+EOF
+
+cat &lt;&lt;EOF | sudo tee /etc/cni/net.d/20-loopback.conf
+{
+    &quot;cniVersion&quot;: &quot;0.4.0&quot;,
+    &quot;name&quot;: &quot;lo&quot;,
+    &quot;type&quot;: &quot;loopback&quot;
+}
+EOF
+</code></pre></div></li>
+</ul>
+</li>
 </ul>
 <h3 id="kubectl">kubectl インストール</h3>
 <ul>

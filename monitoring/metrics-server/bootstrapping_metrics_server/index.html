@@ -12,21 +12,21 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/kyverno/about_kyverno/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/monitoring/metrics-server/bootstrapping_metrics_server/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
-        <title>01. About Kyverno - maehachi08/k8s-study</title>
+        <title>bootstrapping metrics_server - maehachi08/k8s-study</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.2d9f7617.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2d9f7617.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -41,7 +41,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kyverno" class="md-skip">
+        <a href="#metrics-server" class="md-skip">
           Skip to content
         </a>
       
@@ -79,7 +79,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="maehachi08/k8s-study" class="md-header__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-header__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              01. About Kyverno
+              bootstrapping metrics_server
             
           </span>
         </div>
@@ -177,7 +177,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -208,7 +208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -249,7 +249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/01_setup_RaspberryPi/" class="md-nav__link">
+      <a href="../../../setup/01_setup_RaspberryPi/" class="md-nav__link">
         01. Raspberry Pi 構成
       </a>
     </li>
@@ -263,7 +263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
+      <a href="../../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
         02. OS Install
       </a>
     </li>
@@ -277,7 +277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/03_common_settings/" class="md-nav__link">
+      <a href="../../../setup/03_common_settings/" class="md-nav__link">
         03. master/nodeで共通手順
       </a>
     </li>
@@ -291,7 +291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/04_creation_certificate/" class="md-nav__link">
+      <a href="../../../setup/04_creation_certificate/" class="md-nav__link">
         04. 認証局の設定とTLS証明書の作成
       </a>
     </li>
@@ -305,7 +305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/05_creating_config/" class="md-nav__link">
+      <a href="../../../setup/05_creating_config/" class="md-nav__link">
         05. 認証のためのkubeconfigの作成
       </a>
     </li>
@@ -345,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -359,7 +359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
+      <a href="../../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
         02. bootstrapping etcd
       </a>
     </li>
@@ -373,7 +373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
+      <a href="../../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
         03. bootstrapping kube-apiserver
       </a>
     </li>
@@ -387,7 +387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
+      <a href="../../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
         04. bootstrapping kube-controller-manager
       </a>
     </li>
@@ -401,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
+      <a href="../../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
         05. bootstrapping kube-scheduler
       </a>
     </li>
@@ -415,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
         06. kube-apiserver から kubelet へのアクセス権を設定する
       </a>
     </li>
@@ -429,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/07_controller_health_check/" class="md-nav__link">
+      <a href="../../../setup/06_master/07_controller_health_check/" class="md-nav__link">
         07. Kubernetes API のヘルスチェック
       </a>
     </li>
@@ -476,7 +476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -490,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
+      <a href="../../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
         02. bootstrapping kube-proxy
       </a>
     </li>
@@ -511,7 +511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
+      <a href="../../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
         08. bootstrapping flannel
       </a>
     </li>
@@ -525,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
+      <a href="../../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
         09. bootstrapping coredns
       </a>
     </li>
@@ -539,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
+      <a href="../../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
         10. bootstrapping nginx ingress controller
       </a>
     </li>
@@ -553,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
+      <a href="../../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
         11. bootstrapping external-dns
       </a>
     </li>
@@ -601,7 +601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_story/" class="md-nav__link">
+      <a href="../../../failure_test/failure_story/" class="md-nav__link">
         Failure Story
       </a>
     </li>
@@ -615,7 +615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/point_of_failure/" class="md-nav__link">
+      <a href="../../../failure_test/point_of_failure/" class="md-nav__link">
         Point of failure
       </a>
     </li>
@@ -655,7 +655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_scenario_of_node/" class="md-nav__link">
+      <a href="../../../failure_test/failure_scenario_of_node/" class="md-nav__link">
         Node
       </a>
     </li>
@@ -682,14 +682,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
@@ -710,120 +708,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          01. About Kyverno
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../kyverno/about_kyverno/" class="md-nav__link">
         01. About Kyverno
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#about-kyverno" class="md-nav__link">
-    About Kyverno
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#about-kyverno-policy" class="md-nav__link">
-    About Kyverno Policy
-  </a>
-  
-    <nav class="md-nav" aria-label="About Kyverno Policy">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kind-of-policy" class="md-nav__link">
-    Kind of Policy
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kind-of-resources" class="md-nav__link">
-    Kind of Resources
-  </a>
-  
-    <nav class="md-nav" aria-label="Kind of Resources">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#select-resources" class="md-nav__link">
-    Select Resources
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mutate-resources" class="md-nav__link">
-    Mutate Resources
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#validate-resources" class="md-nav__link">
-    Validate Resources
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-resources" class="md-nav__link">
-    Generate Resources
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verifyimages-resources" class="md-nav__link">
-    VerifyImages Resources
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -835,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation_kyverno/" class="md-nav__link">
+      <a href="../../../kyverno/installation_kyverno/" class="md-nav__link">
         02. Installation Kyverno
       </a>
     </li>
@@ -855,12 +744,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
       
       
       
@@ -881,11 +772,120 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          bootstrapping metrics_server
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         bootstrapping metrics_server
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    要件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    構築手順
+  </a>
+  
+    <nav class="md-nav" aria-label="構築手順">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kube-apiserver-aggregation-layer" class="md-nav__link">
+    kube-apiserver Aggregation Layer設定
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metics-server" class="md-nav__link">
+    metics-serverインストール
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    動作確認
+  </a>
+  
+    <nav class="md-nav" aria-label="動作確認">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-path" class="md-nav__link">
+    API Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubectl-top-pod" class="md-nav__link">
+    kubectl top pod
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubectl-top-pod_1" class="md-nav__link">
+    kubectl top pod
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -931,7 +931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/backup_etcd/" class="md-nav__link">
+      <a href="../../../operations/backup_etcd/" class="md-nav__link">
         etcd
       </a>
     </li>
@@ -972,66 +972,66 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#about-kyverno" class="md-nav__link">
-    About Kyverno
+  <a href="#_1" class="md-nav__link">
+    参考
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#about-kyverno-policy" class="md-nav__link">
-    About Kyverno Policy
+  <a href="#_2" class="md-nav__link">
+    要件
   </a>
   
-    <nav class="md-nav" aria-label="About Kyverno Policy">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    構築手順
+  </a>
+  
+    <nav class="md-nav" aria-label="構築手順">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kind-of-policy" class="md-nav__link">
-    Kind of Policy
+  <a href="#kube-apiserver-aggregation-layer" class="md-nav__link">
+    kube-apiserver Aggregation Layer設定
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#kind-of-resources" class="md-nav__link">
-    Kind of Resources
+  <a href="#metics-server" class="md-nav__link">
+    metics-serverインストール
   </a>
   
-    <nav class="md-nav" aria-label="Kind of Resources">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    動作確認
+  </a>
+  
+    <nav class="md-nav" aria-label="動作確認">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#select-resources" class="md-nav__link">
-    Select Resources
+  <a href="#api-path" class="md-nav__link">
+    API Path
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mutate-resources" class="md-nav__link">
-    Mutate Resources
+  <a href="#kubectl-top-pod" class="md-nav__link">
+    kubectl top pod
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#validate-resources" class="md-nav__link">
-    Validate Resources
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-resources" class="md-nav__link">
-    Generate Resources
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verifyimages-resources" class="md-nav__link">
-    VerifyImages Resources
+  <a href="#kubectl-top-pod_1" class="md-nav__link">
+    kubectl top pod
   </a>
   
 </li>
@@ -1060,136 +1060,244 @@
                 
 
 
-<h1 id="kyverno">Kyverno</h1>
-<h2 id="about-kyverno">About Kyverno</h2>
+<h1 id="metrics-server">metrics-server</h1>
+<p><code>metrics-server</code>とはkubeletやkube-apiserverから各種リソースのメトリックスを収集します。
+収集したメトリックス情報はautoscaling(<a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/">HPA</a> や <a href="https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/">VPA</a>)を行うために使用されます。</p>
+<h2 id="_1">参考</h2>
 <ul>
-<li><a href="https://kyverno.io/docs/introduction/">https://kyverno.io/docs/introduction/</a></li>
-<li>Kyverno はKubernetesのために設計されたPolicy Engineです。<ul>
-<li><a href="https://www.openpolicyagent.org/">Open Policy Agent(OPA)</a> のRegoのように独自言語を覚える必要はなくCustomResourceDefinition(CRD)で定義を行うことができます</li>
+<li>metrics-server<ul>
+<li><a href="https://github.com/kubernetes-sigs/metrics-server">https://github.com/kubernetes-sigs/metrics-server</a><ul>
+<li><a href="https://github.com/kubernetes-sigs/metrics-server/blob/v0.6.1/docs/command-line-flags.txt">docs/command-line-flags.txt</a></li>
+</ul>
+</li>
+<li><a href="https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/">https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/</a></li>
+</ul>
+</li>
+<li>kube-apiserver Aggregation Layer設定について<ul>
+<li><a href="https://kubernetes.io/docs/tasks/extend-kubernetes/configure-aggregation-layer/">https://kubernetes.io/docs/tasks/extend-kubernetes/configure-aggregation-layer/</a></li>
+<li><a href="https://kubernetes.io/ja/docs/concepts/cluster-administration/proxies/">https://kubernetes.io/ja/docs/concepts/cluster-administration/proxies/</a></li>
+<li><a href="https://github.com/ansilh/kubernetes-the-hardway-virtualbox/blob/master/15.Deploy-Metric-Server.md">https://github.com/ansilh/kubernetes-the-hardway-virtualbox/blob/master/15.Deploy-Metric-Server.md</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="about-kyverno-policy">About Kyverno Policy</h2>
+<h2 id="_2">要件</h2>
 <ul>
-<li>
-<p>以下図は <a href="https://kyverno.io/docs/kyverno-policies/">こちら</a> から抜粋</p>
-<ul>
-<li><img alt="" src="../Kyverno-Policy-Structure.png" width="300" /></li>
-</ul>
-</li>
-<li>
-<p>Kyverno Policyは1つ以上のルールのコレクションです。</p>
-</li>
-<li>1つのルールは2つの宣言を持ちます<ol>
-<li>Policy適用対象リソースの選択<ul>
-<li><a href="https://kyverno.io/docs/writing-policies/match-exclude/">Select Resources</a></li>
-</ul>
-</li>
-<li>Policy適用<ul>
-<li><a href="https://kyverno.io/docs/writing-policies/mutate/">Mutate Resources</a></li>
-<li><a href="https://kyverno.io/docs/writing-policies/validate/">Validate Resources</a></li>
-<li><a href="https://kyverno.io/docs/writing-policies/generate/">Generate Resources</a></li>
-<li><a href="https://kyverno.io/docs/writing-policies/verify-images/">VerifyImages Resources</a></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="kind-of-policy">Kind of Policy</h3>
-<ul>
-<li>Cluster wideに適用される <code>ClusterPolicy</code> と namespace単位に適用される <code>Policy</code> がある<ul>
-<li><a href="https://htmlpreview.github.io/?https://github.com/kyverno/kyverno/blob/main/docs/crd/v1/index.html#kyverno.io/v1.ClusterPolicy">kyverno.io/v1.ClusterPolicy</a></li>
-<li><a href="https://htmlpreview.github.io/?https://github.com/kyverno/kyverno/blob/main/docs/crd/v1/index.html#kyverno.io/v1.Policy">kyverno.io/v1.Policy</a></li>
+<li><a href="https://github.com/kubernetes-sigs/metrics-server#requirements">https://github.com/kubernetes-sigs/metrics-server#requirements</a><ul>
+<li>Metrics Server must be reachable from kube-apiserver by container IP address (or node IP if hostNetwork is enabled).</li>
+<li>The kube-apiserver must enable an aggregation layer.</li>
+<li>Nodes must have Webhook authentication and authorization enabled.</li>
+<li>Kubelet certificate needs to be signed by cluster Certificate Authority (or disable certificate validation by passing --kubelet-insecure-tls to Metrics Server)</li>
+<li>Container runtime must implement a container metrics RPCs (or have cAdvisor support)</li>
 </ul>
 </li>
 </ul>
-<h3 id="kind-of-resources">Kind of Resources</h3>
-<h4 id="select-resources"><a href="https://kyverno.io/docs/writing-policies/match-exclude/">Select Resources</a></h4>
-<ul>
-<li>Mutate/VerifyImages/Validate/Generate などのpolicyを適用する対象リソースを指定する<ul>
-<li>対象としたいリソースを<code>match</code>で、対象外としたいリソースを<code>exclude</code> で指定する</li>
-<li>any(<code>OR</code>) もしくは all(<code>AND</code>)の条件下で <a href="https://kyverno.io/docs/writing-policies/match-exclude/#resource-filters">resource filters</a> を指定<ul>
-<li><code>resources</code>: select resources by names, namespaces, kinds, label selectors, annotations, and namespace selectors.</li>
-<li><code>subjects</code>: select users, user groups, and service accounts</li>
-<li><code>roles</code>: select namespaced roles</li>
-<li><code>clusterRoles</code>: select cluster wide roles</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="mutate-resources"><a href="https://kyverno.io/docs/writing-policies/mutate/">Mutate Resources</a></h4>
-<ul>
-<li>ruleに応じてマニフェストを書き換える<ul>
-<li>書き換えたい内容は <code>RFC 6902 JSON Patch</code>、<code>a strategic merge patch</code>、<code>an overlay pattern</code> のいずれかで定義可能</li>
-<li><a href="https://kyverno.io/docs/writing-policies/mutate/#rfc-6902-jsonpatch">RFC 6902 JSON Patch</a></li>
-<li><a href="https://kyverno.io/docs/writing-policies/mutate/#strategic-merge-patch">Strategic Merge Patch</a></li>
-<li>an overlay pattern<ul>
-<li><a href="https://kyverno.io/docs/writing-policies/mutate/#conditional-logic-using-anchors">Conditional logic using anchors</a></li>
-<li><a href="https://kyverno.io/docs/writing-policies/mutate/#mutate-rule-ordering-cascading">Mutate Rule Ordering</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="validate-resources"><a href="https://kyverno.io/docs/writing-policies/validate/">Validate Resources</a></h4>
-<ul>
-<li>これから適用するmanifests、または作成済みリソースに関してポリシー違反がないかどうかを検証する</li>
-<li><code>spec.validationFailureAction</code><ul>
-<li><code>enforce</code><ul>
-<li>新規作成の場合は拒否する</li>
-</ul>
-</li>
-<li><code>audit</code><ul>
-<li>作成は拒否しない</li>
-<li><code>ClusterPolicyReport</code> または <code>PolicyReport</code> を作成しポリシー違反を記録する</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>spec.background</code><ul>
-<li>当該 <code>ClusterPolicy</code> または <code>Policy</code> に関してポリシー違反をしていないかどうかを作成済みリソースに検証する</li>
-<li>(<code>enforce</code>の場合でも) 作成済みリソースのポリシー違反は<code>ClusterPolicyReport</code> または <code>PolicyReport</code> を作成しポリシー違反を記録する</li>
-</ul>
-</li>
-<li>Patterns<ul>
-<li><code>spec.rules[*].va1lidate.pattern</code></li>
-<li><code>spec.rules[*].va1lidate.anyPattern</code></li>
-</ul>
-</li>
-<li>ルールの拒否<ul>
-<li><code>deny</code><ul>
-<li><code>validationFailureAction: enforce</code> を設定する必要がある</li>
-<li><code>deny</code> ruleの <code>exclude</code> で拒否させたくないsubjectsやroleを指定するなども可能</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="generate-resources"><a href="https://kyverno.io/docs/writing-policies/generate/">Generate Resources</a></h4>
-<ul>
-<li>リソースの作成・更新に基づいて追加のリソースを作成する</li>
-<li>リソース作成方法<ol>
-<li><code>spec.rules.generate.clone</code><ul>
-<li>SecretやConfigMapなど既存リソースをコピーしたい場合</li>
-</ul>
-</li>
-<li><code>spec.rules.generate.data</code><ul>
-<li>rule manifestsに定義された新規作成したいリソース</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>kyverno policy ruleによって作成されたリソースはマニフェスト管理されていません。
-<code>spec.rules.generate.synchronize=true</code> の場合、必要な権限を持つユーザやServiceAccountなどから作成されたリソースが変更・削除されても元のリソース状態に戻すように更新・再作成してくれます。</p>
+<h2 id="_3">構築手順</h2>
+<h3 id="kube-apiserver-aggregation-layer">kube-apiserver Aggregation Layer設定</h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/#metrics-server">https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/#metrics-server</a></p>
+<blockquote>
+<p>Metrics Server collects metrics from the Summary API, exposed by Kubelet on each node, and is registered with the main API server via Kubernetes aggregator.</p>
+</blockquote>
 </div>
-<h4 id="verifyimages-resources"><a href="https://kyverno.io/docs/writing-policies/verify-images/">VerifyImages Resources</a></h4>
 <ul>
-<li>imageのシグネチャ(署名) をチェックし、ダイジェストを追加する</li>
+<li>kube-apiserverでAggregation Layerを有効にする<ul>
+<li>Aggregation Layerが有効でない場合はmetrics-serverで以下のようなエラーログが出ている
+    <div class="highlight"><pre><span></span><code>E0217 15:13:53.378655       1 webhook.go:224] Failed to make webhook authorizer request: Post &quot;https://10.32.0.1:443/apis/authorization.k8s.io/v1/subjectaccessreviews?timeout=10s&quot;: cont
+ext canceled
+E0217 15:13:53.378917       1 errors.go:77] Post &quot;https://10.32.0.1:443/apis/authorization.k8s.io/v1/subjectaccessreviews?timeout=10s&quot;: context canceled
+E0217 15:13:53.379124       1 timeout.go:137] post-timeout activity - time-elapsed: 121.389µs, GET &quot;/apis/metrics.k8s.io/v1beta1&quot; result: &lt;nil&gt;
+</code></pre></div></li>
+<li><a href="/setup/04_creation_certificate/#kube-apiserver-front-proxyfor-aggregation-layer">kube-apiserver front-proxy(for aggregation layer)のサーバー証明書</a><ul>
+<li>front-proxy用CA証明書およびサーバ証明書と秘密鍵を生成する<ul>
+<li><code>/var/lib/kubernetes/front-proxy-ca.pem</code></li>
+<li><code>/var/lib/kubernetes/front-proxy.pem</code></li>
+<li><code>/var/lib/kubernetes/front-proxy-key.pem</code></li>
 </ul>
+</li>
+</ul>
+</li>
+<li><a href="/setup/06_master/03_bootstrapping_kube-apiserver/">/setup/06_master/03_bootstrapping_kube-apiserver/</a><ul>
+<li>kube-apiserverの起動オプションを追加
+    <div class="highlight"><pre><span></span><code>--enable-aggregator-routing=true
+--requestheader-client-ca-file=/var/lib/kubernetes/front-proxy-ca.pem
+--requestheader-allowed-names=front-proxy-ca
+--requestheader-extra-headers-prefix=X-Remote-Extra
+--requestheader-group-headers=X-Remote-Group
+--requestheader-username-headers=X-Remote-User
+--proxy-client-cert-file=/var/lib/kubernetes/front-proxy.pem
+--proxy-client-key-file=/var/lib/kubernetes/front-proxy-key.pem
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="metics-server">metics-serverインストール</h3>
+<ol>
+<li>
+<p>manifestsをdeploy</p>
+<div class="highlight"><pre><span></span><code>$ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+serviceaccount/metrics-server created
+clusterrole.rbac.authorization.k8s.io/system:aggregated-metrics-reader created
+clusterrole.rbac.authorization.k8s.io/system:metrics-server created
+rolebinding.rbac.authorization.k8s.io/metrics-server-auth-reader created
+clusterrolebinding.rbac.authorization.k8s.io/metrics-server:system:auth-delegator created
+clusterrolebinding.rbac.authorization.k8s.io/system:metrics-server created
+service/metrics-server created
+deployment.apps/metrics-server created
+apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io created
+</code></pre></div>
+</li>
+<li>
+<p>metrics-server が起動はするがTLS関連のエラーで正常に動作しない</p>
+<ul>
+<li><code>kubectl logs</code> コマンド
+    <div class="highlight"><pre><span></span><code>Failed to scrape node&quot; err=&quot;Get \&quot;https://192.168.10.51:10250/metrics/resource\&quot;: x509: certificate is valid for 192.168.10.50, not 192.168.10.51&quot; node=&quot;k8s-node1
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>TLS認証設定の変更</p>
+<ul>
+<li>metrics-serverの起動引数に <code>--kubelet-insecure-tls</code> を追加<ul>
+<li><a href="https://github.com/kubernetes-sigs/metrics-server/issues/131">https://github.com/kubernetes-sigs/metrics-server/issues/131</a></li>
+<li><a href="https://github.com/kubernetes-sigs/metrics-server/issues/300">https://github.com/kubernetes-sigs/metrics-server/issues/300</a></li>
+<li>kubectl logsコマンドで以下エラーが出続けている場合の対処</li>
+<li>TLS証明書の検証を行わないようにする(証明書の署名がmetrics-servergが想定するCAではないため)
+    <div class="highlight"><pre><span></span><code>kubectl patch deploy metrics-server -n kube-system --patch &quot;
+spec:
+  template:
+    spec:
+      containers:
+      - args:
+        - --cert-dir=/tmp
+        - --secure-port=4443
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --kubelet-use-node-status-port
+        - --metric-resolution=15s
+        - --kubelet-insecure-tls
+        name: metrics-server
+&quot;
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>起動したことを確認
+    <div class="highlight"><pre><span></span><code>I0217 14:54:41.737667       1 serving.go:342] Generated self-signed cert (/tmp/apiserver.crt, /tmp/apiserver.key)
+I0217 14:54:42.981853       1 requestheader_controller.go:169] Starting RequestHeaderAuthRequestController
+I0217 14:54:42.981913       1 shared_informer.go:240] Waiting for caches to sync for RequestHeaderAuthRequestController
+I0217 14:54:42.981901       1 configmap_cafile_content.go:201] &quot;Starting controller&quot; name=&quot;client-ca::kube-system::extension-apiserver-authentication::client-ca-file&quot;
+I0217 14:54:42.981970       1 shared_informer.go:240] Waiting for caches to sync for client-ca::kube-system::extension-apiserver-authentication::client-ca-file
+I0217 14:54:42.981993       1 configmap_cafile_content.go:201] &quot;Starting controller&quot; name=&quot;client-ca::kube-system::extension-apiserver-authentication::requestheader-client-ca-file&quot;
+I0217 14:54:42.982036       1 shared_informer.go:240] Waiting for caches to sync for client-ca::kube-system::extension-apiserver-authentication::requestheader-client-ca-file
+I0217 14:54:42.985611       1 secure_serving.go:266] Serving securely on [::]:4443
+I0217 14:54:42.985841       1 tlsconfig.go:240] &quot;Starting DynamicServingCertificateController&quot;
+W0217 14:54:42.986181       1 shared_informer.go:372] The sharedIndexInformer has started, run more than once is not allowed
+I0217 14:54:42.987234       1 dynamic_serving_content.go:131] &quot;Starting controller&quot; name=&quot;serving-cert::/tmp/apiserver.crt::/tmp/apiserver.key&quot;
+I0217 14:54:43.082779       1 shared_informer.go:247] Caches are synced for client-ca::kube-system::extension-apiserver-authentication::requestheader-client-ca-file
+I0217 14:54:43.082892       1 shared_informer.go:247] Caches are synced for RequestHeaderAuthRequestController
+I0217 14:54:43.082896       1 shared_informer.go:247] Caches are synced for client-ca::kube-system::extension-apiserver-authentication::client-ca-file
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="_4">動作確認</h3>
+<h4 id="api-path">API Path</h4>
+<ul>
+<li>pods
+    <div class="highlight"><pre><span></span><code>$ kubectl get --raw &quot;/apis/metrics.k8s.io/v1beta1/pods&quot; | jq &#39;.items[] | select(.metadata.name == &quot;coredns-675db8b7cc-hbzb2&quot;)&#39;
+{
+  &quot;metadata&quot;: {
+    &quot;name&quot;: &quot;coredns-675db8b7cc-hbzb2&quot;,
+    &quot;namespace&quot;: &quot;kube-system&quot;,
+    &quot;creationTimestamp&quot;: &quot;2022-02-17T16:00:21Z&quot;,
+    &quot;labels&quot;: {
+      &quot;k8s-app&quot;: &quot;kube-dns&quot;,
+      &quot;pod-template-hash&quot;: &quot;675db8b7cc&quot;
+    }
+  },
+  &quot;timestamp&quot;: &quot;2022-02-17T16:00:03Z&quot;,
+  &quot;window&quot;: &quot;15.692s&quot;,
+  &quot;containers&quot;: [
+    {
+      &quot;name&quot;: &quot;coredns&quot;,
+      &quot;usage&quot;: {
+        &quot;cpu&quot;: &quot;7990556n&quot;,
+        &quot;memory&quot;: &quot;14064Ki&quot;
+      }
+    }
+  ]
+}
+</code></pre></div></li>
+<li>nodes
+    <div class="highlight"><pre><span></span><code>$ kubectl get --raw &quot;/apis/metrics.k8s.io/v1beta1/nodes&quot; | jq .                                                                                              [22/47786]
+{
+  &quot;kind&quot;: &quot;NodeMetricsList&quot;,
+  &quot;apiVersion&quot;: &quot;metrics.k8s.io/v1beta1&quot;,
+  &quot;metadata&quot;: {},
+  &quot;items&quot;: [
+    {
+      &quot;metadata&quot;: {
+        &quot;name&quot;: &quot;k8s-master&quot;,
+        &quot;creationTimestamp&quot;: &quot;2022-02-17T14:58:58Z&quot;,
+        &quot;labels&quot;: {
+          &quot;beta.kubernetes.io/arch&quot;: &quot;arm64&quot;,
+          &quot;beta.kubernetes.io/os&quot;: &quot;linux&quot;,
+          &quot;kubernetes.io/arch&quot;: &quot;arm64&quot;,
+          &quot;kubernetes.io/hostname&quot;: &quot;k8s-master&quot;,
+          &quot;kubernetes.io/os&quot;: &quot;linux&quot;
+        }
+      },
+      &quot;timestamp&quot;: &quot;2022-02-17T14:58:49Z&quot;,
+      &quot;window&quot;: &quot;10.198s&quot;,
+      &quot;usage&quot;: {
+        &quot;cpu&quot;: &quot;273214048n&quot;,
+        &quot;memory&quot;: &quot;1024976Ki&quot;
+      }
+    },
+    {
+      &quot;metadata&quot;: {
+        &quot;name&quot;: &quot;k8s-node1&quot;,
+        &quot;creationTimestamp&quot;: &quot;2022-02-17T14:58:58Z&quot;,
+        &quot;labels&quot;: {
+          &quot;beta.kubernetes.io/arch&quot;: &quot;arm64&quot;,
+          &quot;beta.kubernetes.io/os&quot;: &quot;linux&quot;,
+          &quot;kubernetes.io/arch&quot;: &quot;arm64&quot;,
+          &quot;kubernetes.io/hostname&quot;: &quot;k8s-node1&quot;,
+          &quot;kubernetes.io/os&quot;: &quot;linux&quot;
+        }
+      },
+      &quot;timestamp&quot;: &quot;2022-02-17T14:58:51Z&quot;,
+      &quot;window&quot;: &quot;10.094s&quot;,
+      &quot;usage&quot;: {
+        &quot;cpu&quot;: &quot;141038629n&quot;,
+        &quot;memory&quot;: &quot;548580Ki&quot;
+      }
+    }
+  ]
+}
+</code></pre></div></li>
+</ul>
+<h4 id="kubectl-top-pod"><code>kubectl top pod</code></h4>
+<div class="highlight"><pre><span></span><code>$ kubectl top nodes
+NAME         CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
+k8s-master   260m         7%     999Mi           80%
+k8s-node1    130m         3%     527Mi           42%
+</code></pre></div>
+<h4 id="kubectl-top-pod_1"><code>kubectl top pod</code></h4>
+<div class="highlight"><pre><span></span><code>$ kubectl top pods -A
+NAMESPACE     NAME                                 CPU(cores)   MEMORY(bytes)
+kube-system   coredns-675db8b7cc-hbzb2             7m           13Mi
+kube-system   etcd-k8s-master                      31m          108Mi
+kube-system   kube-apiserver-k8s-master            62m          220Mi
+kube-system   kube-controller-manager-k8s-master   24m          72Mi
+kube-system   kube-proxy-2kmcf                     1m           23Mi
+kube-system   kube-proxy-fxcgv                     1m           12Mi
+kube-system   kube-scheduler-k8s-master            3m           26Mi
+kube-system   metrics-server-8bb87844c-v67lj       12m          15Mi
+</code></pre></div>
 
               
             </article>
@@ -1203,7 +1311,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../../failure_test/failure_scenario_of_node/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Node" rel="prev">
+        <a href="../../../kyverno/installation_kyverno/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 02. Installation Kyverno" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1212,20 +1320,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Node
+              02. Installation Kyverno
             </div>
           </div>
         </a>
       
       
         
-        <a href="../installation_kyverno/" class="md-footer__link md-footer__link--next" aria-label="Next: 02. Installation Kyverno" rel="next">
+        <a href="../../../operations/backup_etcd/" class="md-footer__link md-footer__link--next" aria-label="Next: etcd" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              02. Installation Kyverno
+              etcd
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1255,10 +1363,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../../assets/javascripts/bundle.467223ff.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.467223ff.min.js"></script>
       
     
   </body>

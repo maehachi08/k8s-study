@@ -625,6 +625,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cni-plugin-not-initialized" class="md-nav__link">
+    cni plugin not initialized
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cni-config-uninitialized" class="md-nav__link">
+    cni config uninitialized
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -717,20 +731,6 @@
     <li class="md-nav__item">
       <a href="../../11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
         11. bootstrapping external-dns
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../12_metrics_server/bootstrapping_metrics_server/" class="md-nav__link">
-        12. bootstrapping metrics_server
       </a>
     </li>
   
@@ -921,10 +921,91 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Monitoring
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Monitoring" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Monitoring
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../../tips/index.md" class="md-nav__link">
-        Tips
+      <a href="../../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+        bootstrapping metrics_server
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Operations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Operations" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Operations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operations/backup_etcd/" class="md-nav__link">
+        etcd
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1063,6 +1144,20 @@
           <li class="md-nav__item">
   <a href="#kubelet-cannot-determine-cpu-online-state" class="md-nav__link">
     Kubelet cannot determine CPU online state
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cni-plugin-not-initialized" class="md-nav__link">
+    cni plugin not initialized
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cni-config-uninitialized" class="md-nav__link">
+    cni config uninitialized
   </a>
   
 </li>
@@ -1387,6 +1482,18 @@ container_manager_linux.go:490] [ContainerManager]: Discovered runtime cgroups n
 <li><a href="https://github.com/kubernetes/kubernetes/issues/95039">https://github.com/kubernetes/kubernetes/issues/95039</a></li>
 </ul>
 </li>
+</ul>
+<h3 id="cni-plugin-not-initialized">cni plugin not initialized</h3>
+<ul>
+<li><code>/opt/cni/bin</code> ディレクトリ以下のCNI Pluginもしくは <code>/etc/cni/net.d</code> 以下のCNI Configに設定不備がある可能性が考えられる
+    <div class="highlight"><pre><span></span><code>&quot;Container runtime network not ready&quot; networkReady=&quot;NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: cni plugin not initialized&quot;
+</code></pre></div></li>
+</ul>
+<h3 id="cni-config-uninitialized">cni config uninitialized</h3>
+<ul>
+<li><code>/opt/cni/bin</code> ディレクトリ以下のCNI Pluginもしくは <code>/etc/cni/net.d</code> 以下のCNI Configに設定不備がある可能性が考えられる
+    <div class="highlight"><pre><span></span><code>&quot;Container runtime network not ready&quot; networkReady=&quot;NetworkReady=false reason:NetworkPluginNotReady message:Network plugin returns error: cni config uninitialized&quot;
+</code></pre></div></li>
 </ul>
 <h2 id="_3">参考</h2>
 <ul>

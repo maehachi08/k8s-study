@@ -46,6 +46,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://maehachi08.github.io/k8s-study/monitoring/metrics-server/bootstrapping_metrics_server/</loc>
+         <lastmod>2022-03-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://maehachi08.github.io/k8s-study/operations/backup_etcd/</loc>
+         <lastmod>2022-03-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://maehachi08.github.io/k8s-study/pod_security/</loc>
          <lastmod>2022-03-20</lastmod>
          <changefreq>daily</changefreq>
@@ -142,11 +152,6 @@
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/11_external_dns/bootstrapping_external_dns/</loc>
-         <lastmod>2022-03-20</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://maehachi08.github.io/k8s-study/setup/12_metrics_server/bootstrapping_metrics_server/</loc>
          <lastmod>2022-03-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
