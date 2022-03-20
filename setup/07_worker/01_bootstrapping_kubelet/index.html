@@ -1286,7 +1286,7 @@ clusterDomain: &quot;cluster.local&quot;
 clusterDNS:
   - &quot;10.32.0.10&quot;
 podCIDR: &quot;10.200.0.0/24&quot;
-resolvConf: &quot;/etc/resolv.conf&quot;
+resolvConf: &quot;/run/systemd/resolve/resolv.conf&quot;
 runtimeRequestTimeout: &quot;15m&quot;
 tlsCertFile: &quot;/var/lib/kubelet/${host}.pem&quot;
 tlsPrivateKeyFile: &quot;/var/lib/kubelet/${host}-key.pem&quot;
