@@ -285,6 +285,86 @@ cfssl gencert \
     - `kubernetes-key.pem`
     - `kubernetes.pem`
 
+#### kube-apiserver front-proxy(for aggregation layer)のサーバー証明書
+
+1. CA(認証局)作成
+    ```
+    cat << EOF > front-proxy-ca-config.json
+    {
+        "signing": {
+            "default": {
+                "expiry": "8760h"
+            },
+            "profiles": {
+                "kubernetes": {
+                    "usages": [
+                        "signing",
+                        "key encipherment",
+                        "server auth",
+                        "client auth"
+                    ],
+                    "expiry": "8760h"
+                }
+            }
+        }
+    }
+    EOF
+
+    cat << EOF > front-proxy-ca-csr.json
+    {
+        "CN": "Kubernetes",
+        "key": {
+            "algo": "rsa",
+            "size": 2048
+        },
+        "names": [
+            {
+                "C": "JP",
+                "L": "Tokyo",
+                "O": "Kubernetes",
+                "OU": "CA",
+                "ST": "Sample"
+            }
+        ]
+    }
+    EOF
+
+    cfssl gencert -initca front-proxy-ca-csr.json | cfssljson -bare front-proxy-ca
+    ```
+
+1. front-proxy用証明書の作成
+    ```
+    cat << EOF > front-proxy-csr.json
+    {
+        "CN": "front-proxy-ca",
+        "key": {
+            "algo": "rsa",
+            "size": 2048
+        },
+        "names": [
+            {
+                "C": "JP",
+                "L": "Tokyo",
+                "O": "Kubernetes",
+                "OU": "Kubernetes The Hard Way",
+                "ST": "Sample"
+            }
+        ]
+    }
+    EOF
+
+    cfssl gencert \
+      -ca=front-proxy-ca.pem \
+      -ca-key=front-proxy-ca-key.pem \
+      -config=front-proxy-ca-config.json \
+      -profile=kubernetes \
+      front-proxy-csr.json | cfssljson -bare front-proxy
+    ```
+
+- 以下ファイルが生成されていることを確認
+    - `front-proxy-key.pem`
+    - `front-proxy.pem`
+
 #### service-accountの証明書
 
 ```
