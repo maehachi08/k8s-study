@@ -307,10 +307,40 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
    VERSION="v1.0.0"
    ARCH="arm64"
    DOWNLOAD_URL="https://github.com/containernetworking/plugins/releases/download/${VERSION}/cni-plugins-linux-${ARCH}-${VERSION}.tgz"
-   curl -L ${DOWNLOAD_URL} | sudo tar -zxvf -C /opt/cni/bin
+   curl -L ${DOWNLOAD_URL} | sudo tar -zx -C /opt/cni/bin
 
    ls -l /opt/cni/bin/
    ```
+- cni configを作成する
+    - https://www.cni.dev/plugins/current/main/bridge/
+        ```
+        POD_CIDR="10.200.0.0/24"
+        cat <<EOF | sudo tee /etc/cni/net.d/10-bridge.conf
+        {
+            "cniVersion": "0.4.0",
+            "name": "bridge",
+            "type": "bridge",
+            "bridge": "cnio0",
+            "isGateway": true,
+            "ipMasq": true,
+            "ipam": {
+                "type": "host-local",
+                "ranges": [
+                  [{"subnet": "${POD_CIDR}"}]
+                ],
+                "routes": [{"dst": "0.0.0.0/0"}]
+            }
+        }
+        EOF
+
+        cat <<EOF | sudo tee /etc/cni/net.d/20-loopback.conf
+        {
+            "cniVersion": "0.4.0",
+            "name": "lo",
+            "type": "loopback"
+        }
+        EOF
+        ```
 
 ### kubectl インストール
 
