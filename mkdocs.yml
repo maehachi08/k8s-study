@@ -68,6 +68,8 @@ nav:
     - 02. Installation Kyverno: kyverno/installation_kyverno.md
   - Monitoring:
     - bootstrapping metrics_server: monitoring/metrics-server/bootstrapping_metrics_server.md
+  - Operations:
+    - etcd: operations/backup_etcd.md
 
 plugins:
   - search
