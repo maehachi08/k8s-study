@@ -71,7 +71,7 @@
     - `--authorization-webhook-config-file` で指定するファイル
        <details><summary>authorization-config.yaml</summary>
           ```
-          KUBE_API_SERVER_ADDRESS=192.168.10.50
+          KUBE_API_SERVER_ADDRESS=k8s-master
 
           cat << EOF > authorization-config.yaml
           ---
@@ -139,7 +139,7 @@
                 memory: "1024Mi"
             command:
               - /usr/bin/kube-apiserver
-              - --advertise-address=192.168.10.50
+              - --advertise-address=k8s-master
               - --allow-privileged=true
               - --anonymous-auth=false
               - --apiserver-count=1
@@ -157,7 +157,7 @@
               - --etcd-cafile=/var/lib/kubernetes/ca.pem
               - --etcd-certfile=/var/lib/kubernetes/kubernetes.pem
               - --etcd-keyfile=/var/lib/kubernetes/kubernetes-key.pem
-              - --etcd-servers=https://192.168.10.50:2379
+              - --etcd-servers=https://k8s-master:2379
               - --event-ttl=1h
               - --encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml
               - --kubelet-certificate-authority=/var/lib/kubernetes/ca.pem

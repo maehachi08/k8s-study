@@ -104,7 +104,8 @@
   systemReserved:
     cpu: 256m
     memory: 256Mi
-  runtimeCgroups: /kube.slice/crio.service
+  # runtimeCgroups: /kube.slice/crio.service
+  runtimeCgroups: /kube.slice/containerd.service
   kubeletCgroups: /kube.slice/kubelet.service
   kubeReservedCgroup: /kube.slice
   kubeReserved:
@@ -120,8 +121,10 @@
    [Unit]
    Description=Kubernetes Kubelet
    Documentation=https://github.com/kubernetes/kubernetes
-   After=crio.service
-   Requires=crio.service
+   After=containerd.service
+   Requires=containerd.service
+   #After=crio.service
+   #Requires=crio.service
 
    [Service]
    Restart=on-failure
@@ -143,7 +146,8 @@
      --kubeconfig=/var/lib/kubelet/kubeconfig \
      --network-plugin=cni \
      --container-runtime=remote \
-     --container-runtime-endpoint=/var/run/crio/crio.sock \
+     --container-runtime-endpoint=/run/containerd/containerd.sock \
+     #--container-runtime-endpoint=/var/run/crio/crio.sock \
      --register-node=true \
      --v=2
 

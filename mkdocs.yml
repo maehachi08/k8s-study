@@ -70,6 +70,11 @@ nav:
     - bootstrapping metrics_server: monitoring/metrics-server/bootstrapping_metrics_server.md
   - Operations:
     - etcd: operations/backup_etcd.md
+  - AutoScaler:
+    - Pod:
+      - HPA:
+        - Keda:
+          - About Keda: keda/about_keda.md
 
 plugins:
   - search
