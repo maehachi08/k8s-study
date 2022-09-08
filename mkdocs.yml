@@ -70,6 +70,8 @@ nav:
     - bootstrapping metrics_server: monitoring/metrics-server/bootstrapping_metrics_server.md
   - Operations:
     - etcd: operations/backup_etcd.md
+  - Tips:
+    - Node Resources Reservetion: tips/node_resources_reservation.md
   - AutoScaler:
     - Pod:
       - HPA:

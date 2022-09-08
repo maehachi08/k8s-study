@@ -9,14 +9,23 @@
 
 ## 手順
 
+1. vxlan moduleをインストールする
+    ```
+    sudo apt install -y linux-modules-extra-raspi locate
+    sudo updatedb
+    sudo modprobe vxlan
+    sudo lsmod | grep vxlan
+    ```
+
 1. flannel k8s manifestsを公式から取得する
    - masterブランチから取得していますが2021/03/06 時点では release tag `v0.13.1-rc2` の内容
 
       ```
+      sudo mkdir -p /etc/kubernetes/manifests
       sudo curl -o /etc/kubernetes/manifests/kube-flannel.yml -sSL https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
       ```
 
-2. manifestsを修正する
+1. manifestsを修正する
     - `net-conf.json` の `Network` をcontroller-managerの`--cluster-cidr`で指定した値に変更する
     - etcdに用いたcertificateやadminのkubeconfigをkube-flannelコンテナへbind mountする
     - `/opt/bin/flanneld` の起動オプション
@@ -228,7 +237,7 @@
                        - --ip-masq
                        - --kube-subnet-mgr
                        - --kubeconfig-file=/var/lib/kubernetes/admin.kubeconfig
-                       - --etcd-endpoints=https://192.168.10.50:4001
+                       - --etcd-endpoints=https://k8s-master:4001
                        - --etcd-prefix=/coreos.com/network
                        - --etcd-keyfile=/var/lib/kubernetes/kubernetes-key.pem
                        - --etcd-certfile=/var/lib/kubernetes/kubernetes.pem

@@ -82,12 +82,12 @@
 
 ### Container RunTimeインストール
 
-- 初期は `cri-o` を使用していましたが `containerd` へ移行します
-  - containerdへ切り替える理由
-    - (最初はこれ) image buildしたい
-        - https://speakerdeck.com/ktock/dockerkaracontainerdhefalseyi-xing?slide=7
-    - AWS EKSでcontainerdが標準となっている
+- `containerd` を採用
+  - 初期は `cri-o` を採用していたが以下理由で`containerd`へ変更
     - [CNCFでGraduated Project](https://landscape.cncf.io/?selected=containerd)([cri-oはincubating](https://www.cncf.io/projects/cri-o/))
+    - AWS eks-optimized AMIではcontainerdが標準となりそう(eks 1.22 ではdockerがdefault)
+    - `buildkit` と組み合わせてimage buildが可能 (cri-oでの可否は未確認)
+        - https://speakerdeck.com/ktock/dockerkaracontainerdhefalseyi-xing?slide=7
 
 ### 前提作業
 
@@ -95,25 +95,25 @@
 
     <details>
 
-        ```
-        Cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
-        Overlay
-        Br_netfilter
-        EOF
+      ```
+      cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+      overlay
+      br_netfilter
+      EOF
 
-        Sudo modprobe overlay
-        Sudo modprobe br_netfilter
+      sudo modprobe overlay
+      sudo modprobe br_netfilter
 
-        # sysctl params required by setup, params persist across reboots
-        Cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-        Net.bridge.bridge-nf-call-iptables  = 1
-        Net.bridge.bridge-nf-call-ip6tables = 1
-        Net.ipv4.ip_forward                 = 1
-        EOF
+      # sysctl params required by setup, params persist across reboots
+      cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+      net.bridge.bridge-nf-call-iptables  = 1
+      net.bridge.bridge-nf-call-ip6tables = 1
+      net.ipv4.ip_forward                 = 1
+      EOF
 
-        # Apply sysctl params without reboot
-        Sudo sysctl --system
-        ```
+      # Apply sysctl params without reboot
+      sudo sysctl --system
+      ```
 
     </details>
 
@@ -136,7 +136,6 @@ https://github.com/containerd/containerd/blob/main/docs/getting-started.md
           sudo apt install -y containerd.io
           ```
 1. `/etc/containerd/config.toml`
-
     ```
     sudo containerd config default | sudo tee /etc/containerd/config.toml
     sudo vim /etc/containerd/config.toml
@@ -345,7 +344,7 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
    sudo systemctl restart crio
    ```
 
-### CLI TOOL(buildah, cri-tools)
+### CLI TOOL
 
 1. nerdctl
     - containerdプロジェクトで公開しているdocker-cli互換のCLI
@@ -360,17 +359,23 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
         ```
 
 1. buildkit
+    - https://github.com/moby/buildkit
     - `nerdctl build` を実行するために必要
 
         ```
         BUILDKIT_VERSION=`curl -s -L https://api.github.com/repos/moby/buildkit/releases/latest | jq -r .tag_name`
         curl -L -s https://github.com/moby/buildkit/releases/download/${BUILDKIT_VERSION}/buildkit-${BUILDKIT_VERSION}.linux-arm64.tar.gz | sudo tar -zxC /tmp/
         sudo mv /tmp/bin/* /usr/local/bin/
-
         ls -l /usr/local/bin
+
+        sudo curl -sL https://raw.githubusercontent.com/moby/buildkit/${BUILDKIT_VERSION}/examples/systemd/system/buildkit.socket -o /etc/systemd/system/buildkit.socket
+        sudo curl -sL https://raw.githubusercontent.com/moby/buildkit/${BUILDKIT_VERSION}/examples/systemd/system/buildkit.service -o /etc/systemd/system/buildkit.service
+        sudo systemctl enable buildkit.socket buildkit.service
+        sudo systemctl start buildkit.socket buildkit.service
         ```
 
-1. buildah
+1. buildah 
+    - cri-o 導入時期にimage buildで使用(containerdでは前述のnerdctlへ移行済み)
     - https://github.com/containers/buildah/blob/master/install.md
        ```
        sudo apt-get -qq -y install buildah

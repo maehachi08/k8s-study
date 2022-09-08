@@ -80,7 +80,6 @@
   clusterDNS:
     - "10.32.0.10"
   podCIDR: "10.200.0.0/24"
-  resolvConf: "/run/systemd/resolve/resolv.conf"
   runtimeRequestTimeout: "15m"
   tlsCertFile: "/var/lib/kubelet/${host}.pem"
   tlsPrivateKeyFile: "/var/lib/kubelet/${host}-key.pem"
@@ -100,11 +99,10 @@
   cgroupDriver: systemd
   cgroupRoot: /
   systemCgroups: /systemd/system.slice
-  systemReservedCgroup: /systemd/system.slice
+  systemReservedCgroup: /system.slice
   systemReserved:
     cpu: 256m
     memory: 256Mi
-  # runtimeCgroups: /kube.slice/crio.service
   runtimeCgroups: /kube.slice/containerd.service
   kubeletCgroups: /kube.slice/kubelet.service
   kubeReservedCgroup: /kube.slice
@@ -123,14 +121,14 @@
    Documentation=https://github.com/kubernetes/kubernetes
    After=containerd.service
    Requires=containerd.service
-   #After=crio.service
-   #Requires=crio.service
 
    [Service]
    Restart=on-failure
    RestartSec=5
 
    ExecStartPre=/usr/bin/mkdir -p \
+     /sys/fs/cgroup/kube.slice \
+     /sys/fs/cgroup/system.slice \
      /sys/fs/cgroup/systemd/kube.slice \
      /sys/fs/cgroup/cpuset/kube.slice \
      /sys/fs/cgroup/cpuset/system.slice \
@@ -139,7 +137,9 @@
      /sys/fs/cgroup/memory/kube.slice \
      /sys/fs/cgroup/memory/system.slice \
      /sys/fs/cgroup/cpu,cpuacct/kube.slice \
-     /sys/fs/cgroup/cpu,cpuacct/kube.slice
+     /sys/fs/cgroup/cpu,cpuacct/system.slice \
+     /sys/fs/cgroup/hugetlb/system.slice \
+     /sys/fs/cgroup/hugetlb/kube.slice
 
    ExecStart=/usr/bin/kubelet \
      --config=/var/lib/kubelet/kubelet-config.yaml \
@@ -147,7 +147,6 @@
      --network-plugin=cni \
      --container-runtime=remote \
      --container-runtime-endpoint=/run/containerd/containerd.sock \
-     #--container-runtime-endpoint=/var/run/crio/crio.sock \
      --register-node=true \
      --v=2
 

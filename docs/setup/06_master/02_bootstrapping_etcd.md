@@ -28,7 +28,7 @@
 1. image build
    ```
    sudo mkdir -p /etcd-data
-   sudo buildah bud -t k8s-etcd --file=Dockerfile_etcd.armhf ./
+   sudo nerdctl build --namespace k8s.io -t k8s-etcd --file=Dockerfile_etcd.armhf ./
    ```
 
 1. pod manifestsを `/etc/kubelet.d` へ作成する
@@ -58,7 +58,7 @@
             type: Directory
         containers:
           - name: etcd
-            image: localhost/k8s-etcd:latest
+            image: k8s-etcd:latest
             imagePullPolicy: IfNotPresent
             volumeMounts:
             - mountPath: /etcd-data
