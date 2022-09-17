@@ -68,6 +68,12 @@ nav:
     - 02. Installation Kyverno: kyverno/installation_kyverno.md
   - Monitoring:
     - bootstrapping metrics_server: monitoring/metrics-server/bootstrapping_metrics_server.md
+  - Logging:
+    - fluent-bit:
+      - about fluent-bit: logging/fluent-bit/about.md
+      - configuration: logging/fluent-bit/configuration.md
+      - stream-processing: logging/fluent-bit/stream-processing.md
+      - Monitoring/Debug: logging/fluent-bit/monitoring-debug.md
   - Operations:
     - etcd: operations/backup_etcd.md
 
