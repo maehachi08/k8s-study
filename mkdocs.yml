@@ -71,6 +71,8 @@ nav:
     - bootstrapping kubernetes-dashboard: monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard.md
   - Operations:
     - etcd: operations/backup_etcd.md
+  - Addons:
+    - MetalLB: addons/metallb.md
 
 plugins:
   - search
