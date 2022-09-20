@@ -944,6 +944,54 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Addons
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Addons" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Addons
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../addons/metallb/" class="md-nav__link">
+        MetalLB
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1023,7 +1071,6 @@ RUN set -ex \
   &amp;&amp; install -o root -g root -m 755 -d /var/lib/kube-proxy \
   &amp;&amp; install -o root -g root -m 755 -d /etc/kubernetes/config
 
-COPY kube-proxy-config.yaml /var/lib/kube-proxy/kube-proxy-config.yaml
 COPY kube-proxy.kubeconfig /var/lib//kube-proxy/kubeconfig
 
 ENTRYPOINT [&quot;/usr/bin/kube-proxy&quot;]
@@ -1031,24 +1078,6 @@ EOF
 </code></pre></div>
   </details>
 </p>
-</li>
-<li>
-<p>kube-proxyのconfig生成</p>
-<ul>
-<li><code>10.200.0.0/16</code> は kube-controller-manager の起動オプション <code>--cluster-cidr</code> で指定した値
-  <div class="highlight"><pre><span></span><code>cluster_cidr=&quot;10.200.0.0/16&quot;
-
-cat &lt;&lt; EOF &gt; kube-proxy-config.yaml
----
-kind: KubeProxyConfiguration
-apiVersion: kubeproxy.config.k8s.io/v1alpha1
-clientConnection:
-  kubeconfig: &quot;/var/lib/kube-proxy/kubeconfig&quot;
-mode: &quot;iptables&quot;
-clusterCIDR: &quot;${cluster_cidr}&quot;
-EOF
-</code></pre></div></li>
-</ul>
 </li>
 <li>
 <p>image build
@@ -1080,9 +1109,31 @@ sudo exec /sbin/modprobe nf_conntrack hashsize=32768
 <p>pod manifestsを <code>/etc/kubernetes/manifests/</code> へ作成する
 <br />
 <details><summary>/etc/kubernetes/manifests/kube-proxy.yaml</summary>
-    <div class="highlight"><pre><span></span><code>sudo mkdir -p /etc/kubernetes/manifests
+    <div class="highlight"><pre><span></span><code>cluster_cidr=&quot;10.200.0.0/16&quot;
+sudo mkdir -p /etc/kubernetes/manifests
 
 cat &lt;&lt; EOF | sudo tee /etc/kubernetes/manifests/kube-proxy.yaml
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: kube-proxy
+  name: kube-proxy-configuration
+  namespace: kube-system
+data:
+  config.conf: |-
+    ---
+    apiVersion: kubeproxy.config.k8s.io/v1alpha1
+    kind: KubeProxyConfiguration
+    clientConnection:
+      kubeconfig: &quot;/var/lib/kube-proxy/kubeconfig&quot;
+    mode: &quot;iptables&quot;
+    clusterCIDR: &quot;${cluster_cidr}&quot;
+
+    # https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/
+    # metricsBindAddress: 127.0.0.1:10249
+    metricsBindAddress: 0.0.0.0:10249
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -1133,6 +1184,8 @@ spec:
             requests:
               cpu: &quot;256m&quot;
           volumeMounts:
+          - name: kube-proxy-configuration-volume
+            mountPath: /var/lib/kube-proxy/kube-proxy-config.yaml
           - name: conntrack-command
             mountPath: /usr/sbin/conntrack
           - name: iptables-command
@@ -1150,6 +1203,9 @@ spec:
           - name: sys-dir
             mountPath: /sys
       volumes:
+      - name: kube-proxy-configuration
+        configMap:
+          name: kube-proxy-configuration
       - name: conntrack-command
         hostPath:
           path: /usr/sbin/conntrack

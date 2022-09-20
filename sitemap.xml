@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://maehachi08.github.io/k8s-study/addons/metallb/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://maehachi08.github.io/k8s-study/autoscaler/</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
