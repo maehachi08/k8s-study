@@ -84,6 +84,8 @@ Kubernetes Dashboardは、Kubernetesクラスタ用の汎用的なWebベース�
 
 1. create ingress
 
+   <details>
+    
    ```
    cat << EOF | sudo tee /etc/kubernetes/manifests/kubernetes-dashboard-ingress.yaml
    apiVersion: networking.k8s.io/v1
@@ -116,6 +118,8 @@ Kubernetes Dashboardは、Kubernetesクラスタ用の汎用的なWebベース�
    kubectl apply -f /etc/kubernetes/manifests/kubernetes-dashboard-ingress.yaml
    ```
 
+   </details>
+  
 1. adding fqdn and node ip address to `/etc/hosts`
     - get node ip
 
