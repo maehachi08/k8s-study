@@ -19,6 +19,12 @@ Kubernetes Dashboardは、Kubernetesクラスタ用の汎用的なWebベース�
 
     ```
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout kubernetes-dashboard.key -out kubernetes-dashboard.crt -subj "/CN=k8s-dashboard.local/O=k8s-dashboard.local"
+    ```
+    
+1. create ns and secret
+
+    ```
+    kubectl create ns kubernetes-dashboard
     kubectl create secret generic kubernetes-dashboard-certs --from-file=./ -n kubernetes-dashboard
     ```
 
@@ -75,6 +81,40 @@ Kubernetes Dashboardは、Kubernetesクラスタ用の汎用的なWebベース�
     ```
     kubectl apply -f /etc/kubernetes/manifests/kubernetes-dashboard.yaml
     ```
+
+1. create ingress
+
+   ```
+   cat << EOF | sudo tee /etc/kubernetes/manifests/kubernetes-dashboard-ingress.yaml
+   apiVersion: networking.k8s.io/v1
+   kind: Ingress
+   metadata:
+     name: dashboard-ingress
+     namespace: kubernetes-dashboard
+     annotations:
+       kubernetes.io/ingress.class: "nginx"
+       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+       nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+   spec:
+     tls:
+       - hosts:
+         - k8s-dashboard.local
+         secretName: dashboard-secret-tls
+     rules:
+     - host: k8s-dashboard.local
+       http:
+         paths:
+           - pathType: Prefix
+             path: "/"
+             backend:
+               service:
+                 name: kubernetes-dashboard
+                 port:
+                   number: 443
+   EOF
+   
+   kubectl apply -f /etc/kubernetes/manifests/kubernetes-dashboard-ingress.yaml
+   ```
 
 1. adding fqdn and node ip address to `/etc/hosts`
     - get node ip
