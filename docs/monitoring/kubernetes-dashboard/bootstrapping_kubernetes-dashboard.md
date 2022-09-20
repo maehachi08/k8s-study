@@ -84,41 +84,41 @@ Kubernetes Dashboardは、Kubernetesクラスタ用の汎用的なWebベース�
 
 1. create ingress
 
-   <details>
+    <details>
     
-   ```
-   cat << EOF | sudo tee /etc/kubernetes/manifests/kubernetes-dashboard-ingress.yaml
-   apiVersion: networking.k8s.io/v1
-   kind: Ingress
-   metadata:
-     name: dashboard-ingress
-     namespace: kubernetes-dashboard
-     annotations:
-       kubernetes.io/ingress.class: "nginx"
-       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-       nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-   spec:
-     tls:
-       - hosts:
-         - k8s-dashboard.local
-         secretName: dashboard-secret-tls
-     rules:
-     - host: k8s-dashboard.local
-       http:
-         paths:
-           - pathType: Prefix
-             path: "/"
-             backend:
-               service:
-                 name: kubernetes-dashboard
-                 port:
-                   number: 443
-   EOF
-   
-   kubectl apply -f /etc/kubernetes/manifests/kubernetes-dashboard-ingress.yaml
-   ```
+    ```
+    cat << EOF | sudo tee /etc/kubernetes/manifests/kubernetes-dashboard-ingress.yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: dashboard-ingress
+      namespace: kubernetes-dashboard
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    spec:
+      tls:
+        - hosts:
+          - k8s-dashboard.local
+          secretName: dashboard-secret-tls
+      rules:
+      - host: k8s-dashboard.local
+        http:
+          paths:
+            - pathType: Prefix
+              path: "/"
+              backend:
+                service:
+                  name: kubernetes-dashboard
+                  port:
+                    number: 443
+    EOF
+    
+    kubectl apply -f /etc/kubernetes/manifests/kubernetes-dashboard-ingress.yaml
+    ```
 
-   </details>
+    </details>
 
 1. adding fqdn and node ip address to `/etc/hosts`
     - get node ip
