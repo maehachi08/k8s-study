@@ -119,7 +119,7 @@ Kubernetes Dashboardは、Kubernetesクラスタ用の汎用的なWebベース�
    ```
 
    </details>
-  
+
 1. adding fqdn and node ip address to `/etc/hosts`
     - get node ip
 
