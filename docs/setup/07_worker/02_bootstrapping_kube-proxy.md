@@ -24,29 +24,12 @@
       && install -o root -g root -m 755 -d /var/lib/kube-proxy \
       && install -o root -g root -m 755 -d /etc/kubernetes/config
 
-    COPY kube-proxy-config.yaml /var/lib/kube-proxy/kube-proxy-config.yaml
     COPY kube-proxy.kubeconfig /var/lib//kube-proxy/kubeconfig
 
     ENTRYPOINT ["/usr/bin/kube-proxy"]
     EOF
     ```
   </details>
-
-1. kube-proxyのconfig生成
-    - `10.200.0.0/16` は kube-controller-manager の起動オプション `--cluster-cidr` で指定した値
-      ```
-      cluster_cidr="10.200.0.0/16"
-
-      cat << EOF > kube-proxy-config.yaml
-      ---
-      kind: KubeProxyConfiguration
-      apiVersion: kubeproxy.config.k8s.io/v1alpha1
-      clientConnection:
-        kubeconfig: "/var/lib/kube-proxy/kubeconfig"
-      mode: "iptables"
-      clusterCIDR: "${cluster_cidr}"
-      EOF
-      ```
 
 1. image build
    ```
@@ -77,9 +60,31 @@
 1. pod manifestsを `/etc/kubernetes/manifests/` へ作成する
   <details><summary>/etc/kubernetes/manifests/kube-proxy.yaml</summary>
     ```
+    cluster_cidr="10.200.0.0/16"
     sudo mkdir -p /etc/kubernetes/manifests
 
     cat << EOF | sudo tee /etc/kubernetes/manifests/kube-proxy.yaml
+    ---
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      labels:
+        app: kube-proxy
+      name: kube-proxy-configuration
+      namespace: kube-system
+    data:
+      config.conf: |-
+        ---
+        apiVersion: kubeproxy.config.k8s.io/v1alpha1
+        kind: KubeProxyConfiguration
+        clientConnection:
+          kubeconfig: "/var/lib/kube-proxy/kubeconfig"
+        mode: "iptables"
+        clusterCIDR: "${cluster_cidr}"
+
+        # https://kubernetes.io/docs/reference/config-api/kube-proxy-config.v1alpha1/
+        # metricsBindAddress: 127.0.0.1:10249
+        metricsBindAddress: 0.0.0.0:10249
     ---
     apiVersion: apps/v1
     kind: DaemonSet
@@ -130,6 +135,8 @@
                 requests:
                   cpu: "256m"
               volumeMounts:
+              - name: kube-proxy-configuration-volume
+                mountPath: /var/lib/kube-proxy/kube-proxy-config.yaml
               - name: conntrack-command
                 mountPath: /usr/sbin/conntrack
               - name: iptables-command
@@ -147,6 +154,9 @@
               - name: sys-dir
                 mountPath: /sys
           volumes:
+          - name: kube-proxy-configuration
+            configMap:
+              name: kube-proxy-configuration
           - name: conntrack-command
             hostPath:
               path: /usr/sbin/conntrack
