@@ -12,14 +12,14 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/setup/06_master/03_bootstrapping_kube-apiserver/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/addons/openebs/install/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.6">
     
     
       
-        <title>03. bootstrapping kube-apiserver - maehachi08/k8s-study</title>
+        <title>Installing OpenEBS - maehachi08/k8s-study</title>
       
     
     
@@ -109,7 +109,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bootstrapping-kube-apiserver" class="md-skip">
+        <a href="#installing-openebs" class="md-skip">
           Skip to content
         </a>
       
@@ -142,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              03. bootstrapping kube-apiserver
+              Installing OpenEBS
             
           </span>
         </div>
@@ -265,14 +265,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       
       
@@ -295,7 +293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_setup_RaspberryPi/" class="md-nav__link">
+      <a href="../../../setup/01_setup_RaspberryPi/" class="md-nav__link">
         01. Raspberry Pi 構成
       </a>
     </li>
@@ -309,7 +307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_setup_ubuntu20-04-LTS/" class="md-nav__link">
+      <a href="../../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
         02. OS Install
       </a>
     </li>
@@ -323,7 +321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_common_settings/" class="md-nav__link">
+      <a href="../../../setup/03_common_settings/" class="md-nav__link">
         03. master/nodeで共通手順
       </a>
     </li>
@@ -337,7 +335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_creation_certificate/" class="md-nav__link">
+      <a href="../../../setup/04_creation_certificate/" class="md-nav__link">
         04. 認証局の設定とTLS証明書の作成
       </a>
     </li>
@@ -351,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_creating_config/" class="md-nav__link">
+      <a href="../../../setup/05_creating_config/" class="md-nav__link">
         05. 認証のためのkubeconfigの作成
       </a>
     </li>
@@ -363,14 +361,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_6" type="checkbox" id="__nav_2_6" >
       
       
       
@@ -393,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -407,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02_bootstrapping_etcd/" class="md-nav__link">
+      <a href="../../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
         02. bootstrapping etcd
       </a>
     </li>
@@ -419,73 +415,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          03. bootstrapping kube-apiserver
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
         03. bootstrapping kube-apiserver
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    手順
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    エラー事例
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    参考文献
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#old" class="md-nav__link">
-    old
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -497,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04_bootstrapping_kube-controller-manager/" class="md-nav__link">
+      <a href="../../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
         04. bootstrapping kube-controller-manager
       </a>
     </li>
@@ -511,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../05_bootstrapping_kube-scheduler/" class="md-nav__link">
+      <a href="../../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
         05. bootstrapping kube-scheduler
       </a>
     </li>
@@ -525,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
         06. kube-apiserver から kubelet へのアクセス権を設定する
       </a>
     </li>
@@ -539,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../07_controller_health_check/" class="md-nav__link">
+      <a href="../../../setup/06_master/07_controller_health_check/" class="md-nav__link">
         07. Kubernetes API のヘルスチェック
       </a>
     </li>
@@ -586,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -600,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
+      <a href="../../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
         02. bootstrapping kube-proxy
       </a>
     </li>
@@ -621,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08_flannel/bootstrapping_flannel/" class="md-nav__link">
+      <a href="../../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
         08. bootstrapping flannel
       </a>
     </li>
@@ -635,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09_coredns/bootstrapping_coredns/" class="md-nav__link">
+      <a href="../../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
         09. bootstrapping coredns
       </a>
     </li>
@@ -649,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
+      <a href="../../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
         10. bootstrapping nginx ingress controller
       </a>
     </li>
@@ -663,7 +597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
+      <a href="../../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
         11. bootstrapping external-dns
       </a>
     </li>
@@ -964,12 +898,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
       
       
       
@@ -992,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/metallb/" class="md-nav__link">
+      <a href="../../metallb/" class="md-nav__link">
         MetalLB
       </a>
     </li>
@@ -1004,12 +940,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" checked>
       
       
       
@@ -1032,7 +970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/openebs/about/" class="md-nav__link">
+      <a href="../about/" class="md-nav__link">
         About OpenEBS
       </a>
     </li>
@@ -1044,11 +982,75 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../addons/openebs/install/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Installing OpenEBS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Installing OpenEBS
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-openebs" class="md-nav__link">
+    Installing OpenEBS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-jenkins-with-openebs" class="md-nav__link">
+    Deploy Jenkins with OpenEBS
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy Jenkins with OpenEBS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    手順
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1084,8 +1086,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1094,30 +1094,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#installing-openebs" class="md-nav__link">
+    Installing OpenEBS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-jenkins-with-openebs" class="md-nav__link">
+    Deploy Jenkins with OpenEBS
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy Jenkins with OpenEBS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
+    参考
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
     手順
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    エラー事例
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    参考文献
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#old" class="md-nav__link">
-    old
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1136,378 +1142,275 @@
                   
 
 
-<h1 id="bootstrapping-kube-apiserver">bootstrapping kube-apiserver</h1>
-<h2 id="_1">手順</h2>
+  <h1>Installing OpenEBS</h1>
+
+<h2 id="installing-openebs">Installing OpenEBS</h2>
 <ol>
-<li>
-<p><code>Dockerfile_kube-apiserver.armhf</code> を作成する
- <br />
-<details><summary>Dockerfile_kube-apiserver.armhf</summary>
-      <div class="highlight"><pre><span></span><code>cat &lt;&lt; &#39;EOF&#39; &gt; Dockerfile_kube-apiserver.armhf
-FROM arm64v8/ubuntu:bionic
-
-ARG VERSION=&quot;v1.22.0&quot;
-ARG ARCH=&quot;arm64&quot;
-
-RUN set -ex \
-  &amp;&amp; apt update \
-  &amp;&amp; apt install -y wget \
-  &amp;&amp; apt clean \
-  &amp;&amp; wget --quiet -P /usr/bin/ https://dl.k8s.io/$VERSION/bin/linux/$ARCH/kube-apiserver \
-  &amp;&amp; chmod +x /usr/bin/kube-apiserver \
-  &amp;&amp; install -o root -g root -m 755 -d /var/lib/kubernetes \
-  &amp;&amp; install -o root -g root -m 755 -d /etc/kubernetes/config \
-  &amp;&amp; install -o root -g root -m 755 -d /etc/kubernetes/webhook
-
-COPY ca.pem \
-     ca-key.pem \
-     kubernetes-key.pem \
-     kubernetes.pem \
-     service-account-key.pem \
-     service-account.pem \
-     encryption-config.yaml \
-     front-proxy-ca.pem \
-     front-proxy.pem \
-     front-proxy-key.pem \
-     /var/lib/kubernetes/
-
-COPY authorization-config.yaml /etc/kubernetes/webhook/
-
-EXPOSE 6443
-
-ENTRYPOINT [&quot;/usr/bin/kube-apiserver&quot;]
-EOF
-</code></pre></div>
-   </details>
-</p>
-</li>
-<li>
-<p>encryption-provider-config を作成する</p>
-<ul>
-<li><code>--encryption-provider-config</code> オプションで指定してsecretリソースを作成する際に暗号化するための鍵を定義する<ul>
-<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#encrypting-your-data">https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#encrypting-your-data</a></li>
-<li><a href="https://access.redhat.com/documentation/ja-jp/openshift_container_platform/3.11/html/cluster_administration/admin-guide-encrypting-data-at-datastore">https://access.redhat.com/documentation/ja-jp/openshift_container_platform/3.11/html/cluster_administration/admin-guide-encrypting-data-at-datastore</a>
-   <details><summary>encryption-config.yaml</summary>
-      <div class="highlight"><pre><span></span><code>ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64)
-
-cat &lt;&lt; EOF &gt; encryption-config.yaml
----
-kind: EncryptionConfig
-apiVersion: v1
-resources:
-  - resources:
-      - secrets
-    providers:
-      - aescbc:
-          keys:
-            - name: key1
-              secret: ${ENCRYPTION_KEY}
-      - identity: {}
-EOF
-</code></pre></div>
-   </details></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>webbhook configファイルを作成する</p>
-<ul>
-<li><code>--authorization-webhook-config-file</code> で指定するファイル
-   <details><summary>authorization-config.yaml</summary>
-      <div class="highlight"><pre><span></span><code>KUBE_API_SERVER_ADDRESS=192.168.10.50
-
-cat &lt;&lt; EOF &gt; authorization-config.yaml
----
-apiVersion: v1
-# kind of the API object
-kind: Config
-# clusters refers to the remote service.
-clusters:
-  - name: kubernetes
-    cluster:
-      certificate-authority: /var/lib/kubernetes/ca.pem       # CA for verifying the remote service.
-      server: https://${KUBE_API_SERVER_ADDRESS}:6443/authenticate # URL of remote service to query. Must use &#39;https&#39;.
-
-# users refers to the API server&#39;s webhook configuration.
-users:
-  - name: api-server-webhook
-    user:
-      client-certificate: /var/lib/kubernetes/kubernetes.pem  # cert for the webhook plugin to use
-      client-key: /var/lib/kubernetes/kubernetes-key.pem      # key matching the cert
-
-# kubeconfig files require a context. Provide one for the API server.
-current-context: webhook
-contexts:
-- context:
-    cluster: kubernetes
-    user: api-server-webhook
-  name: webhook
-EOF
-</code></pre></div>
-   </details></li>
-</ul>
-</li>
-<li>
-<p>image build
-   <div class="highlight"><pre><span></span><code>sudo buildah bud -t k8s-kube-apiserver --file=Dockerfile_kube-apiserver.armhf ./
-</code></pre></div></p>
-</li>
-<li>
-<p>pod manifestsを <code>/etc/kubelet.d</code> へ作成する
- <br />
-<details><summary>/etc/kubelet.d/kube-api-server.yaml</summary>
-      <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF | sudo tee /etc/kubelet.d/kube-api-server.yaml
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: kube-apiserver
-  namespace: kube-system
-  annotations:
-    seccomp.security.alpha.kubernetes.io/pod: runtime/default
-  labels:
-    tier: control-plane
-    component: kube-apiserver
-
-spec:
-  # https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
-  priorityClassName: system-node-critical
-  hostNetwork: true
-  containers:
-    - name: kube-apiserver
-      image: localhost/k8s-kube-apiserver:latest
-      imagePullPolicy: IfNotPresent
-      resources:
-        requests:
-          memory: &quot;512Mi&quot;
-        limits:
-          memory: &quot;1024Mi&quot;
-      command:
-        - /usr/bin/kube-apiserver
-        - --advertise-address=192.168.10.50
-        - --allow-privileged=true
-        - --anonymous-auth=false
-        - --apiserver-count=1
-        - --audit-log-maxage=30
-        - --audit-log-maxbackup=3
-        - --audit-log-maxsize=100
-        - --audit-log-path=/var/log/audit.log
-        - --authorization-mode=Node,RBAC,Webhook
-        - --authorization-webhook-config-file=/etc/kubernetes/webhook/authorization-config.yaml
-        - --authentication-token-webhook-cache-ttl=2m
-        - --authentication-token-webhook-version=v1
-        - --bind-address=0.0.0.0
-        - --client-ca-file=/var/lib/kubernetes/ca.pem
-        - --enable-admission-plugins=NamespaceLifecycle,NodeRestriction,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota,RuntimeClass
-        - --etcd-cafile=/var/lib/kubernetes/ca.pem
-        - --etcd-certfile=/var/lib/kubernetes/kubernetes.pem
-        - --etcd-keyfile=/var/lib/kubernetes/kubernetes-key.pem
-        - --etcd-servers=https://192.168.10.50:2379
-        - --event-ttl=1h
-        - --encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml
-        - --kubelet-certificate-authority=/var/lib/kubernetes/ca.pem
-        - --kubelet-client-certificate=/var/lib/kubernetes/kubernetes.pem
-        - --kubelet-client-key=/var/lib/kubernetes/kubernetes-key.pem
-        - --runtime-config=authentication.k8s.io/v1beta1=true
-        - --feature-gates=APIPriorityAndFairness=false
-        - --service-account-key-file=/var/lib/kubernetes/service-account.pem
-        - --service-account-signing-key-file=/var/lib/kubernetes/service-account-key.pem
-        - --service-account-issuer=api
-        - --service-account-api-audiences=api
-        - --service-cluster-ip-range=10.32.0.0/24
-        - --service-node-port-range=30000-32767
-        - --tls-cert-file=/var/lib/kubernetes/kubernetes.pem
-        - --tls-private-key-file=/var/lib/kubernetes/kubernetes-key.pem
-        - --http2-max-streams-per-connection=3000
-        - --max-requests-inflight=3000
-        - --max-mutating-requests-inflight=1000
-        - --enable-aggregator-routing=true
-        - --requestheader-client-ca-file=/var/lib/kubernetes/front-proxy-ca.pem
-        - --requestheader-allowed-names=front-proxy-ca
-        - --requestheader-extra-headers-prefix=X-Remote-Extra
-        - --requestheader-group-headers=X-Remote-Group
-        - --requestheader-username-headers=X-Remote-User
-        - --proxy-client-cert-file=/var/lib/kubernetes/front-proxy.pem
-        - --proxy-client-key-file=/var/lib/kubernetes/front-proxy-key.pem
-        - --v=2
-EOF
-</code></pre></div>
-   </details>
-</p>
-</li>
-<li>
-<p><code>crictl</code> でコンテナ起動を確認する
-   <div class="highlight"><pre><span></span><code>$ sudo crictl ps --name kube-apiserver
-CONTAINER           IMAGE                                                              CREATED             STATE               NAME                ATTEMPT             POD ID
-82c371fd9d99e       83e685a0b921ef5dd91eb3cdf208ba70690c1dd7decfc39bb3903be6ede752e6   24 seconds ago      Running             kube-apiserver      0                   6af4d1b99fa37
-</code></pre></div></p>
-</li>
-<li>
-<p>master nodeにPodがscheduleされないようにする</p>
-<ul>
-<li>taintを設定する<ul>
-<li><a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/">https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/</a></li>
-<li><a href="https://kubernetes.io/ja/docs/concepts/scheduling-eviction/taint-and-toleration/">https://kubernetes.io/ja/docs/concepts/scheduling-eviction/taint-and-toleration/</a>
-   <div class="highlight"><pre><span></span><code>kubectl taint nodes k8s-master node-role.kubernetes.io/master:NoSchedule
-</code></pre></div>
-   <div class="highlight"><pre><span></span><code>$ kubectl get node k8s-master -o=jsonpath=&#39;{.spec.taints}&#39;
-[{&quot;effect&quot;:&quot;NoSchedule&quot;,&quot;key&quot;:&quot;node-role.kubernetes.io/master&quot;}]
+<li>helm でインストールする<ul>
+<li><a href="https://openebs.io/docs/user-guides/installation#installation-through-helm">https://openebs.io/docs/user-guides/installation#installation-through-helm</a></li>
+<li><a href="https://github.com/openebs/charts">https://github.com/openebs/charts</a>
+<div class="highlight"><pre><span></span><code>helm install openebs --namespace openebs openebs/openebs --create-namespace \
+  --set cstor.enabled=true \
+  --set jiva.enabled=true
 </code></pre></div></li>
 </ul>
 </li>
-</ul>
+<li>
+<p>StorageClassを確認する
+    <div class="highlight"><pre><span></span><code>$ kubectl get sc
+NAME                       PROVISIONER           RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+openebs-device             openebs.io/local      Delete          WaitForFirstConsumer   false                  28m
+openebs-hostpath           openebs.io/local      Delete          WaitForFirstConsumer   false                  28m
+openebs-jiva-csi-default   jiva.csi.openebs.io   Delete          Immediate              true                   28mS
+</code></pre></div></p>
+</li>
+<li>
+<p>OpenEBSの各Pod起動を確認する
+    <div class="highlight"><pre><span></span><code>$ kubectl get pods -n openebs
+NAME                                            READY   STATUS    RESTARTS      AGE
+openebs-cstor-admission-server-b74f5487-djhxj   1/1     Running   0             22m
+openebs-cstor-csi-controller-0                  6/6     Running   0             21m
+openebs-cstor-csi-node-54prc                    2/2     Running   0             28m
+openebs-cstor-csi-node-g844x                    2/2     Running   0             22m
+openebs-cstor-csi-node-vrm2w                    2/2     Running   0             95s
+openebs-cstor-cspc-operator-84464fb479-vdh67    1/1     Running   0             22m
+openebs-cstor-cvc-operator-646f6f676b-5t79q     1/1     Running   0             22m
+openebs-jiva-csi-controller-0                   5/5     Running   3 (16m ago)   28m
+openebs-jiva-csi-node-2hz6w                     3/3     Running   0             110s
+openebs-jiva-csi-node-nt6jz                     3/3     Running   0             28m
+openebs-jiva-csi-node-zm49x                     3/3     Running   0             22m
+openebs-jiva-operator-f994f6868-w7xrl           1/1     Running   0             22m
+openebs-localpv-provisioner-55b65f8b55-2mq9z    1/1     Running   3 (16m ago)   28m
+openebs-ndm-4smgw                               1/1     Running   0             2m37s
+openebs-ndm-6fpg7                               1/1     Running   0             9m7s
+openebs-ndm-operator-6c944d87b6-5dq77           1/1     Running   0             22m
+openebs-ndm-vm255                               1/1     Running   0             28m
+</code></pre></div></p>
 </li>
 </ol>
-<h2 id="_2">エラー事例</h2>
+<h2 id="deploy-jenkins-with-openebs">Deploy Jenkins with OpenEBS</h2>
+<h3 id="_1">参考</h3>
+<ul>
+<li><a href="https://blog.openebs.io/tagged/jenkins">https://blog.openebs.io/tagged/jenkins</a></li>
+<li><a href="https://github.com/openebs/openebs/tree/main/k8s/demo/jenkins">https://github.com/openebs/openebs/tree/main/k8s/demo/jenkins</a></li>
+</ul>
+<h3 id="_2">手順</h3>
 <ol>
+<li>download manifests
+    <div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/jenkins/jenkins.yml
+</code></pre></div></li>
 <li>
-<p><code>failed creating mandatory flowcontrol settings: failed getting mandatory FlowSchema exempt due to the server was unable to return a response in the time allotted, but may still be processing the request</code></p>
-<ul>
-<li><a href="https://github.com/kubernetes/kubernetes/issues/97525#issuecomment-753022219">https://github.com/kubernetes/kubernetes/issues/97525#issuecomment-753022219</a><ul>
-<li>kube-apiserver起動オプションに以下2つを付加する<ul>
-<li><code>--feature-gates=APIPriorityAndFairness=false</code></li>
-<li><code>--runtime-config=flowcontrol.apiserver.k8s.io/v1beta1=false</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><code>failed to run Kubelet: no client provided, cannot use webhook authentication</code></p>
-<ul>
-<li>kubeletがWebhook認証を期待しているのにkube-api-serverでWebhook認証が有効でない場合<ul>
-<li>Webhook認証を有効にする</li>
-<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/">https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/</a></li>
-<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/webhook/">https://kubernetes.io/docs/reference/access-authn-authz/webhook/</a><ul>
-<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#webhook-token-authentication">https://kubernetes.io/docs/reference/access-authn-authz/authentication/#webhook-token-authentication</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><code>Failed creating a mirror pod for "kube-scheduler-k8s-master_kube-system(a4a914cd05761a5a4335e2510ca075aa)": pods "kube-scheduler-k8s-master" is forbidden: PodSecurityPolicy: no providers available to validate pod request</code></p>
-<ul>
-<li>StaticPodを起動した際にkubeletからkube-apiserverへmirror pod情報を登録しようとしてPodSecurityPolicyにより拒否された</li>
-</ul>
-</li>
-</ol>
-<h2 id="_3">参考文献</h2>
-<ul>
-<li><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/">https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/</a></li>
-<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/webhook/">https://kubernetes.io/docs/reference/access-authn-authz/webhook/</a></li>
-</ul>
-<h2 id="old">old</h2>
-<ol>
-<li>defaultのPodSecurityPolicy(PSP)を作成する<ul>
-<li>
-<p><code>staticPod</code> を作成する際にkubeletからmirror pod作成リクエストが拒否されないようにします (<a href="https://kubernetes.io/ja/docs/tasks/configure-pod-container/static-pod/">参考</a>)
-  <details><summary>PSP / ClusterRole / ClusterRoleBinding</summary>
-     <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF | kubectl apply --kubeconfig admin.kubeconfig -f -
-apiVersion: policy/v1beta1
-kind: PodSecurityPolicy
-metadata:
-  annotations:
-    apparmor.security.beta.kubernetes.io/allowedProfileNames: &#39;runtime/default&#39;
-    apparmor.security.beta.kubernetes.io/defaultProfileName:  &#39;runtime/default&#39;
-    seccomp.security.alpha.kubernetes.io/allowedProfileNames: &#39;docker/default&#39;
-    seccomp.security.alpha.kubernetes.io/defaultProfileName:  &#39;docker/default&#39;
-  name: default
-spec:
-  # allowedCapabilities: []  # default set of capabilities are implicitly allowed
-  allowedCapabilities:
-    - &#39;*&#39;
-    # - NET_ADMIN
-    # - NET_RAW
-    # - SYS_ADMIN
-  fsGroup:
-    rule: &#39;MustRunAs&#39;
-    ranges:
-      # Forbid adding the root group.
-      - min: 1
-        max: 65535
-  hostIPC: true
-  hostNetwork: true
-  hostPID: true
-  privileged: true
-  allowPrivilegeEscalation: true
-  readOnlyRootFilesystem: true
-  runAsUser:
-    rule: &#39;MustRunAsNonRoot&#39;
-  seLinux:
-    rule: &#39;RunAsNonRoot&#39;
-  supplementalGroups:
-    rule: &#39;RunAsNonRoot&#39;
-    ranges:
-      # Forbid adding the root group.
-      - min: 1
-        max: 65535
-  volumes:
-  - &#39;configMap&#39;
-  - &#39;downwardAPI&#39;
-  - &#39;emptyDir&#39;
-  - &#39;persistentVolumeClaim&#39;
-  - &#39;projected&#39;
-  - &#39;secret&#39;
-  - &#39;hostPath&#39;
-  hostNetwork: true
-  runAsUser:
-    rule: &#39;RunAsAny&#39;
-  seLinux:
-    rule: &#39;RunAsAny&#39;
-  supplementalGroups:
-    rule: &#39;RunAsAny&#39;
-  fsGroup:
-    rule: &#39;RunAsAny&#39;
-
----
-
-# Cluster role which grants access to the default pod security policy
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: default-psp
-rules:
-- apiGroups:
-  - policy
-  resourceNames:
-  - default
-  resources:
-  - podsecuritypolicies
-  verbs:
-  - use
-
----
-
-# Cluster role binding for default pod security policy granting all authenticated users access
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: default-psp
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: default-psp
-subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: Group
-  name: system:authenticated
-EOF
+<p>modify manifests
+    <div class="highlight"><pre><span></span><code>vim jenkins.yml
+</code></pre></div></p>
+<p><div class="highlight"><pre><span></span><code>$ diff -u &lt;(curl -s https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/jenkins/jenkins.yml) &lt;(cat ./jenkins.yml)
+--- /dev/fd/63  2022-10-01 14:11:35.968241073 +0000
++++ /dev/fd/62  2022-10-01 14:11:35.980240892 +0000
+@@ -3,7 +3,7 @@
+ metadata:
+   name: jenkins-claim
+   annotations:
+-    volume.beta.kubernetes.io/storage-class: openebs-jiva-default
++    volume.beta.kubernetes.io/storage-class: openebs-jiva-csi-default
+ spec:
+   accessModes:
+     - ReadWriteOnce
 </code></pre></div>
-  </details></p>
-<div class="highlight"><pre><span></span><code>$ cat &lt;&lt;EOF | kubectl apply --kubeconfig admin.kubeconfig -f -
-
-  &lt;省略&gt;
-
-podsecuritypolicy.policy/default created
-clusterrole.rbac.authorization.k8s.io/default-psp created
-clusterrolebinding.rbac.authorization.k8s.io/default-psp created
-</code></pre></div>
+1. apply manifests
+<div class="highlight"><pre><span></span><code>kubectl apply -f jenkins.yml
+</code></pre></div></p>
 </li>
-</ul>
+<li>
+<p>リソース確認
+    <details><summary>PersistentVolumeClaim</summary></p>
+<div class="highlight"><pre><span></span><code>$ kubectl describe PersistentVolumeClaim jenkins-claim
+Name:          jenkins-claim
+Namespace:     default
+StorageClass:  openebs-jiva-csi-default
+Status:        Bound
+Volume:        pvc-e69e2bbb-f945-4ec7-b61a-490a66596441
+Labels:        &lt;none&gt;
+Annotations:   pv.kubernetes.io/bind-completed: yes
+               pv.kubernetes.io/bound-by-controller: yes
+                              volume.beta.kubernetes.io/storage-class: openebs-jiva-csi-default
+                                             volume.beta.kubernetes.io/storage-provisioner: jiva.csi.openebs.io
+                                             Finalizers:    [kubernetes.io/pvc-protection]
+                                             Capacity:      5G
+                                             Access Modes:  RWO
+                                             VolumeMode:    Filesystem
+                                             Used By:       jenkins-7f87d6d6d8-htjx9
+                                             Events:        &lt;none&gt;
+</code></pre></div>
+</details>
+<p><details><summary>Service</summary></p>
+<div class="highlight"><pre><span></span><code>$ kubectl describe service jenkins-svc
+Name:                     jenkins-svc
+Namespace:                default
+Labels:                   &lt;none&gt;
+Annotations:              &lt;none&gt;
+Selector:                 app=jenkins-app
+Type:                     NodePort
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.32.0.70
+IPs:                      10.32.0.70
+Port:                     &lt;unset&gt;  80/TCP
+TargetPort:               8080/TCP
+NodePort:                 &lt;unset&gt;  30792/TCP
+Endpoints:                10.200.0.45:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   &lt;none&gt;
+</code></pre></div>
+</details>
+<p><details>&gt;<summary>Deployment</summary></p>
+<div class="highlight"><pre><span></span><code>$ kubectl describe deployment jenkins
+Name:                   jenkins
+Namespace:              default
+CreationTimestamp:      Fri, 30 Sep 2022 04:56:42 +0000
+Labels:                 &lt;none&gt;
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=jenkins-app
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=jenkins-app
+  Containers:
+   jenkins:
+    Image:        jenkins/jenkins:lts
+    Port:         8080/TCP
+    Host Port:    0/TCP
+    Environment:  &lt;none&gt;
+    Mounts:
+      /var/jenkins_home from jenkins-home (rw)
+  Volumes:
+   jenkins-home:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  jenkins-claim
+    ReadOnly:   false
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   jenkins-7f87d6d6d8 (1/1 replicas created)
+Events:          &lt;none&gt;
+</code></pre></div>
+</details>
+<p><details><summary>Pod</summary></p>
+<div class="highlight"><pre><span></span><code>$ kubectl describe pods jenkins-7f87d6d6d8-htjx9
+Name:         jenkins-7f87d6d6d8-htjx9
+Namespace:    default
+Priority:     0
+Node:         k8s-master/192.168.3.50
+Start Time:   Sun, 02 Oct 2022 16:49:07 +0000
+Labels:       app=jenkins-app
+              pod-template-hash=7f87d6d6d8
+Annotations:  &lt;none&gt;
+Status:       Running
+IP:           10.200.0.45
+IPs:
+  IP:           10.200.0.45
+Controlled By:  ReplicaSet/jenkins-7f87d6d6d8
+Containers:
+  jenkins:
+    Container ID:   containerd://9c039657f1a1dee2b4b480aaff1859c9385b9b9d2d874757ad6e0e6c47278bda
+    Image:          jenkins/jenkins:lts
+    Image ID:       docker.io/jenkins/jenkins@sha256:5508cb1317aa0ede06cb34767fb1ab3860d1307109ade577d5df871f62170214
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 02 Oct 2022 16:49:38 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:
+      /var/jenkins_home from jenkins-home (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gzs4t (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  jenkins-home:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  jenkins-claim
+    ReadOnly:   false
+  kube-api-access-gzs4t:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       &lt;nil&gt;
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              &lt;none&gt;
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      &lt;none&gt;
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>Webアクセス確認</p>
+<table>
+<thead>
+<tr>
+<th align="left">image</th>
+<th align="left">descrioption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_01.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_02.png" style="width:300px;"/></td>
+<td align="left">表示にある通り<code>/var/jenkins_home/secrets/initialAdminPassword</code>の内容を貼り付ける<br><code>kubectl exec -it jenkins-7f87d6d6d8-wx8nn -- cat /var/jenkins_home/secrets/initialAdminPassword</code></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_03.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_04.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_05.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_06.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_07.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_08.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_09.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_10.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><img src="/addons/openebs/jenkins_11.png" style="width:300px;"/></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 
@@ -1530,7 +1433,7 @@ clusterrolebinding.rbac.authorization.k8s.io/default-psp created
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../02_bootstrapping_etcd/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 02. bootstrapping etcd" rel="prev">
+        <a href="../about/" class="md-footer__link md-footer__link--prev" aria-label="Previous: About OpenEBS" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1539,26 +1442,11 @@ clusterrolebinding.rbac.authorization.k8s.io/default-psp created
               <span class="md-footer__direction">
                 Previous
               </span>
-              02. bootstrapping etcd
+              About OpenEBS
             </div>
           </div>
         </a>
       
-      
-        
-        <a href="../04_bootstrapping_kube-controller-manager/" class="md-footer__link md-footer__link--next" aria-label="Next: 04. bootstrapping kube-controller-manager" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              04. bootstrapping kube-controller-manager
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
