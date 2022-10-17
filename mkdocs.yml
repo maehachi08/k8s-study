@@ -34,6 +34,9 @@ markdown_extensions:
   - pymdownx.magiclink
   - attr_list
   - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
   - Home: index.md
@@ -73,6 +76,9 @@ nav:
     - etcd: operations/backup_etcd.md
   - Addons:
     - MetalLB: addons/metallb.md
+    - OpenEBS:
+      - About OpenEBS: addons/openebs/about.md
+      - Installing OpenEBS: addons/openebs/install.md
 
 plugins:
   - search
