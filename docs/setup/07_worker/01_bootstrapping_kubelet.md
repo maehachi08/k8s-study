@@ -100,16 +100,16 @@
   cgroupDriver: systemd
   cgroupRoot: /
   systemCgroups: /systemd/system.slice
-  systemReservedCgroup: /systemd/system.slice
+  systemReservedCgroup: /system.slice
   systemReserved:
-    cpu: 256m
-    memory: 256Mi
-  runtimeCgroups: /kube.slice/crio.service
+    cpu: 1024m
+    memory: 1024Mi
+  runtimeCgroups: /kube.slice/containerd.service
   kubeletCgroups: /kube.slice/kubelet.service
   kubeReservedCgroup: /kube.slice
   kubeReserved:
-    cpu: 256m
-    memory: 256Mi
+    cpu: 1024m
+    memory: 1024Mi
   EOF
   ```
 
@@ -120,14 +120,16 @@
    [Unit]
    Description=Kubernetes Kubelet
    Documentation=https://github.com/kubernetes/kubernetes
-   After=crio.service
-   Requires=crio.service
+   After=containerd.service
+   Requires=containerd.service
 
    [Service]
    Restart=on-failure
    RestartSec=5
 
    ExecStartPre=/usr/bin/mkdir -p \
+     /sys/fs/cgroup/kube.slice \
+     /sys/fs/cgroup/system.slice \
      /sys/fs/cgroup/systemd/kube.slice \
      /sys/fs/cgroup/cpuset/kube.slice \
      /sys/fs/cgroup/cpuset/system.slice \
@@ -136,14 +138,16 @@
      /sys/fs/cgroup/memory/kube.slice \
      /sys/fs/cgroup/memory/system.slice \
      /sys/fs/cgroup/cpu,cpuacct/kube.slice \
-     /sys/fs/cgroup/cpu,cpuacct/kube.slice
+     /sys/fs/cgroup/cpu,cpuacct/system.slice \
+     /sys/fs/cgroup/hugetlb/system.slice \
+     /sys/fs/cgroup/hugetlb/kube.slice
 
    ExecStart=/usr/bin/kubelet \
      --config=/var/lib/kubelet/kubelet-config.yaml \
      --kubeconfig=/var/lib/kubelet/kubeconfig \
      --network-plugin=cni \
      --container-runtime=remote \
-     --container-runtime-endpoint=/var/run/crio/crio.sock \
+     --container-runtime-endpoint=unix:///run/containerd/containerd.sock \
      --register-node=true \
      --v=2
 
