@@ -78,10 +78,28 @@
         pids    3       39      1
         ```
 
-### CRI-O インストール
+### Container Runtime Interface(CRI) インストール
+
+#### containerd の場合
+
+https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd
+
+
+
+
+#### cri-o の場合
 
 https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-o
 
+1. kernel moduleのload
+    - overlayファイルシステムを利用するためのkernel module `overlay`
+    - iptablesがbridgeを通過するパケットを処理するためのkernel module `br_netfilter`
+      ```
+      ```
+1. kernel parameterのset
+    - iptablesがbridgeを通過するパケットを処理するための設定
+      ```
+      ```
 
 1. kernel moduleのload
     - overlayファイルシステムを利用するためのkernel module `overlay`

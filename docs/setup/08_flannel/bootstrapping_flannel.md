@@ -68,15 +68,7 @@
                  # Capabilities
                  allowedCapabilities: ['NET_ADMIN', 'NET_RAW']
                  defaultAddCapabilities: []
-                 requiredDropCapabilities: []
-                 # Host namespaces
-                 hostPID: false
-                 hostIPC: false
-                 hostNetwork: true
-                 hostPorts:
-                 - min: 0
-                   max: 65535
-                 # SELinux
+                 required
                  seLinux:
                    # SELinux is unused in CaaSP
                    rule: 'RunAsAny'
@@ -200,8 +192,21 @@
                        effect: NoSchedule
                      serviceAccountName: flannel
                      initContainers:
+                     - name: install-cni-plugin
+                      #image: flannelcni/flannel-cni-plugin:v1.0.1 for ppc64le and mips64le (dockerhub limitations may apply)
+                       image: rancher/mirrored-flannelcni-flannel-cni-plugin:v1.0.1
+                       command:
+                       - cp
+                       args:
+                       - -f
+                       - /flannel
+                       - /opt/cni/bin/flannel
+                       volumeMounts:
+                       - name: cni-plugin
+                         mountPath: /opt/cni/bin
                      - name: install-cni
-                       image: quay.io/coreos/flannel:v0.13.1-rc2
+                      #image: flannelcni/flannel:v0.16.3 for ppc64le and mips64le (dockerhub limitations may apply)
+                       image: rancher/mirrored-flannelcni-flannel:v0.16.3
                        command:
                        - cp
                        args:
@@ -215,21 +220,8 @@
                          mountPath: /etc/kube-flannel/
                      containers:
                      - name: kube-flannel
-                       image: quay.io/coreos/flannel:v0.13.1-rc2
-                       command:
-                       - cp
-                       args:
-                       - -f
-                       - /etc/kube-flannel/cni-conf.json
-                       - /etc/cni/net.d/10-flannel.conflist
-                       volumeMounts:
-                       - name: cni
-                         mountPath: /etc/cni/net.d
-                       - name: flannel-cfg
-                         mountPath: /etc/kube-flannel/
-                     containers:
-                     - name: kube-flannel
-                       image: quay.io/coreos/flannel:v0.14.0
+                      #image: flannelcni/flannel:v0.16.3 for ppc64le and mips64le (dockerhub limitations may apply)
+                       image: rancher/mirrored-flannelcni-flannel:v0.16.3
                        command:
                        - /opt/bin/flanneld
                        args:
@@ -267,21 +259,30 @@
                          mountPath: /run/flannel
                        - name: flannel-cfg
                          mountPath: /etc/kube-flannel/
+                       - name: xtables-lock
+                         mountPath: /run/xtables.lock
                        - name: var-lib-kubernetes-dir
                          mountPath: /var/lib/kubernetes/
                      volumes:
                      - name: run
                        hostPath:
                          path: /run/flannel
+                     - name: cni-plugin
+                       hostPath:
+                         path: /opt/cni/bin
                      - name: cni
                        hostPath:
                          path: /etc/cni/net.d
-                     - name: var-lib-kubernetes-dir
-                       hostPath:
-                         path: /var/lib/kubernetes
                      - name: flannel-cfg
                        configMap:
                          name: kube-flannel-cfg
+                     - name: xtables-lock
+                       hostPath:
+                         path: /run/xtables.lock
+                         type: FileOrCreate
+                     - name: var-lib-kubernetes-dir
+                       hostPath:
+                         path: /var/lib/kubernetes
                ```
 
             </details>
