@@ -12,21 +12,21 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/aws-eks/aws-load-balancer-controller/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/monitoring/prometheus/install_prometheus/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>aws-load-balancer-controller - maehachi08/k8s-study</title>
+        <title>Install Prometheus - maehachi08/k8s-study</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.472b142f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.08040f6c.min.css">
         
       
       
@@ -84,7 +84,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -109,7 +109,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aws-load-balancer-controller" class="md-skip">
+        <a href="#prometheus-installing" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="maehachi08/k8s-study" class="md-header__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-header__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -142,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              aws-load-balancer-controller
+              Install Prometheus
             
           </span>
         </div>
@@ -221,7 +221,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -252,7 +252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -267,7 +267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../container-runtime.md" class="md-nav__link">
+      <a href="../../../container-runtime.md" class="md-nav__link">
         Container Runtime
       </a>
     </li>
@@ -308,7 +308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/01_setup_RaspberryPi/" class="md-nav__link">
+      <a href="../../../setup/01_setup_RaspberryPi/" class="md-nav__link">
         01. Raspberry Pi 構成
       </a>
     </li>
@@ -322,7 +322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
+      <a href="../../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
         02. OS Install
       </a>
     </li>
@@ -336,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/03_common_settings/" class="md-nav__link">
+      <a href="../../../setup/03_common_settings/" class="md-nav__link">
         03. master/nodeで共通手順
       </a>
     </li>
@@ -350,7 +350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/04_creation_certificate/" class="md-nav__link">
+      <a href="../../../setup/04_creation_certificate/" class="md-nav__link">
         04. 認証局の設定とTLS証明書の作成
       </a>
     </li>
@@ -364,7 +364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/05_creating_config/" class="md-nav__link">
+      <a href="../../../setup/05_creating_config/" class="md-nav__link">
         05. 認証のためのkubeconfigの作成
       </a>
     </li>
@@ -404,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -418,7 +418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
+      <a href="../../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
         02. bootstrapping etcd
       </a>
     </li>
@@ -432,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
+      <a href="../../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
         03. bootstrapping kube-apiserver
       </a>
     </li>
@@ -446,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
+      <a href="../../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
         04. bootstrapping kube-controller-manager
       </a>
     </li>
@@ -460,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
+      <a href="../../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
         05. bootstrapping kube-scheduler
       </a>
     </li>
@@ -474,7 +474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
         06. kube-apiserver から kubelet へのアクセス権を設定する
       </a>
     </li>
@@ -488,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/07_controller_health_check/" class="md-nav__link">
+      <a href="../../../setup/06_master/07_controller_health_check/" class="md-nav__link">
         07. Kubernetes API のヘルスチェック
       </a>
     </li>
@@ -535,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -549,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
+      <a href="../../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
         02. bootstrapping kube-proxy
       </a>
     </li>
@@ -570,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
+      <a href="../../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
         08. bootstrapping flannel
       </a>
     </li>
@@ -584,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
+      <a href="../../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
         09. bootstrapping coredns
       </a>
     </li>
@@ -598,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
+      <a href="../../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
         10. bootstrapping nginx ingress controller
       </a>
     </li>
@@ -612,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
+      <a href="../../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
         11. bootstrapping external-dns
       </a>
     </li>
@@ -660,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_story/" class="md-nav__link">
+      <a href="../../../failure_test/failure_story/" class="md-nav__link">
         Failure Story
       </a>
     </li>
@@ -674,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/point_of_failure/" class="md-nav__link">
+      <a href="../../../failure_test/point_of_failure/" class="md-nav__link">
         Point of failure
       </a>
     </li>
@@ -714,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_scenario_of_node/" class="md-nav__link">
+      <a href="../../../failure_test/failure_scenario_of_node/" class="md-nav__link">
         Node
       </a>
     </li>
@@ -769,7 +769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kyverno/about_kyverno/" class="md-nav__link">
+      <a href="../../../kyverno/about_kyverno/" class="md-nav__link">
         01. About Kyverno
       </a>
     </li>
@@ -783,7 +783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kyverno/installation_kyverno/" class="md-nav__link">
+      <a href="../../../kyverno/installation_kyverno/" class="md-nav__link">
         02. Installation Kyverno
       </a>
     </li>
@@ -803,12 +803,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
       
       
@@ -831,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+      <a href="../../metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
         bootstrapping metrics_server
       </a>
     </li>
@@ -845,7 +847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
+      <a href="../../kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
         bootstrapping kubernetes-dashboard
       </a>
     </li>
@@ -857,12 +859,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
       
       
       
@@ -883,11 +887,61 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../monitoring/prometheus/install_prometheus/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Install Prometheus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Install Prometheus
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prometheus-installing" class="md-nav__link">
+    Prometheus Installing
+  </a>
+  
+    <nav class="md-nav" aria-label="Prometheus Installing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -899,7 +953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/prometheus/install_grafana/" class="md-nav__link">
+      <a href="../install_grafana/" class="md-nav__link">
         Install Grafana
       </a>
     </li>
@@ -913,7 +967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/prometheus/install_cadvisor/" class="md-nav__link">
+      <a href="../install_cadvisor/" class="md-nav__link">
         Install cadvisor
       </a>
     </li>
@@ -968,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/backup_etcd/" class="md-nav__link">
+      <a href="../../../operations/backup_etcd/" class="md-nav__link">
         etcd
       </a>
     </li>
@@ -1016,7 +1070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/metallb/" class="md-nav__link">
+      <a href="../../../addons/metallb/" class="md-nav__link">
         MetalLB
       </a>
     </li>
@@ -1056,7 +1110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/openebs/about/" class="md-nav__link">
+      <a href="../../../addons/openebs/about/" class="md-nav__link">
         About OpenEBS
       </a>
     </li>
@@ -1070,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/openebs/install/" class="md-nav__link">
+      <a href="../../../addons/openebs/install/" class="md-nav__link">
         Installing OpenEBS
       </a>
     </li>
@@ -1108,8 +1162,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1118,9 +1170,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    参考
+  <a href="#prometheus-installing" class="md-nav__link">
+    Prometheus Installing
   </a>
+  
+    <nav class="md-nav" aria-label="Prometheus Installing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1139,11 +1204,194 @@
                   
 
 
-<h1 id="aws-load-balancer-controller">aws-load-balancer-controller</h1>
-<h2 id="_1">参考</h2>
+  <h1>Install Prometheus</h1>
+
+<h2 id="prometheus-installing">Prometheus Installing</h2>
 <ul>
-<li><a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/">https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/</a></li>
+<li><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus">https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus</a></li>
 </ul>
+<h3 id="install">Install</h3>
+<ol>
+<li>
+<p>valuesファイルの修正</p>
+<ul>
+<li>
+<p>Ephemeral Storageの <code>storageClass</code> を OpenEBSのjiva storageのものとする( e.g. <code>openebs-jiva-csi-default</code>)</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li><a href="/addons/openebs/install/">Installing OpenEBS</a> を実施済みの前提</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>Prometheus</code> や <code>Alertmanager</code> の WebUIを利用したい場合</p>
+<ul>
+<li>NodeIp:NodePort でアクセスする場合<ul>
+<li><code>service.type: NodePort</code></li>
+</ul>
+</li>
+<li>
+<p><code>MetalLB</code> で払い出したexternal ipでアクセスする場合</p>
+<ul>
+<li><code>service.type: LoadBalancer</code></li>
+<li><code>annotations</code> に <code>metallb.universe.tf/address-pool: ip-pool</code></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li><a href="/addons/metallb/">MetalLB</a> を実施済みの前提</li>
+</ul>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>mkdir -p ~/work/prometheus
+curl -so ~/work/prometheus/prometheus.yaml https://raw.githubusercontent.com/prometheus-community/helm-charts/main/charts/prometheus/values.yaml
+vim ~/work/prometheus/prometheus.yaml
+</code></pre></div>
+<p><details><summary>prometheus.yaml 修正後のdiff</summary></p>
+<div class="highlight"><pre><span></span><code>$ diff -u &lt;(curl -s https://raw.githubusercontent.com/prometheus-community/helm-charts/main/charts/prometheus/values.yaml) &lt;(cat ~/work/prometheus/prometheus.yaml)
+--- /dev/fd/63  2022-10-30 14:07:09.532561438 +0000
++++ /dev/fd/62  2022-10-30 14:07:09.540561310 +0000
+@@ -231,7 +231,7 @@
+     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+     ##   GKE, AWS &amp; OpenStack)
+     ##
+-    # storageClass: &quot;-&quot;
++    storageClass: &quot;openebs-jiva-csi-default&quot;
+
+     ## alertmanager data Persistent Volume Binding Mode
+     ## If defined, volumeBindingMode: &lt;volumeBindingMode&gt;
+@@ -947,7 +947,7 @@
+     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+     ##   GKE, AWS &amp; OpenStack)
+     ##
+-    # storageClass: &quot;-&quot;
++    storageClass: &quot;openebs-jiva-csi-default&quot;
+
+     ## Prometheus server data Persistent Volume Binding Mode
+     ## If defined, volumeBindingMode: &lt;volumeBindingMode&gt;
+@@ -1403,7 +1403,7 @@
+     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+     ##   GKE, AWS &amp; OpenStack)
+     ##
+-    # storageClass: &quot;-&quot;
++    storageClass: &quot;openebs-jiva-csi-default&quot;
+
+     ## pushgateway data Persistent Volume Binding Mode
+     ## If defined, volumeBindingMode: &lt;volumeBindingMode&gt;
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>install</p>
+<div class="highlight"><pre><span></span><code>helm upgrade -i prometheus -n monitoring --create-namespace prometheus-community/prometheus -f ~/work/prometheus/prometheus.yaml
+</code></pre></div>
+</li>
+<li>
+<p>作成されたリソースを確認する
+    <details><summary>Service</summary></p>
+<div class="highlight"><pre><span></span><code>$ kubectl get services -n monitoring
+NAME                            TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
+prometheus-alertmanager         ClusterIP      10.32.0.114   &lt;none&gt;          80/TCP         33h
+prometheus-kube-state-metrics   ClusterIP      10.32.0.246   &lt;none&gt;          8080/TCP       33h
+prometheus-node-exporter        ClusterIP      10.32.0.31    &lt;none&gt;          9100/TCP       33h
+prometheus-pushgateway          ClusterIP      10.32.0.138   &lt;none&gt;          9091/TCP       33h
+prometheus-server               ClusterIP      10.32.0.75    &lt;none&gt;          80/TCP         33h
+</code></pre></div>
+</details>
+<p><details><summary>Deployment</summary>
+<div class="highlight"><pre><span></span><code>$ kubectl get deployments -n monitoring
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
+prometheus-alertmanager         1/1     1            1           33h
+prometheus-kube-state-metrics   1/1     1            1           33h
+prometheus-pushgateway          1/1     1            1           33h
+prometheus-server               1/1     1            1           33h
+</code></pre></div>
+</details></p>
+<p><details><summary>DaemonSet</summary>
+<div class="highlight"><pre><span></span><code>$ kubectl get DaemonSet -n monitoring -l app=prometheus
+NAME                       DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+prometheus-node-exporter   2         2         2       2            2           &lt;none&gt;          35h
+</code></pre></div>
+</details></p>
+<p><details><summary>PersistentVolumeClaim</summary>
+<div class="highlight"><pre><span></span><code>$ kubectl get PersistentVolumeClaim -n monitoring
+NAME                      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS               AGE
+prometheus-alertmanager   Bound    pvc-93589533-c5b1-4dc4-8089-8dcccd42b8cd   2Gi        RWO            openebs-jiva-csi-default   33h
+prometheus-server         Bound    pvc-836ef65a-da18-4453-96a6-7b909d0c668b   8Gi        RWO            openebs-jiva-csi-default   33h
+</code></pre></div>
+</details></p>
+<p><details><summary>PersistentVolume</summary>
+<div class="highlight"><pre><span></span><code>$ kubectl get PersistentVolume -n monitoring pvc-93589533-c5b1-4dc4-8089-8dcccd42b8cd pvc-836ef65a-da18-4453-96a6-7b909d0c668b
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                STORAGECLASS               REASON   AGE
+pvc-93589533-c5b1-4dc4-8089-8dcccd42b8cd   2Gi        RWO            Delete           Bound    monitoring/prometheus-alertmanager   openebs-jiva-csi-default            33h
+pvc-836ef65a-da18-4453-96a6-7b909d0c668b   8Gi        RWO            Delete           Bound    monitoring/prometheus-server         openebs-jiva-csi-default            33h
+</code></pre></div>
+</details></p>
+<p><details><summary>ServiceAccount</summary>
+<div class="highlight"><pre><span></span><code>$ kubectl get ServiceAccount -n monitoring -l app=prometheus
+NAME                                   SECRETS   AGE
+default                                1         9d
+prometheus-alertmanager                1         35h
+prometheus-kube-prometheus-admission   1         4d23h
+prometheus-kube-state-metrics          1         35h
+prometheus-node-exporter               1         35h
+prometheus-pushgateway                 1         35h
+prometheus-server                      1         35h
+</code></pre></div>
+</details></p>
+<p><details><summary>ClusterRole</summary>
+<div class="highlight"><pre><span></span><code>$ kubectl get ClusterRole -n monitoring -l app=prometheus
+NAME                      CREATED AT
+prometheus-alertmanager   2022-10-30T03:25:38Z
+prometheus-pushgateway    2022-10-30T03:25:38Z
+prometheus-server         2022-10-30T03:25:38Z
+</code></pre></div>
+</details></p>
+<p><details><summary>ClusterRoleBinding</summary>
+<div class="highlight"><pre><span></span><code>$ kubectl get ClusterRoleBinding -n monitoring -l app=prometheus
+NAME                      ROLE                                  AGE
+prometheus-alertmanager   ClusterRole/prometheus-alertmanager   35h
+prometheus-pushgateway    ClusterRole/prometheus-pushgateway    35h
+prometheus-server         ClusterRole/prometheus-server         35h
+</code></pre></div>
+</details></p>
+<p><details><summary>ConfigMap</summary>
+<div class="highlight"><pre><span></span><code>$ kubectl get ConfigMap -n monitoring -l app=prometheus
+NAME                      DATA   AGE
+prometheus-alertmanager   2      35h
+prometheus-server         6      35h
+</code></pre></div>
+</details></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li>ConfigMapに格納されている <code>prometheus.yml</code> の内容を確認したい場合は以下コマンドで確認
+    <div class="highlight"><pre><span></span><code>kubectl get ConfigMap -n monitoring prometheus-server -o jsonpath=&quot;{.data.prometheus\.yml}&quot;
+</code></pre></div></li>
+</ul>
+</div>
+</li>
+<li>
+<p>Confirm FQDN of prometheus-server service A Record</p>
+<ul>
+<li>Grafanaをhelm installする際に <code>datasources.datasources[0].url</code> に設定するFQDNを確認する</li>
+<li>
+<p><code>prometheus-server.monitoring.svc.cluster.local</code></p>
+<div class="highlight"><pre><span></span><code>$ nslookup prometheus-server.monitoring.svc.cluster.local `kubectl get ep -n kube-system kube-dns -o jsonpath=&quot;{.subsets[0].addresses[0].ip}&quot;`
+Server:         10.200.2.235
+Address:        10.200.2.235#53
+
+Name:   prometheus-server.monitoring.svc.cluster.local
+Address: 10.32.0.75
+</code></pre></div>
+</li>
+</ul>
+</li>
+</ol>
 
 
 
@@ -1159,6 +1407,42 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../../kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-footer__link md-footer__link--prev" aria-label="Previous: bootstrapping kubernetes-dashboard" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              bootstrapping kubernetes-dashboard
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../install_grafana/" class="md-footer__link md-footer__link--next" aria-label="Next: Install Grafana" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Install Grafana
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1181,10 +1465,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
     
   </body>

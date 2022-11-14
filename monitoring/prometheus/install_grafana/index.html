@@ -12,21 +12,21 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/aws-eks/aws-load-balancer-controller/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/monitoring/prometheus/install_grafana/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>aws-load-balancer-controller - maehachi08/k8s-study</title>
+        <title>Install Grafana - maehachi08/k8s-study</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.472b142f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.08040f6c.min.css">
         
       
       
@@ -84,7 +84,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -109,7 +109,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aws-load-balancer-controller" class="md-skip">
+        <a href="#install-grafana" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="maehachi08/k8s-study" class="md-header__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-header__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -142,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              aws-load-balancer-controller
+              Install Grafana
             
           </span>
         </div>
@@ -221,7 +221,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -252,7 +252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -267,7 +267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../container-runtime.md" class="md-nav__link">
+      <a href="../../../container-runtime.md" class="md-nav__link">
         Container Runtime
       </a>
     </li>
@@ -308,7 +308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/01_setup_RaspberryPi/" class="md-nav__link">
+      <a href="../../../setup/01_setup_RaspberryPi/" class="md-nav__link">
         01. Raspberry Pi 構成
       </a>
     </li>
@@ -322,7 +322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
+      <a href="../../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
         02. OS Install
       </a>
     </li>
@@ -336,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/03_common_settings/" class="md-nav__link">
+      <a href="../../../setup/03_common_settings/" class="md-nav__link">
         03. master/nodeで共通手順
       </a>
     </li>
@@ -350,7 +350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/04_creation_certificate/" class="md-nav__link">
+      <a href="../../../setup/04_creation_certificate/" class="md-nav__link">
         04. 認証局の設定とTLS証明書の作成
       </a>
     </li>
@@ -364,7 +364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/05_creating_config/" class="md-nav__link">
+      <a href="../../../setup/05_creating_config/" class="md-nav__link">
         05. 認証のためのkubeconfigの作成
       </a>
     </li>
@@ -404,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -418,7 +418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
+      <a href="../../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
         02. bootstrapping etcd
       </a>
     </li>
@@ -432,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
+      <a href="../../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
         03. bootstrapping kube-apiserver
       </a>
     </li>
@@ -446,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
+      <a href="../../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
         04. bootstrapping kube-controller-manager
       </a>
     </li>
@@ -460,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
+      <a href="../../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
         05. bootstrapping kube-scheduler
       </a>
     </li>
@@ -474,7 +474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
         06. kube-apiserver から kubelet へのアクセス権を設定する
       </a>
     </li>
@@ -488,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/07_controller_health_check/" class="md-nav__link">
+      <a href="../../../setup/06_master/07_controller_health_check/" class="md-nav__link">
         07. Kubernetes API のヘルスチェック
       </a>
     </li>
@@ -535,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -549,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
+      <a href="../../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
         02. bootstrapping kube-proxy
       </a>
     </li>
@@ -570,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
+      <a href="../../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
         08. bootstrapping flannel
       </a>
     </li>
@@ -584,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
+      <a href="../../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
         09. bootstrapping coredns
       </a>
     </li>
@@ -598,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
+      <a href="../../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
         10. bootstrapping nginx ingress controller
       </a>
     </li>
@@ -612,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
+      <a href="../../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
         11. bootstrapping external-dns
       </a>
     </li>
@@ -660,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_story/" class="md-nav__link">
+      <a href="../../../failure_test/failure_story/" class="md-nav__link">
         Failure Story
       </a>
     </li>
@@ -674,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/point_of_failure/" class="md-nav__link">
+      <a href="../../../failure_test/point_of_failure/" class="md-nav__link">
         Point of failure
       </a>
     </li>
@@ -714,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_scenario_of_node/" class="md-nav__link">
+      <a href="../../../failure_test/failure_scenario_of_node/" class="md-nav__link">
         Node
       </a>
     </li>
@@ -769,7 +769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kyverno/about_kyverno/" class="md-nav__link">
+      <a href="../../../kyverno/about_kyverno/" class="md-nav__link">
         01. About Kyverno
       </a>
     </li>
@@ -783,7 +783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kyverno/installation_kyverno/" class="md-nav__link">
+      <a href="../../../kyverno/installation_kyverno/" class="md-nav__link">
         02. Installation Kyverno
       </a>
     </li>
@@ -803,12 +803,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
       
       
@@ -831,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+      <a href="../../metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
         bootstrapping metrics_server
       </a>
     </li>
@@ -845,7 +847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
+      <a href="../../kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
         bootstrapping kubernetes-dashboard
       </a>
     </li>
@@ -857,12 +859,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" checked>
       
       
       
@@ -885,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/prometheus/install_prometheus/" class="md-nav__link">
+      <a href="../install_prometheus/" class="md-nav__link">
         Install Prometheus
       </a>
     </li>
@@ -897,11 +901,88 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../monitoring/prometheus/install_grafana/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Install Grafana
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Install Grafana
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-grafana" class="md-nav__link">
+    Install Grafana
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Grafana">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-node-exporter-full-dashboards" class="md-nav__link">
+    Install Node Exporter Full Dashboards
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Node Exporter Full Dashboards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grafana" class="md-nav__link">
+    grafanaと一緒にインストールする場合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    手動でインストールする場合
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -913,7 +994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/prometheus/install_cadvisor/" class="md-nav__link">
+      <a href="../install_cadvisor/" class="md-nav__link">
         Install cadvisor
       </a>
     </li>
@@ -968,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/backup_etcd/" class="md-nav__link">
+      <a href="../../../operations/backup_etcd/" class="md-nav__link">
         etcd
       </a>
     </li>
@@ -1016,7 +1097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/metallb/" class="md-nav__link">
+      <a href="../../../addons/metallb/" class="md-nav__link">
         MetalLB
       </a>
     </li>
@@ -1056,7 +1137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/openebs/about/" class="md-nav__link">
+      <a href="../../../addons/openebs/about/" class="md-nav__link">
         About OpenEBS
       </a>
     </li>
@@ -1070,7 +1151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/openebs/install/" class="md-nav__link">
+      <a href="../../../addons/openebs/install/" class="md-nav__link">
         Installing OpenEBS
       </a>
     </li>
@@ -1108,8 +1189,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1118,9 +1197,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    参考
+  <a href="#install-grafana" class="md-nav__link">
+    Install Grafana
   </a>
+  
+    <nav class="md-nav" aria-label="Install Grafana">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-node-exporter-full-dashboards" class="md-nav__link">
+    Install Node Exporter Full Dashboards
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Node Exporter Full Dashboards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grafana" class="md-nav__link">
+    grafanaと一緒にインストールする場合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    手動でインストールする場合
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1139,11 +1258,258 @@
                   
 
 
-<h1 id="aws-load-balancer-controller">aws-load-balancer-controller</h1>
-<h2 id="_1">参考</h2>
+  <h1>Install Grafana</h1>
+
+<h2 id="install-grafana">Install Grafana</h2>
 <ul>
-<li><a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/">https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/</a></li>
+<li><a href="https://github.com/grafana/helm-charts/tree/main/charts/grafana">https://github.com/grafana/helm-charts/tree/main/charts/grafana</a></li>
 </ul>
+<h3 id="install">Install</h3>
+<ol>
+<li>
+<p>valuesファイルの修正</p>
+<ul>
+<li>
+<p>Ephemeral Storageの <code>storageClass</code> を OpenEBSのjiva storageのものとする( e.g. <code>openebs-jiva-csi-default</code>)</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li><a href="/addons/openebs/install/">Installing OpenEBS</a> を実施済みの前提</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Grafana WebUIへのアクセスに<code>MetalLB</code>のexternal IPアドレスを使用する</p>
+<ul>
+<li><code>service.type: LoadBalancer</code></li>
+<li><code>annotations</code> に <code>metallb.universe.tf/address-pool: ip-pool</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>mkdir -p ~/work/prometheus/grafana
+curl -so ~/work/prometheus/grafana/grafana.yaml https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml
+vim ~/work/prometheus/grafana/grafana.yaml
+</code></pre></div>
+<p><details><summary>grafana.yaml 修正後のdiff</summary></p>
+<div class="highlight"><pre><span></span><code>$ diff -u &lt;(curl -s https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml) &lt;(cat ~/work/prometheus/grafana/grafana.yaml)
+--- /dev/fd/63  2022-10-30 15:05:32.554153834 +0000
++++ /dev/fd/62  2022-10-30 15:05:32.566153656 +0000
+@@ -157,12 +157,13 @@
+ ##
+ service:
+   enabled: true
+-  type: ClusterIP
++  type: LoadBalancer
+   port: 80
+   targetPort: 3000
+     # targetPort: 4181 To be used with a proxy extraContainer
+   ## Service annotations. Can be templated.
+-  annotations: {}
++  annotations:
++    metallb.universe.tf/address-pool: ip-pool
+   labels: {}
+   portName: service
+   # Adds the appProtocol field to the service. This allows to work with istio protocol selection. Ex: &quot;http&quot; or &quot;tcp&quot;
+@@ -297,10 +297,10 @@
+ persistence:
+   type: pvc
+   enabled: false
+-  # storageClassName: default
++  storageClassName: openebs-jiva-csi-default
+   accessModes:
+     - ReadWriteOnce
+-  size: 10Gi
++  size: 5Gi
+   # annotations: {}
+   finalizers:
+     - kubernetes.io/pvc-protection
+@@ -507,15 +507,14 @@
+ ## Configure grafana datasources
+ ## ref: http://docs.grafana.org/administration/provisioning/#datasources
+ ##
+-datasources: {}
+-#  datasources.yaml:
+-#    apiVersion: 1
+-#    datasources:
+-#    - name: Prometheus
+-#      type: prometheus
+-#      url: http://prometheus-prometheus-server
+-#      access: proxy
+-#      isDefault: true
++datasources:
++  datasources.yaml:
++    apiVersion: 1
++    datasources:
++    - name: Prometheus
++      type: prometheus
++      url: http://prometheus-server.monitoring.svc.cluster.local
++      isDefault: true
+ #    - name: CloudWatch
+ #      type: cloudwatch
+ #      access: proxy
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>install</p>
+<div class="highlight"><pre><span></span><code>helm upgrade -i grafana grafana/grafana -n monitoring -f ~/work/prometheus/grafana/grafana.yaml
+</code></pre></div>
+<p><details><summary>実行ログ</summary></p>
+<div class="highlight"><pre><span></span><code>$ helm upgrade -i grafana grafana/grafana -n monitoring -f ~/work/prometheus/grafana/grafana.yaml
+Release &quot;grafana&quot; does not exist. Installing it now.
+W1030 15:08:59.041312  221007 warnings.go:70] policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, unavailable in v1.25+
+W1030 15:08:59.265293  221007 warnings.go:70] policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, unavailable in v1.25+
+NAME: grafana
+LAST DEPLOYED: Sun Oct 30 15:08:54 2022
+NAMESPACE: monitoring
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get your &#39;admin&#39; user password by running:
+
+   kubectl get secret --namespace monitoring grafana -o jsonpath=&quot;{.data.admin-password}&quot; | base64 --decode ; echo
+
+2. The Grafana server can be accessed via port 80 on the following DNS name from within your cluster:
+
+   grafana.monitoring.svc.cluster.local
+
+   Get the Grafana URL to visit by running these commands in the same shell:
+NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        You can watch the status of by running &#39;kubectl get svc --namespace monitoring -w grafana&#39;
+     export SERVICE_IP=$(kubectl get svc --namespace monitoring grafana -o jsonpath=&#39;{.status.loadBalancer.ingress[0].ip}&#39;)
+     http://$SERVICE_IP:80
+
+3. Login with the password from step 1 and the username: admin
+#################################################################################
+######   WARNING: Persistence is disabled!!! You will lose your data when   #####
+######            the Grafana pod is terminated.                            #####
+#################################################################################
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>grafana ServiceのMetalLBで払い出されたExternal IPアドレスを確認する
+    <div class="highlight"><pre><span></span><code>kubectl get service -n monitoring grafana -o jsonpath=&#39;{.status.loadBalancer.ingress[0].ip}&#39;
+</code></pre></div></p>
+</li>
+<li>
+<p>ブラウザからアクセス</p>
+<ol>
+<li>
+<p>ログイン画面</p>
+<table>
+<thead>
+<tr>
+<th align="left"><!-- --></th>
+<th align="left"><!-- --></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">username</td>
+<td align="left"><code>admin</code></td>
+</tr>
+<tr>
+<td align="left"><code>password</code></td>
+<td align="left">grafanaインストール時の表示を参考に以下コマンドで<code>admin</code> の <code>password</code> を取得<br><br><code>kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo</code></td>
+</tr>
+</tbody>
+</table>
+<p><img src="/monitoring/prometheus/grafana_01.png" style="width:300px;"/>
+<img src="/monitoring/prometheus/grafana_02.png" style="width:300px;"/></p>
+</li>
+<li>
+<p>ログイン成功</p>
+<p><img src="/monitoring/prometheus/grafana_03.png" style="width:300px;"/></p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="install-node-exporter-full-dashboards">Install <code>Node Exporter Full</code> Dashboards</h3>
+<h4 id="grafana">grafanaと一緒にインストールする場合</h4>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li>grafana helm chartではgrafana dashboard import設定が可能です。
+  <code>.Values.dashboards</code> に設定が存在する場合、<a href="https://github.com/grafana/helm-charts/blob/grafana-6.43.5/charts/grafana/templates/configmap.yaml#L74-L133">configmap.yaml</a> にある <code>download_dashboards.sh</code> で指定したdashboard import設定が入ります。そして <a href="https://github.com/grafana/helm-charts/blob/grafana-6.43.5/charts/grafana/templates/_pod.tpl#L45-L87">PodのinitContainers</a> で <code>download-dashboards.sh</code> を実行しています。<ul>
+<li><a href="https://github.com/grafana/helm-charts/blob/grafana-6.43.5/charts/grafana/README.md">https://github.com/grafana/helm-charts/blob/grafana-6.43.5/charts/grafana/README.md</a></li>
+<li><a href="https://github.com/grafana/helm-charts/blob/grafana-6.43.5/charts/grafana/values.yaml#L629-L658">https://github.com/grafana/helm-charts/blob/grafana-6.43.5/charts/grafana/values.yaml#L629-L658</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<ol>
+<li>
+<p>valuesファイルの修正
+    <div class="highlight"><pre><span></span><code>vim ~/work/prometheus/grafana/grafana.yaml
+</code></pre></div></p>
+<p><details><summary>grafana.yaml 修正後のdiff(<code>cadvisor-exporter</code> Dashboardも入れている例です)</summary></p>
+<div class="highlight"><pre><span></span><code>$ diff -u &lt;(curl -s https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml) &lt;(cat ~/work/prometheus/grafana/grafana.yaml)
+
+~ snip ~
+
+@@ -632,7 +632,17 @@
+ ##
+ ## dashboards per provider, use provider name as key.
+ ##
+-dashboards: {}
++dashboards:
++  default:
++    node-exporter-full:
++      # https://grafana.com/grafana/dashboards/1860-node-exporter-full/
++      gnetId: 1860
++      datasource: Prometheus
++    cadvisor-exporter:
++      # https://grafana.com/grafana/dashboards/14282-cadvisor-exporter/
++      gnetId: 14282
++      datasource: Prometheus
++
+   # default:
+   #   some-dashboard:
+   #     json: |
+</code></pre></div>
+</details>
+</li>
+<li>
+<p>install
+    <div class="highlight"><pre><span></span><code>helm upgrade -i grafana grafana/grafana -n monitoring -f ~/work/prometheus/grafana/grafana.yaml
+</code></pre></div></p>
+</li>
+<li>
+<p><code>grafanaコンテナ:/var/lib/grafana/dashboards/default/</code> に Dashboard定義であるjsonファイルが配置済みであることを確認
+    <div class="highlight"><pre><span></span><code>$ kubectl exec -it -c grafana -n monitoring grafana-5f4c7d46db-xtktb -- ls -l /var/lib/grafana/dashboards/default/
+total 232
+-rw-r--r--    1 grafana  472          18484 Nov  8 16:03 cadvisor-exporter.json
+-rw-r--r--    1 grafana  472         215154 Nov  8 16:03 node-exporter-full.json
+</code></pre></div></p>
+</li>
+</ol>
+<h4 id="_1">手動でインストールする場合</h4>
+<ol>
+<li>
+<p>Dashboardsページにアクセス</p>
+<p><img src="/monitoring/prometheus/grafana_04.png" style="width:300px;"/></p>
+</li>
+<li>
+<p><code>New</code> -&gt; <code>New Dashboard</code> -&gt; <code>Import</code> を選択</p>
+<p><img src="/monitoring/prometheus/grafana_05.png" style="width:300px;"/></p>
+</li>
+<li>
+<p><code>Node Exporter Full</code> の Dashboard IDを入力</p>
+<ul>
+<li><a href="https://grafana.com/grafana/dashboards/1860-node-exporter-full/">https://grafana.com/grafana/dashboards/1860-node-exporter-full/</a></li>
+</ul>
+<p><img src="/monitoring/prometheus/grafana_06.png" style="width:300px;"/></p>
+</li>
+<li>
+<p><code>Import</code> を実行する</p>
+<p><img src="/monitoring/prometheus/grafana_07.png" style="width:300px;"/></p>
+</li>
+<li>
+<p><code>Node Exporter Full</code> が表示されることを確認</p>
+<p><img src="/monitoring/prometheus/grafana_08.png" style="width:300px;"/></p>
+</li>
+</ol>
 
 
 
@@ -1159,6 +1525,42 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../install_prometheus/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Install Prometheus" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Install Prometheus
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../install_cadvisor/" class="md-footer__link md-footer__link--next" aria-label="Next: Install cadvisor" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Install cadvisor
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1181,10 +1583,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
     
   </body>
