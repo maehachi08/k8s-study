@@ -71,7 +71,7 @@
     - `--authorization-webhook-config-file` で指定するファイル
        <details><summary>authorization-config.yaml</summary>
           ```
-          KUBE_API_SERVER_ADDRESS=192.168.10.50
+          KUBE_API_SERVER_ADDRESS=k8s-master
 
           cat << EOF > authorization-config.yaml
           ---
@@ -105,89 +105,92 @@
 
 1. image build
    ```
-   sudo buildah bud -t k8s-kube-apiserver --file=Dockerfile_kube-apiserver.armhf ./
+   sudo nerdctl build --namespace k8s.io -t k8s-kube-apiserver --file=Dockerfile_kube-apiserver.armhf ./
    ```
 
 1. pod manifestsを `/etc/kubelet.d` へ作成する
-   <details><summary>/etc/kubelet.d/kube-api-server.yaml</summary>
-      ```
-      cat << EOF | sudo tee /etc/kubelet.d/kube-api-server.yaml
-      ---
-      apiVersion: v1
-      kind: Pod
-      metadata:
-        name: kube-apiserver
-        namespace: kube-system
-        annotations:
-          seccomp.security.alpha.kubernetes.io/pod: runtime/default
-        labels:
-          tier: control-plane
-          component: kube-apiserver
+    - `--advertise-address` オプションはIPアドレスで指定する必要がある(hostnameでは起動しなかった)
+      <details><summary>/etc/kubelet.d/kube-api-server.yaml</summary>
+         ```
+         KUBE_API_SERVER_ADDRESS=192.168.3.50
 
-      spec:
-        # https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
-        priorityClassName: system-node-critical
-        hostNetwork: true
-        containers:
-          - name: kube-apiserver
-            image: localhost/k8s-kube-apiserver:latest
-            imagePullPolicy: IfNotPresent
-            resources:
-              requests:
-                memory: "512Mi"
-              limits:
-                memory: "1024Mi"
-            command:
-              - /usr/bin/kube-apiserver
-              - --advertise-address=192.168.10.50
-              - --allow-privileged=true
-              - --anonymous-auth=false
-              - --apiserver-count=1
-              - --audit-log-maxage=30
-              - --audit-log-maxbackup=3
-              - --audit-log-maxsize=100
-              - --audit-log-path=/var/log/audit.log
-              - --authorization-mode=Node,RBAC,Webhook
-              - --authorization-webhook-config-file=/etc/kubernetes/webhook/authorization-config.yaml
-              - --authentication-token-webhook-cache-ttl=2m
-              - --authentication-token-webhook-version=v1
-              - --bind-address=0.0.0.0
-              - --client-ca-file=/var/lib/kubernetes/ca.pem
-              - --enable-admission-plugins=NamespaceLifecycle,NodeRestriction,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota,RuntimeClass
-              - --etcd-cafile=/var/lib/kubernetes/ca.pem
-              - --etcd-certfile=/var/lib/kubernetes/kubernetes.pem
-              - --etcd-keyfile=/var/lib/kubernetes/kubernetes-key.pem
-              - --etcd-servers=https://192.168.10.50:2379
-              - --event-ttl=1h
-              - --encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml
-              - --kubelet-certificate-authority=/var/lib/kubernetes/ca.pem
-              - --kubelet-client-certificate=/var/lib/kubernetes/kubernetes.pem
-              - --kubelet-client-key=/var/lib/kubernetes/kubernetes-key.pem
-              - --runtime-config=authentication.k8s.io/v1beta1=true
-              - --feature-gates=APIPriorityAndFairness=false
-              - --service-account-key-file=/var/lib/kubernetes/service-account.pem
-              - --service-account-signing-key-file=/var/lib/kubernetes/service-account-key.pem
-              - --service-account-issuer=api
-              - --service-account-api-audiences=api
-              - --service-cluster-ip-range=10.32.0.0/24
-              - --service-node-port-range=30000-32767
-              - --tls-cert-file=/var/lib/kubernetes/kubernetes.pem
-              - --tls-private-key-file=/var/lib/kubernetes/kubernetes-key.pem
-              - --http2-max-streams-per-connection=3000
-              - --max-requests-inflight=3000
-              - --max-mutating-requests-inflight=1000
-              - --enable-aggregator-routing=true
-              - --requestheader-client-ca-file=/var/lib/kubernetes/front-proxy-ca.pem
-              - --requestheader-allowed-names=front-proxy-ca
-              - --requestheader-extra-headers-prefix=X-Remote-Extra
-              - --requestheader-group-headers=X-Remote-Group
-              - --requestheader-username-headers=X-Remote-User
-              - --proxy-client-cert-file=/var/lib/kubernetes/front-proxy.pem
-              - --proxy-client-key-file=/var/lib/kubernetes/front-proxy-key.pem
-              - --v=2
-      EOF
-      ```
-   </details>
+         cat << EOF | sudo tee /etc/kubelet.d/kube-api-server.yaml
+         ---
+         apiVersion: v1
+         kind: Pod
+         metadata:
+           name: kube-apiserver
+           namespace: kube-system
+           annotations:
+             seccomp.security.alpha.kubernetes.io/pod: runtime/default
+           labels:
+             tier: control-plane
+             component: kube-apiserver
+
+         spec:
+           # https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
+           priorityClassName: system-node-critical
+           hostNetwork: true
+           containers:
+             - name: kube-apiserver
+               image: k8s-kube-apiserver:latest
+               imagePullPolicy: IfNotPresent
+               resources:
+                 requests:
+                   memory: "512Mi"
+                 limits:
+                   memory: "1024Mi"
+               command:
+                 - /usr/bin/kube-apiserver
+                 - --advertise-address=k8s-master
+                 - --allow-privileged=true
+                 - --anonymous-auth=false
+                 - --apiserver-count=1
+                 - --audit-log-maxage=30
+                 - --audit-log-maxbackup=3
+                 - --audit-log-maxsize=100
+                 - --audit-log-path=/var/log/audit.log
+                 - --authorization-mode=Node,RBAC,Webhook
+                 - --authorization-webhook-config-file=/etc/kubernetes/webhook/authorization-config.yaml
+                 - --authentication-token-webhook-cache-ttl=2m
+                 - --authentication-token-webhook-version=v1
+                 - --bind-address=0.0.0.0
+                 - --client-ca-file=/var/lib/kubernetes/ca.pem
+                 - --enable-admission-plugins=NamespaceLifecycle,NodeRestriction,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota,RuntimeClass
+                 - --etcd-cafile=/var/lib/kubernetes/ca.pem
+                 - --etcd-certfile=/var/lib/kubernetes/kubernetes.pem
+                 - --etcd-keyfile=/var/lib/kubernetes/kubernetes-key.pem
+                 - --etcd-servers=https://k8s-master:2379
+                 - --event-ttl=1h
+                 - --encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml
+                 - --kubelet-certificate-authority=/var/lib/kubernetes/ca.pem
+                 - --kubelet-client-certificate=/var/lib/kubernetes/kubernetes.pem
+                 - --kubelet-client-key=/var/lib/kubernetes/kubernetes-key.pem
+                 - --runtime-config=authentication.k8s.io/v1beta1=true
+                 - --feature-gates=APIPriorityAndFairness=false
+                 - --service-account-key-file=/var/lib/kubernetes/service-account.pem
+                 - --service-account-signing-key-file=/var/lib/kubernetes/service-account-key.pem
+                 - --service-account-issuer=api
+                 - --service-account-api-audiences=api
+                 - --service-cluster-ip-range=10.32.0.0/24
+                 - --service-node-port-range=30000-32767
+                 - --tls-cert-file=/var/lib/kubernetes/kubernetes.pem
+                 - --tls-private-key-file=/var/lib/kubernetes/kubernetes-key.pem
+                 - --http2-max-streams-per-connection=3000
+                 - --max-requests-inflight=3000
+                 - --max-mutating-requests-inflight=1000
+                 - --enable-aggregator-routing=true
+                 - --requestheader-client-ca-file=/var/lib/kubernetes/front-proxy-ca.pem
+                 - --requestheader-allowed-names=front-proxy-ca
+                 - --requestheader-extra-headers-prefix=X-Remote-Extra
+                 - --requestheader-group-headers=X-Remote-Group
+                 - --requestheader-username-headers=X-Remote-User
+                 - --proxy-client-cert-file=/var/lib/kubernetes/front-proxy.pem
+                 - --proxy-client-key-file=/var/lib/kubernetes/front-proxy-key.pem
+                 - --v=2
+         EOF
+         ```
+      </details>
 
 1. `crictl` でコンテナ起動を確認する
    ```

@@ -80,7 +80,6 @@
   clusterDNS:
     - "10.32.0.10"
   podCIDR: "10.200.0.0/24"
-  resolvConf: "/run/systemd/resolve/resolv.conf"
   runtimeRequestTimeout: "15m"
   tlsCertFile: "/var/lib/kubelet/${host}.pem"
   tlsPrivateKeyFile: "/var/lib/kubelet/${host}-key.pem"
@@ -102,8 +101,8 @@
   systemCgroups: /systemd/system.slice
   systemReservedCgroup: /system.slice
   systemReserved:
-    cpu: 1024m
-    memory: 1024Mi
+    cpu: 256m
+    memory: 256Mi
   runtimeCgroups: /kube.slice/containerd.service
   kubeletCgroups: /kube.slice/kubelet.service
   kubeReservedCgroup: /kube.slice

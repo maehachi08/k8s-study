@@ -31,8 +31,8 @@
              optional: true
              dhcp4: false
              addresses:
-             - 192.168.10.50/24
-             gateway4: 192.168.10.1
+             - 192.168.3.50/24
+             gateway4: 192.168.3.1
              nameservers:
                addresses:
                - 8.8.8.8
@@ -66,10 +66,17 @@
    sudo apt install -y language-pack-ja
    sudo update-locale LANG=ja_JP.UTF-8
    ```
-1. ホスト名 e.g. `k8s-master`
+1. hostname
    ```
+   #name=k8s-node1
+   #name=k8s-node2
    name=k8s-master
    echo ${name} | sudo tee /etc/hostname
    sudo sed -i -e 's/127.0.1.1.*/127.0.1.1\t'$name'/' /etc/hosts
    ```
+1. `/etc/hosts`
+   - (ネットワークが変わっても疎通したいため) k8s内ではホスト名通信するためにhostを書き込む
+     - `k8s-master`
+     - `k8s-node1`
+     - `k8s-node2`
 

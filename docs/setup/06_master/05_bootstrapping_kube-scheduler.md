@@ -47,7 +47,7 @@
 
 1. image build
    ```
-   sudo buildah bud -t k8s-kube-scheduler --file=Dockerfile_kube-scheduler.armhf ./
+   sudo nerdctl build --namespace k8s.io -t k8s-kube-scheduler --file=Dockerfile_kube-scheduler.armhf ./
    ```
 
 1. pod manifestsを `/etc/kubelet.d` へ作成する
@@ -70,7 +70,7 @@
         hostNetwork: true
         containers:
           - name: kube-scheduler
-            image: localhost/k8s-kube-scheduler:latest
+            image: k8s-kube-scheduler:latest
             imagePullPolicy: IfNotPresent
             resources:
               requests:

@@ -78,3 +78,28 @@ CoreDNSはあらゆる処理をPluginとして実装しています。CoreDNS単
         ```
         [FATAL] plugin/loop: Loop (127.0.0.1:36286 -> :53) detected for zone ".", see https://coredns.io/plugins/loop#troubleshooting. Query: "HINFO 1048258276942848743.906062863108256161."
         ```
+
+1. `i/o timeout`
+
+    ```
+    [ERROR] plugin/errors: 2 1233258971421873826.4416823678189275919. HINFO: read udp 10.200.0.5:35249->8.8.4.4:53: i/o timeout
+    ```
+
+      - Podのコンテナから名前解決ができない可能性がある
+        - `/etc/resolv.conf` の設定が正しいか確認する
+
+          ```
+          kubectl run nginx --image=nginx
+          POD_NAME=$(kubectl get pods -l run=nginx -o jsonpath="{.items[0].metadata.name}")
+          kubectl exec -it $POD_NAME -- bash
+
+          cat /etc/resolv.conf
+
+          apt-get update              # 外にすら出れない場合は失敗する
+          apt-get install dnsutils
+          nslookup kubernetes
+          ```
+
+      - kube-apiserver への疎通ができていない可能性がある
+        - kube-proxy -> flannel の順でpodの再起動を行ってみる
+

@@ -33,14 +33,12 @@
 
 1. image build
    ```
-   sudo  buildah bud \
-     -f Dockerfile_kube-proxy.armhf \
-     -t k8s-kube-proxy
+   sudo nerdctl build --namespace k8s.io -f Dockerfile_kube-proxy.armhf -t k8s-kube-proxy ./
    ```
 
 1. kernel parameter
    ```
-   cat << EOF >> /etc/sysctl.d/kubelet.conf
+   cat <<EOF | sudo tee /etc/sysctl.d/kubelet.conf
    # kube-proxy
    net.ipv4.conf.all.route_localnet = 1
    net.netfilter.nf_conntrack_max = 131072
@@ -50,11 +48,11 @@
 
    sudo sysctl --system
 
-   cat << EOF >> /etc/modprobe.d/kube-proxy.conf
+   cat <<EOF | sudo tee /etc/modprobe.d/kube-proxy.conf
    options nf_conntrack hashsize=32768
    EOF
 
-   sudo exec /sbin/modprobe nf_conntrack hashsize=32768
+   sudo /sbin/modprobe nf_conntrack hashsize=32768
    ```
 
 1. pod manifestsを `/etc/kubernetes/manifests/` へ作成する

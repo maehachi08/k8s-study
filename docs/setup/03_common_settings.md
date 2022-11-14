@@ -11,6 +11,8 @@
 1. swapを無効に設定する
    ```
    sudo swapoff --all
+
+   # Ubuntu Desktop 22.04 LTS (for RPi4)
    sudo systemctl stop dphys-swapfile
    sudo systemctl disable dphys-swapfile
    ```
@@ -78,16 +80,75 @@
         pids    3       39      1
         ```
 
-### Container Runtime Interface(CRI) インストール
+### Container RunTimeインストール
 
-#### containerd の場合
+- `containerd` を採用
+  - 初期は `cri-o` を採用していたが以下理由で`containerd`へ変更
+    - [CNCFでGraduated Project](https://landscape.cncf.io/?selected=containerd)([cri-oはincubating](https://www.cncf.io/projects/cri-o/))
+    - AWS eks-optimized AMIではcontainerdが標準となりそう(eks 1.22 ではdockerがdefault)
+    - `buildkit` と組み合わせてimage buildが可能 (cri-oでの可否は未確認)
+        - https://speakerdeck.com/ktock/dockerkaracontainerdhefalseyi-xing?slide=7
+
+### 前提作業
+
+- https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+
+    <details>
+
+      ```
+      cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+      overlay
+      br_netfilter
+      EOF
+
+      sudo modprobe overlay
+      sudo modprobe br_netfilter
+
+      # sysctl params required by setup, params persist across reboots
+      cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+      net.bridge.bridge-nf-call-iptables  = 1
+      net.bridge.bridge-nf-call-ip6tables = 1
+      net.ipv4.ip_forward                 = 1
+      EOF
+
+      # Apply sysctl params without reboot
+      sudo sysctl --system
+      ```
+
+    </details>
+
+#### Containerd
 
 https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd
+https://github.com/containerd/containerd/blob/main/docs/getting-started.md
 
+1. インストール
+    - for apt package
+        - refs https://docs.docker.com/engine/install/ubuntu/
+          ```
+          sudo apt update
+          sudo apt install -y ca-certificates curl gnupg lsb-release
+          sudo mkdir -p /etc/apt/keyrings
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
+          sudo apt update
+          sudo apt install -y containerd.io
+          ```
+1. `/etc/containerd/config.toml`
+    ```
+    sudo containerd config default | sudo tee /etc/containerd/config.toml
+    sudo vim /etc/containerd/config.toml
+    ```
+       - refs https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd
+         - Configuring the systemd cgroup driver
+         - Overriding the sandbox (pause) image
+1. restart containerd
+    ```
+    sudo systemctl restart containerd
+    ```
 
-
-#### cri-o の場合
+#### CRI-O
 
 https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-o
 
@@ -292,9 +353,38 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
    sudo systemctl restart crio
    ```
 
-### CLI TOOL(buildah, cri-tools)
+### CLI TOOL
 
-1. buildah
+1. nerdctl
+    - containerdプロジェクトで公開しているdocker-cli互換のCLI
+    - https://github.com/containerd/nerdctl
+    - https://speakerdeck.com/ktock/dockerkaracontainerdhefalseyi-xing?slide=22
+
+        ```
+        NERDCTL_VERSION=`curl -s -L https://api.github.com/repos/containerd/nerdctl/releases/latest | jq -r .tag_name`
+        curl -L -s https://github.com/containerd/nerdctl/releases/download/${NERDCTL_VERSION}/nerdctl-`echo ${NERDCTL_VERSION} | sed -e 's/^v//'`-linux-arm64.tar.gz | sudo tar -zxC /usr/local/bin/
+
+        ls -l /usr/local/bin
+        ```
+
+1. buildkit
+    - https://github.com/moby/buildkit
+    - `nerdctl build` を実行するために必要
+
+        ```
+        BUILDKIT_VERSION=`curl -s -L https://api.github.com/repos/moby/buildkit/releases/latest | jq -r .tag_name`
+        curl -L -s https://github.com/moby/buildkit/releases/download/${BUILDKIT_VERSION}/buildkit-${BUILDKIT_VERSION}.linux-arm64.tar.gz | sudo tar -zxC /tmp/
+        sudo mv /tmp/bin/* /usr/local/bin/
+        ls -l /usr/local/bin
+
+        sudo curl -sL https://raw.githubusercontent.com/moby/buildkit/${BUILDKIT_VERSION}/examples/systemd/system/buildkit.socket -o /etc/systemd/system/buildkit.socket
+        sudo curl -sL https://raw.githubusercontent.com/moby/buildkit/${BUILDKIT_VERSION}/examples/systemd/system/buildkit.service -o /etc/systemd/system/buildkit.service
+        sudo systemctl enable buildkit.socket buildkit.service
+        sudo systemctl start buildkit.socket buildkit.service
+        ```
+
+1. buildah 
+    - cri-o 導入時期にimage buildで使用(containerdでは前述のnerdctlへ移行済み)
     - https://github.com/containers/buildah/blob/master/install.md
        ```
        sudo apt-get -qq -y install buildah
@@ -306,7 +396,7 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
        VERSION="v1.22.0"
        ARCH="arm64"
        DOWNLOAD_URL="https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-${VERSION}-linux-${ARCH}.tar.gz"
-       curl -L ${DOWNLOAD_URL} | sudo tar -zxvf -C /usr/local/bin
+       curl -L ${DOWNLOAD_URL} | sudo tar -zxC /usr/local/bin
 
        ls -l /usr/local/bin
        ```
@@ -322,10 +412,11 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
 
 - https://github.com/containernetworking/plugins
    ```
-   VERSION="v1.0.0"
+   sudo mkdir -p /opt/cni/bin
+   CNI_PLUGIN_VERSION=`curl -s -L https://api.github.com/repos/containernetworking/plugins/releases/latest | jq -r .tag_name`
    ARCH="arm64"
-   DOWNLOAD_URL="https://github.com/containernetworking/plugins/releases/download/${VERSION}/cni-plugins-linux-${ARCH}-${VERSION}.tgz"
-   curl -L ${DOWNLOAD_URL} | sudo tar -zx -C /opt/cni/bin
+   DOWNLOAD_URL="https://github.com/containernetworking/plugins/releases/download/${CNI_PLUGIN_VERSION}/cni-plugins-linux-${ARCH}-${CNI_PLUGIN_VERSION}.tgz"
+   curl -L ${DOWNLOAD_URL} | sudo tar -zxC /opt/cni/bin
 
    ls -l /opt/cni/bin/
    ```
