@@ -73,6 +73,10 @@ nav:
   - Monitoring:
     - bootstrapping metrics_server: monitoring/metrics-server/bootstrapping_metrics_server.md
     - bootstrapping kubernetes-dashboard: monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard.md
+    - Prometheus / Grafana:
+      - Install Prometheus: monitoring/prometheus/install_prometheus.md
+      - Install Grafana: monitoring/prometheus/install_grafana.md
+      - Install cadvisor: monitoring/prometheus/install_cadvisor.md
   - Operations:
     - etcd: operations/backup_etcd.md
   - Addons:
