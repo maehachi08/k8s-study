@@ -152,6 +152,15 @@ https://github.com/containerd/containerd/blob/main/docs/getting-started.md
 
 https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-o
 
+1. kernel moduleのload
+    - overlayファイルシステムを利用するためのkernel module `overlay`
+    - iptablesがbridgeを通過するパケットを処理するためのkernel module `br_netfilter`
+      ```
+      ```
+1. kernel parameterのset
+    - iptablesがbridgeを通過するパケットを処理するための設定
+      ```
+      ```
 
 1. kernel moduleのload
     - overlayファイルシステムを利用するためのkernel module `overlay`

@@ -64,5 +64,7 @@ target/
 venv/
 ENV/
 
+.DS_Store
+
 # MkDocs documentation
 site/

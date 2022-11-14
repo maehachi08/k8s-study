@@ -107,8 +107,8 @@
   kubeletCgroups: /kube.slice/kubelet.service
   kubeReservedCgroup: /kube.slice
   kubeReserved:
-    cpu: 256m
-    memory: 256Mi
+    cpu: 1024m
+    memory: 1024Mi
   EOF
   ```
 
@@ -146,7 +146,7 @@
      --kubeconfig=/var/lib/kubelet/kubeconfig \
      --network-plugin=cni \
      --container-runtime=remote \
-     --container-runtime-endpoint=/run/containerd/containerd.sock \
+     --container-runtime-endpoint=unix:///run/containerd/containerd.sock \
      --register-node=true \
      --v=2
 

@@ -34,9 +34,13 @@ markdown_extensions:
   - pymdownx.magiclink
   - attr_list
   - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
   - Home: index.md
+  - Container Runtime: container-runtime.md
   - Setup:
     - 01. Raspberry Pi 構成: setup/01_setup_RaspberryPi.md
     - 02. OS Install: setup/02_setup_ubuntu20-04-LTS.md
@@ -68,15 +72,18 @@ nav:
     - 02. Installation Kyverno: kyverno/installation_kyverno.md
   - Monitoring:
     - bootstrapping metrics_server: monitoring/metrics-server/bootstrapping_metrics_server.md
+    - bootstrapping kubernetes-dashboard: monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard.md
+    - Prometheus / Grafana:
+      - Install Prometheus: monitoring/prometheus/install_prometheus.md
+      - Install Grafana: monitoring/prometheus/install_grafana.md
+      - Install cadvisor: monitoring/prometheus/install_cadvisor.md
   - Operations:
     - etcd: operations/backup_etcd.md
-  - Tips:
-    - Node Resources Reservetion: tips/node_resources_reservation.md
-  - AutoScaler:
-    - Pod:
-      - HPA:
-        - Keda:
-          - About Keda: keda/about_keda.md
+  - Addons:
+    - MetalLB: addons/metallb.md
+    - OpenEBS:
+      - About OpenEBS: addons/openebs/about.md
+      - Installing OpenEBS: addons/openebs/install.md
 
 plugins:
   - search
