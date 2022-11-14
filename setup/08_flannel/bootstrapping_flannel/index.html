@@ -1220,10 +1220,21 @@
 </ul>
 <h2 id="_2">手順</h2>
 <ol>
-<li>flannel k8s manifestsを公式から取得する</li>
+<li>
+<p>vxlan moduleをインストールする
+    <div class="highlight"><pre><span></span><code>sudo apt install -y linux-modules-extra-raspi locate
+sudo updatedb
+sudo modprobe vxlan
+sudo lsmod | grep vxlan
+</code></pre></div></p>
+</li>
+<li>
+<p>flannel k8s manifestsを公式から取得する</p>
+</li>
 <li>
 <p>masterブランチから取得していますが2021/03/06 時点では release tag <code>v0.13.1-rc2</code> の内容</p>
-<div class="highlight"><pre><span></span><code>sudo curl -o /etc/kubernetes/manifests/kube-flannel.yml -sSL https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
+<div class="highlight"><pre><span></span><code>sudo mkdir -p /etc/kubernetes/manifests
+sudo curl -o /etc/kubernetes/manifests/kube-flannel.yml -sSL https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
 </code></pre></div>
 </li>
 <li>
@@ -1438,7 +1449,7 @@ spec:
         - --ip-masq
         - --kube-subnet-mgr
         - --kubeconfig-file=/var/lib/kubernetes/admin.kubeconfig
-        - --etcd-endpoints=https://192.168.10.50:4001
+        - --etcd-endpoints=https://k8s-master:4001
         - --etcd-prefix=/coreos.com/network
         - --etcd-keyfile=/var/lib/kubernetes/kubernetes-key.pem
         - --etcd-certfile=/var/lib/kubernetes/kubernetes.pem

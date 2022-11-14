@@ -1284,7 +1284,7 @@
 </ul>
 <h2 id="_1">手順</h2>
 <h3 id="kubelet">kubelet</h3>
-<div class="highlight"><pre><span></span><code>KUBERNETES_PUBLIC_ADDRESS=192.168.10.50
+<div class="highlight"><pre><span></span><code>KUBERNETES_PUBLIC_ADDRESS=k8s-master
 
 for instance in k8s-master k8s-node1 k8s-node2; do
     kubectl config set-cluster kubernetes \
@@ -1308,7 +1308,7 @@ for instance in k8s-master k8s-node1 k8s-node2; do
 done
 </code></pre></div>
 <h3 id="kube-proxy">kube-proxy</h3>
-<div class="highlight"><pre><span></span><code>KUBERNETES_PUBLIC_ADDRESS=192.168.10.50
+<div class="highlight"><pre><span></span><code>KUBERNETES_PUBLIC_ADDRESS=k8s-master
 
 kubectl config set-cluster kubernetes \
     --certificate-authority=ca.pem \
@@ -1330,7 +1330,7 @@ kubectl config set-context default \
 kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
 </code></pre></div>
 <h3 id="kube-controller-manager">kube-controller-manager</h3>
-<div class="highlight"><pre><span></span><code>KUBE_API_SERVER_ADDRESS=192.168.10.50
+<div class="highlight"><pre><span></span><code>KUBE_API_SERVER_ADDRESS=k8s-master
 
 kubectl config set-cluster kubernetes \
     --certificate-authority=ca.pem \
@@ -1352,7 +1352,7 @@ kubectl config set-context default \
 kubectl config use-context default --kubeconfig=kube-controller-manager.kubeconfig
 </code></pre></div>
 <h3 id="kube-scheduler">kube-scheduler</h3>
-<div class="highlight"><pre><span></span><code>KUBE_API_SERVER_ADDRESS=192.168.10.50
+<div class="highlight"><pre><span></span><code>KUBE_API_SERVER_ADDRESS=k8s-master
 
 kubectl config set-cluster kubernetes \
     --certificate-authority=ca.pem \
@@ -1374,7 +1374,7 @@ kubectl config set-context default \
 kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
 </code></pre></div>
 <h3 id="admin">admin</h3>
-<div class="highlight"><pre><span></span><code>KUBERNETES_PUBLIC_ADDRESS=192.168.10.50
+<div class="highlight"><pre><span></span><code>KUBERNETES_PUBLIC_ADDRESS=k8s-master
 
 kubectl config set-cluster kubernetes \
     --certificate-authority=ca.pem \

@@ -1305,7 +1305,7 @@ EOF
 <ul>
 <li><code>--authorization-webhook-config-file</code> で指定するファイル
    <details><summary>authorization-config.yaml</summary>
-      <div class="highlight"><pre><span></span><code>KUBE_API_SERVER_ADDRESS=192.168.10.50
+      <div class="highlight"><pre><span></span><code>KUBE_API_SERVER_ADDRESS=k8s-master
 
 cat &lt;&lt; EOF &gt; authorization-config.yaml
 ---
@@ -1340,14 +1340,17 @@ EOF
 </li>
 <li>
 <p>image build
-   <div class="highlight"><pre><span></span><code>sudo buildah bud -t k8s-kube-apiserver --file=Dockerfile_kube-apiserver.armhf ./
+   <div class="highlight"><pre><span></span><code>sudo nerdctl build --namespace k8s.io -t k8s-kube-apiserver --file=Dockerfile_kube-apiserver.armhf ./
 </code></pre></div></p>
 </li>
 <li>
-<p>pod manifestsを <code>/etc/kubelet.d</code> へ作成する
- <br />
-<details><summary>/etc/kubelet.d/kube-api-server.yaml</summary>
-      <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF | sudo tee /etc/kubelet.d/kube-api-server.yaml
+<p>pod manifestsを <code>/etc/kubelet.d</code> へ作成する</p>
+<ul>
+<li><code>--advertise-address</code> オプションはIPアドレスで指定する必要がある(hostnameでは起動しなかった)
+  <details><summary>/etc/kubelet.d/kube-api-server.yaml</summary>
+     <div class="highlight"><pre><span></span><code>KUBE_API_SERVER_ADDRESS=192.168.3.50
+
+cat &lt;&lt; EOF | sudo tee /etc/kubelet.d/kube-api-server.yaml
 ---
 apiVersion: v1
 kind: Pod
@@ -1366,7 +1369,7 @@ spec:
   hostNetwork: true
   containers:
     - name: kube-apiserver
-      image: localhost/k8s-kube-apiserver:latest
+      image: k8s-kube-apiserver:latest
       imagePullPolicy: IfNotPresent
       resources:
         requests:
@@ -1375,7 +1378,7 @@ spec:
           memory: &quot;1024Mi&quot;
       command:
         - /usr/bin/kube-apiserver
-        - --advertise-address=192.168.10.50
+        - --advertise-address=k8s-master
         - --allow-privileged=true
         - --anonymous-auth=false
         - --apiserver-count=1
@@ -1393,7 +1396,7 @@ spec:
         - --etcd-cafile=/var/lib/kubernetes/ca.pem
         - --etcd-certfile=/var/lib/kubernetes/kubernetes.pem
         - --etcd-keyfile=/var/lib/kubernetes/kubernetes-key.pem
-        - --etcd-servers=https://192.168.10.50:2379
+        - --etcd-servers=https://k8s-master:2379
         - --event-ttl=1h
         - --encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml
         - --kubelet-certificate-authority=/var/lib/kubernetes/ca.pem
@@ -1423,8 +1426,8 @@ spec:
         - --v=2
 EOF
 </code></pre></div>
-   </details>
-</p>
+  </details></li>
+</ul>
 </li>
 <li>
 <p><code>crictl</code> でコンテナ起動を確認する

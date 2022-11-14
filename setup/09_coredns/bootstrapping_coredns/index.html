@@ -1325,6 +1325,35 @@ bash deploy.sh -i 10.32.0.10  -s -t coredns.yaml.sed | kubectl apply -f -
 </code></pre></div></li>
 </ul>
 </li>
+<li>
+<p><code>i/o timeout</code></p>
+<div class="highlight"><pre><span></span><code>[ERROR] plugin/errors: 2 1233258971421873826.4416823678189275919. HINFO: read udp 10.200.0.5:35249-&gt;8.8.4.4:53: i/o timeout
+</code></pre></div>
+<ul>
+<li>
+<p>Podのコンテナから名前解決ができない可能性がある</p>
+<ul>
+<li><code>/etc/resolv.conf</code> の設定が正しいか確認する</li>
+</ul>
+<div class="highlight"><pre><span></span><code>kubectl run nginx --image=nginx
+POD_NAME=$(kubectl get pods -l run=nginx -o jsonpath=&quot;{.items[0].metadata.name}&quot;)
+kubectl exec -it $POD_NAME -- bash
+
+cat /etc/resolv.conf
+
+apt-get update              # 外にすら出れない場合は失敗する
+apt-get install dnsutils
+nslookup kubernetes
+</code></pre></div>
+</li>
+<li>
+<p>kube-apiserver への疎通ができていない可能性がある</p>
+<ul>
+<li>kube-proxy -&gt; flannel の順でpodの再起動を行ってみる</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
 
 

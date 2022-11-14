@@ -1395,7 +1395,7 @@
 <li>証明書を作成するための <a href="https://github.com/cloudflare/cfssl">cfssl</a> をインストールする<ul>
 <li><a href="https://qiita.com/iaoiui/items/fc2ea829498402d4a8e3">https://qiita.com/iaoiui/items/fc2ea829498402d4a8e3</a></li>
 <li><a href="https://coreos.com/os/docs/latest/generate-self-signed-certificates.html">https://coreos.com/os/docs/latest/generate-self-signed-certificates.html</a>
-  <div class="highlight"><pre><span></span><code>sudo apt install golang-cfssl
+  <div class="highlight"><pre><span></span><code>sudo apt install -y golang-cfssl
 </code></pre></div></li>
 </ul>
 </li>
@@ -1489,12 +1489,13 @@ cfssl gencert \
 <h4 id="kubelet">kubeletのクライアント証明書</h4>
 <ul>
 <li><code>EXTERNAL_IP</code><ul>
-<li>masterサーバのIPアドレス</li>
+<li>masterサーバのhostname</li>
 <li>masterが複数サーバ構成の場合は上位のLB IP</li>
 </ul>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code>for instance in k8s-master k8s-node1 k8s-node2; do
+
 cat &lt;&lt; EOF &gt; ${instance}-csr.json
 {
    &quot;CN&quot;: &quot;system:node:${instance}&quot;,
@@ -1514,7 +1515,7 @@ cat &lt;&lt; EOF &gt; ${instance}-csr.json
 }
 EOF
 
-EXTERNAL_IP=192.168.10.50
+EXTERNAL_IP=k8s-master
 
 cfssl gencert \
   -ca=ca.pem \
@@ -1523,6 +1524,7 @@ cfssl gencert \
   -hostname=${instance},${EXTERNAL_IP} \
   -profile=kubernetes \
   ${instance}-csr.json | cfssljson -bare ${instance}
+
 done
 </code></pre></div>
 <ul>
@@ -1669,7 +1671,7 @@ cfssl gencert \
   -ca=ca.pem \
   -ca-key=ca-key.pem \
   -config=ca-config.json \
-  -hostname=10.32.0.1,192.168.10.50,192.168.10.51,192.168.10.52,127.0.0.1,${KUBERNETES_HOSTNAMES} \
+  -hostname=10.32.0.1,k8s-master,k8s-node1,k8s-node2,127.0.0.1,${KUBERNETES_HOSTNAMES} \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
 </code></pre></div>

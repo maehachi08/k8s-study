@@ -1248,7 +1248,7 @@ EOF
 </li>
 <li>
 <p>image build
-   <div class="highlight"><pre><span></span><code>sudo buildah bud -t k8s-kube-controller-manager --file=Dockerfile_kube-controller-manager.armhf ./
+   <div class="highlight"><pre><span></span><code>sudo nerdctl build --namespace k8s.io -t k8s-kube-controller-manager --file=Dockerfile_kube-controller-manager.armhf ./
 </code></pre></div></p>
 </li>
 <li>
@@ -1284,7 +1284,7 @@ spec:
   hostNetwork: true
   containers:
     - name: kube-controller-manager
-      image: localhost/k8s-kube-controller-manager:latest
+      image: k8s-kube-controller-manager:latest
       imagePullPolicy: IfNotPresent
       resources:
         requests:

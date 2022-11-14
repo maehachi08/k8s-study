@@ -1252,7 +1252,7 @@ EOF
 </li>
 <li>
 <p>image build
-   <div class="highlight"><pre><span></span><code>sudo buildah bud -t k8s-kube-scheduler --file=Dockerfile_kube-scheduler.armhf ./
+   <div class="highlight"><pre><span></span><code>sudo nerdctl build --namespace k8s.io -t k8s-kube-scheduler --file=Dockerfile_kube-scheduler.armhf ./
 </code></pre></div></p>
 </li>
 <li>
@@ -1276,7 +1276,7 @@ spec:
   hostNetwork: true
   containers:
     - name: kube-scheduler
-      image: localhost/k8s-kube-scheduler:latest
+      image: k8s-kube-scheduler:latest
       imagePullPolicy: IfNotPresent
       resources:
         requests:
