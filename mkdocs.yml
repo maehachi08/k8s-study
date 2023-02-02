@@ -33,6 +33,7 @@ markdown_extensions:
   - pymdownx.tabbed
   - pymdownx.magiclink
   - attr_list
+  - md_in_html
   - admonition
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
@@ -84,6 +85,13 @@ nav:
     - OpenEBS:
       - About OpenEBS: addons/openebs/about.md
       - Installing OpenEBS: addons/openebs/install.md
+    - Argo:
+      - Argo Rollouts:
+        - About: addons/argo/argo-rollouts/about.md
+        - Traffic Management: addons/argo/argo-rollouts/traffic-management.md
+        - Install: addons/argo/argo-rollouts/install.md
+        - Basic Usage: addons/argo/argo-rollouts/basic_usage.md
 
 plugins:
   - search
+  - glightbox
