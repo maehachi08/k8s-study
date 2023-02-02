@@ -12,27 +12,27 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/setup/06_master/05_bootstrapping_kube-scheduler/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/addons/argo/argo-rollouts/traffic-management/">
       
       
-        <link rel="prev" href="../04_bootstrapping_kube-controller-manager/">
+        <link rel="prev" href="../about/">
       
       
-        <link rel="next" href="../06_configuration_rbac_to_access_from-apiserver-to-kubelet/">
+        <link rel="next" href="../install/">
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.10">
     
     
       
-        <title>05. bootstrapping kube-scheduler - maehachi08/k8s-study</title>
+        <title>Traffic Management - maehachi08/k8s-study</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.2505c338.min.css">
       
       
   
@@ -89,7 +89,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -114,7 +114,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bootstrapping-kube-scheduler" class="md-skip">
+        <a href="#traffic-management" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +128,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="maehachi08/k8s-study" class="md-header__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../../.." title="maehachi08/k8s-study" class="md-header__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -147,7 +147,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              05. bootstrapping kube-scheduler
+              Traffic Management
             
           </span>
         </div>
@@ -226,7 +226,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -257,7 +257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -272,7 +272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../container-runtime.md" class="md-nav__link">
+      <a href="../../../../container-runtime.md" class="md-nav__link">
         Container Runtime
       </a>
     </li>
@@ -285,16 +285,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
       
       
       
@@ -303,7 +301,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Setup
@@ -316,7 +314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_setup_RaspberryPi/" class="md-nav__link">
+      <a href="../../../../setup/01_setup_RaspberryPi/" class="md-nav__link">
         01. Raspberry Pi 構成
       </a>
     </li>
@@ -330,7 +328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_setup_ubuntu20-04-LTS/" class="md-nav__link">
+      <a href="../../../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
         02. OS Install
       </a>
     </li>
@@ -344,7 +342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_common_settings/" class="md-nav__link">
+      <a href="../../../../setup/03_common_settings/" class="md-nav__link">
         03. master/nodeで共通手順
       </a>
     </li>
@@ -358,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_creation_certificate/" class="md-nav__link">
+      <a href="../../../../setup/04_creation_certificate/" class="md-nav__link">
         04. 認証局の設定とTLS証明書の作成
       </a>
     </li>
@@ -372,7 +370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_creating_config/" class="md-nav__link">
+      <a href="../../../../setup/05_creating_config/" class="md-nav__link">
         05. 認証のためのkubeconfigの作成
       </a>
     </li>
@@ -384,16 +382,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
       
       
       
@@ -402,7 +398,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_6">
           <span class="md-nav__icon md-icon"></span>
           06. master node
@@ -415,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -429,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02_bootstrapping_etcd/" class="md-nav__link">
+      <a href="../../../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
         02. bootstrapping etcd
       </a>
     </li>
@@ -443,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../03_bootstrapping_kube-apiserver/" class="md-nav__link">
+      <a href="../../../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
         03. bootstrapping kube-apiserver
       </a>
     </li>
@@ -457,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04_bootstrapping_kube-controller-manager/" class="md-nav__link">
+      <a href="../../../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
         04. bootstrapping kube-controller-manager
       </a>
     </li>
@@ -469,59 +465,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          05. bootstrapping kube-scheduler
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
         05. bootstrapping kube-scheduler
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    手順
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    参考文献
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -533,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
+      <a href="../../../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
         06. kube-apiserver から kubelet へのアクセス権を設定する
       </a>
     </li>
@@ -547,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../07_controller_health_check/" class="md-nav__link">
+      <a href="../../../../setup/06_master/07_controller_health_check/" class="md-nav__link">
         07. Kubernetes API のヘルスチェック
       </a>
     </li>
@@ -595,7 +543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -609,7 +557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
+      <a href="../../../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
         02. bootstrapping kube-proxy
       </a>
     </li>
@@ -630,7 +578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08_flannel/bootstrapping_flannel/" class="md-nav__link">
+      <a href="../../../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
         08. bootstrapping flannel
       </a>
     </li>
@@ -644,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09_coredns/bootstrapping_coredns/" class="md-nav__link">
+      <a href="../../../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
         09. bootstrapping coredns
       </a>
     </li>
@@ -658,7 +606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
+      <a href="../../../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
         10. bootstrapping nginx ingress controller
       </a>
     </li>
@@ -672,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
+      <a href="../../../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
         11. bootstrapping external-dns
       </a>
     </li>
@@ -721,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../failure_test/failure_story/" class="md-nav__link">
+      <a href="../../../../failure_test/failure_story/" class="md-nav__link">
         Failure Story
       </a>
     </li>
@@ -735,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../failure_test/point_of_failure/" class="md-nav__link">
+      <a href="../../../../failure_test/point_of_failure/" class="md-nav__link">
         Point of failure
       </a>
     </li>
@@ -776,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../failure_test/failure_scenario_of_node/" class="md-nav__link">
+      <a href="../../../../failure_test/failure_scenario_of_node/" class="md-nav__link">
         Node
       </a>
     </li>
@@ -832,7 +780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kyverno/about_kyverno/" class="md-nav__link">
+      <a href="../../../../kyverno/about_kyverno/" class="md-nav__link">
         01. About Kyverno
       </a>
     </li>
@@ -846,7 +794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kyverno/installation_kyverno/" class="md-nav__link">
+      <a href="../../../../kyverno/installation_kyverno/" class="md-nav__link">
         02. Installation Kyverno
       </a>
     </li>
@@ -895,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+      <a href="../../../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
         bootstrapping metrics_server
       </a>
     </li>
@@ -909,7 +857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
+      <a href="../../../../monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
         bootstrapping kubernetes-dashboard
       </a>
     </li>
@@ -950,7 +898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monitoring/prometheus/install_prometheus/" class="md-nav__link">
+      <a href="../../../../monitoring/prometheus/install_prometheus/" class="md-nav__link">
         Install Prometheus
       </a>
     </li>
@@ -964,7 +912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monitoring/prometheus/install_grafana/" class="md-nav__link">
+      <a href="../../../../monitoring/prometheus/install_grafana/" class="md-nav__link">
         Install Grafana
       </a>
     </li>
@@ -978,7 +926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monitoring/prometheus/install_cadvisor/" class="md-nav__link">
+      <a href="../../../../monitoring/prometheus/install_cadvisor/" class="md-nav__link">
         Install cadvisor
       </a>
     </li>
@@ -1034,7 +982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../operations/backup_etcd/" class="md-nav__link">
+      <a href="../../../../operations/backup_etcd/" class="md-nav__link">
         etcd
       </a>
     </li>
@@ -1054,14 +1002,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
       
@@ -1070,7 +1020,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           Addons
@@ -1083,7 +1033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/metallb/" class="md-nav__link">
+      <a href="../../../metallb/" class="md-nav__link">
         MetalLB
       </a>
     </li>
@@ -1124,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/openebs/about/" class="md-nav__link">
+      <a href="../../../openebs/about/" class="md-nav__link">
         About OpenEBS
       </a>
     </li>
@@ -1138,7 +1088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/openebs/install/" class="md-nav__link">
+      <a href="../../../openebs/install/" class="md-nav__link">
         Installing OpenEBS
       </a>
     </li>
@@ -1157,14 +1107,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" checked>
       
       
       
@@ -1173,7 +1125,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8_3">
           <span class="md-nav__icon md-icon"></span>
           Argo
@@ -1184,14 +1136,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_1" checked>
       
       
       
@@ -1200,7 +1154,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_1_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_1_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8_3_1">
           <span class="md-nav__icon md-icon"></span>
           Argo Rollouts
@@ -1213,7 +1167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/argo/argo-rollouts/about/" class="md-nav__link">
+      <a href="../about/" class="md-nav__link">
         About
       </a>
     </li>
@@ -1225,11 +1179,88 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../addons/argo/argo-rollouts/traffic-management/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Traffic Management
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Traffic Management
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#traffic-management" class="md-nav__link">
+    Traffic Management
+  </a>
+  
+    <nav class="md-nav" aria-label="Traffic Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-management_1" class="md-nav__link">
+    Traffic Managementとは
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    設定
+  </a>
+  
+    <nav class="md-nav" aria-label="設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alb" class="md-nav__link">
+    ALBの場合
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1241,7 +1272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/argo/argo-rollouts/install/" class="md-nav__link">
+      <a href="../install/" class="md-nav__link">
         Install
       </a>
     </li>
@@ -1255,7 +1286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../addons/argo/argo-rollouts/basic_usage/" class="md-nav__link">
+      <a href="../basic_usage/" class="md-nav__link">
         Basic Usage
       </a>
     </li>
@@ -1300,8 +1331,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1310,16 +1339,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#traffic-management" class="md-nav__link">
+    Traffic Management
+  </a>
+  
+    <nav class="md-nav" aria-label="Traffic Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    手順
+    参考
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    参考文献
+        
+          <li class="md-nav__item">
+  <a href="#traffic-management_1" class="md-nav__link">
+    Traffic Managementとは
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    設定
+  </a>
+  
+    <nav class="md-nav" aria-label="設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alb" class="md-nav__link">
+    ALBの場合
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1339,113 +1401,146 @@
 
 
 
-<h1 id="bootstrapping-kube-scheduler">bootstrapping kube-scheduler</h1>
-<h2 id="_1">手順</h2>
-<ol>
-<li>
-<p><code>Dockerfile_kube-scheduler.armhf</code> を作成する
- <br />
-<details><summary>Dockerfile_kube-scheduler.armhf</summary>
-      <div class="highlight"><pre><span></span><code>cat &lt;&lt; &#39;EOF&#39; &gt; Dockerfile_kube-scheduler.armhf
-FROM arm64v8/ubuntu:bionic
+  <h1>Traffic Management</h1>
 
-ARG VERSION=&quot;v1.22.0&quot;
-ARG ARCH=&quot;arm64&quot;
-
-RUN set -ex \
-  &amp;&amp; apt update \
-  &amp;&amp; apt install -y wget \
-  &amp;&amp; apt clean \
-  &amp;&amp; wget -P /usr/bin/ https://dl.k8s.io/$VERSION/bin/linux/$ARCH/kube-scheduler \
-  &amp;&amp; chmod +x /usr/bin/kube-scheduler \
-  &amp;&amp; install -o root -g root -m 755 -d /var/lib/kubernetes \
-  &amp;&amp; install -o root -g root -m 755 -d /etc/kubernetes/config
-
-COPY kube-scheduler.yaml /etc/kubernetes/config/
-COPY kube-scheduler.kubeconfig /var/lib/kubernetes/
-
-ENTRYPOINT [&quot;/usr/bin/kube-scheduler&quot;]
-EOF
-</code></pre></div>
-   </details>
-</p>
-</li>
-<li>
-<p>kube-schedulerのconfig生成</p>
-</li>
-<li>
-<p><a href="https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#v1190">k8s 1.19.0</a> で <code>KubeSchedulerConfiguration</code> が betaにupdateされています</p>
+<h2 id="traffic-management">Traffic Management</h2>
+<h3 id="_1">参考</h3>
 <ul>
-<li><a href="https://qiita.com/everpeace/items/7dbf14773db82e765370">https://qiita.com/everpeace/items/7dbf14773db82e765370</a>
-     <details><summary>kube-scheduler.yaml</summary>
-        <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF &gt; kube-scheduler.yaml
----
-apiVersion: kubescheduler.config.k8s.io/v1beta1
-kind: KubeSchedulerConfiguration
-clientConnection:
-  kubeconfig: &quot;/var/lib/kubernetes/kube-scheduler.kubeconfig&quot;
-leaderElection:
-  leaderElect: false
-EOF
+<li><a href="https://argoproj.github.io/argo-rollouts/features/traffic-management/">https://argoproj.github.io/argo-rollouts/features/traffic-management/</a></li>
+<li><a href="https://argoproj.github.io/argo-rollouts/features/traffic-management/alb/">https://argoproj.github.io/argo-rollouts/features/traffic-management/alb/</a></li>
+<li><a href="https://argoproj.github.io/argo-rollouts/getting-started/alb/">https://argoproj.github.io/argo-rollouts/getting-started/alb/</a></li>
+<li><a href="https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/">https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/</a></li>
+<li><a href="https://aws.amazon.com/jp/blogs/news/using-aws-load-balancer-controller-for-blue-green-deployment-canary-deployment-and-a-b-testing/">https://aws.amazon.com/jp/blogs/news/using-aws-load-balancer-controller-for-blue-green-deployment-canary-deployment-and-a-b-testing/</a></li>
+</ul>
+<h3 id="traffic-management_1">Traffic Managementとは</h3>
+<p>Argo Rolloutsでdeploy中の新version applicationへ流すtrafficの割合を制御できます。
+<a href="https://argoproj.github.io/argo-rollouts/getting-started">getting-started</a> の例でもある通り、defaultでは新version applicationと旧version applicationのService selecttorに紐付くReplicaSetのPod数を変動させることでtrafficの割合を制御します。
+Argo Rolloutsの <code>Traffic Management</code> ではサービスメッシュ(<code>AWS ALB Ingress Controller</code> や <code>Nginx Ingress Controller</code> 含む) と連携することが可能です。</p>
+<p>Traffic Managementは大きく3つの手法があります。</p>
+<ol>
+<li>Raw percentages<ul>
+<li>新versionにN%、旧versionにN% といった割合で指定する</li>
+<li>ALB Ingress, Nginx Ingressも対応<ul>
+<li><a href="https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/nginx/nginx.go">https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/nginx/nginx.go</a></li>
+<li><a href="https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/alb/alb.go">https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/alb/alb.go</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Header-based routing<ul>
+<li>任意のheaderがリクエストに含まれている場合は新versionに流す</li>
+<li>ALB Ingress対応<ul>
+<li><a href="https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/nginx/nginx.go">https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/nginx/nginx.go</a></li>
+<li><a href="https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/alb/alb.go">https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/alb/alb.go</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mirrored traffic<ul>
+<li>まったく同じtrafficを新versionにも流す。ただし、responseは無視される</li>
+<li>ALB Ingress, Nginx Ingressも非対応<ul>
+<li><a href="https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/nginx/nginx.go">https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/nginx/nginx.go</a></li>
+<li><a href="https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/alb/alb.go">https://github.com/argoproj/argo-rollouts/blob/v1.4.0/rollout/trafficrouting/alb/alb.go</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="_2">設定</h3>
+<h4 id="alb">ALBの場合</h4>
+<ul>
+<li>
+<p><a href="https://argoproj.github.io/argo-rollouts/features/traffic-management/alb/#usage">https://argoproj.github.io/argo-rollouts/features/traffic-management/alb/#usage</a></p>
+<ul>
+<li>
+<p>Rollout</p>
+<ul>
+<li><code>spec.strategy.canary.canaryService</code></li>
+<li><code>spec.strategy.canary.stableService</code></li>
+<li>
+<p><code>spec.strategy.canary.trafficRouting</code> (ServiceMeshによってparameterが異なる)</p>
+<div class="highlight"><pre><span></span><code>spec:
+  ...
+  strategy:
+    canary:
+      canaryService: canary-service
+      stableService: stable-service
+      trafficRouting:
+        alb:
+          ingress: ingress
+          servicePort: 443
 </code></pre></div>
-     </details></li>
+</li>
 </ul>
 </li>
 <li>
-<p>image build
-   <div class="highlight"><pre><span></span><code>sudo nerdctl build --namespace k8s.io -t k8s-kube-scheduler --file=Dockerfile_kube-scheduler.armhf ./
-</code></pre></div></p>
-</li>
-<li>
-<p>pod manifestsを <code>/etc/kubelet.d</code> へ作成する
- <br />
-<details><summary>/etc/kubelet.d/kube-scheduler.yaml</summary>
-      <div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF | sudo tee /etc/kubelet.d/kube-scheduler.yaml
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: kube-scheduler
-  namespace: kube-system
-  labels:
-    tier: control-plane
-    component: kube-scheduler
-
-spec:
-  # https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
-  priorityClassName: system-node-critical
-  hostNetwork: true
-  containers:
-    - name: kube-scheduler
-      image: k8s-kube-scheduler:latest
-      imagePullPolicy: IfNotPresent
-      resources:
-        requests:
-          cpu: &quot;256m&quot;
-          memory: &quot;128Mi&quot;
-        limits:
-          cpu: &quot;384m&quot;
-          memory: &quot;128Mi&quot;
-      command:
-        - /usr/bin/kube-scheduler
-        - --config=/etc/kubernetes/config/kube-scheduler.yaml
-        - --v=2
-EOF
-</code></pre></div>
-   </details>
-</p>
-</li>
-<li>
-<p><code>crictl</code> でコンテナ起動を確認する
-   <div class="highlight"><pre><span></span><code>$ sudo crictl ps --name kube-scheduler
-CONTAINER           IMAGE                                                              CREATED             STATE               NAME                ATTEMPT             POD ID
-a19648dec2d54       70e852515b3c74175bb3ad4855287cb81101921b2b1f5a890fa4ebd0eeeee684   15 seconds ago      Running             kube-scheduler      0                   da1d0572bc2b1
-</code></pre></div></p>
-</li>
-</ol>
-<h2 id="_2">参考文献</h2>
+<p>Ingress</p>
 <ul>
-<li><a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/">https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/</a></li>
+<li>
+<p><code>spec.rules</code> 以下のruleが Rollout の <code>spec.strategy.canary.stableService</code> と一致するruleでdeployされる必要があります</p>
+<div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        backend:
+          # serviceName must match either: canary.trafficRouting.alb.rootService (if specified),
+          # or canary.stableService (if rootService is omitted)
+          serviceName: stable-service
+          # servicePort must be the value: use-annotation
+          # This instructs AWS Load Balancer Controller to look to annotations on how to direct traffic
+          servicePort: use-annotation
+</code></pre></div>
+</li>
+<li>
+<p>rolloutがdeploy中</p>
+<ul>
+<li>ALB Controllerが理解できるJSON payloadを含む <code>alb.ingress.kubernetes.io/actions.&lt;SERVICE-NAME&gt;</code> annotationをRollouts ControllerがIngressリソースに注入します
+    <div class="highlight"><pre><span></span><code>apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/actions.stable-service: |
+      {
+        &quot;Type&quot;:&quot;forward&quot;,
+        &quot;ForwardConfig&quot;:{
+          &quot;TargetGroups&quot;:[
+            {
+                &quot;Weight&quot;:10,
+                &quot;ServiceName&quot;:&quot;canary-service&quot;,
+                &quot;ServicePort&quot;:&quot;80&quot;
+            },
+            {
+                &quot;Weight&quot;:90,
+                &quot;ServiceName&quot;:&quot;stable-service&quot;,
+                &quot;ServicePort&quot;:&quot;80&quot;
+            }
+          ]
+        }
+      }
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: stable-service
+          servicePort: use-annotation
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
 
@@ -1484,10 +1579,10 @@ a19648dec2d54       70e852515b3c74175bb3ad4855287cb81101921b2b1f5a890fa4ebd0eeee
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.6df46069.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.6df46069.min.js"></script>
       
     
   </body>
