@@ -133,13 +133,10 @@
         |:---|:---|
         | username | `admin` |
         | `password` | grafanaインストール時の表示を参考に以下コマンドで`admin` の `password` を取得<br><br>```kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo``` |
-
-        <img src="/monitoring/prometheus/grafana_01.png" style="width:300px;"/>
-        <img src="/monitoring/prometheus/grafana_02.png" style="width:300px;"/>
+        | ![](grafana_01.png){ width="730" } | ![](grafana_02.png){ width="300" } |
 
     1. ログイン成功
-
-        <img src="/monitoring/prometheus/grafana_03.png" style="width:300px;"/>
+        - ![](grafana_03.png){ width="300" }
 
 ### Install `Node Exporter Full` Dashboards
 
@@ -201,23 +198,14 @@
 #### 手動でインストールする場合
 
 1. Dashboardsページにアクセス
-
-    <img src="/monitoring/prometheus/grafana_04.png" style="width:300px;"/>
-
+    - ![](grafana_04.png){ width="300" }
 1. `New` -> `New Dashboard` -> `Import` を選択
-
-    <img src="/monitoring/prometheus/grafana_05.png" style="width:300px;"/>
-
+    - ![](grafana_05.png){ width="300" }
 1. `Node Exporter Full` の Dashboard IDを入力
     - https://grafana.com/grafana/dashboards/1860-node-exporter-full/
-
-    <img src="/monitoring/prometheus/grafana_06.png" style="width:300px;"/>
-
+    - ![](grafana_06.png){ width="300" }
 1. `Import` を実行する
-
-    <img src="/monitoring/prometheus/grafana_07.png" style="width:300px;"/>
-
+    - ![](grafana_07.png){ width="300" }
 1. `Node Exporter Full` が表示されることを確認
-
-    <img src="/monitoring/prometheus/grafana_08.png" style="width:300px;"/>
+    - ![](grafana_08.png){ width="300" }
 
