@@ -696,7 +696,7 @@ vim ~/work/prometheus/prometheus.yaml
 </li>
 <li>
 <p>作成されたリソースを確認する
-    <details><summary>Service</summary></details></p>
+    <details><summary>Service</summary>
 <div class="highlight"><pre><span></span><code>$ kubectl get services -n monitoring
 NAME                            TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
 prometheus-alertmanager         ClusterIP      10.32.0.114   &lt;none&gt;          80/TCP         33h
@@ -705,6 +705,7 @@ prometheus-node-exporter        ClusterIP      10.32.0.31    &lt;none&gt;       
 prometheus-pushgateway          ClusterIP      10.32.0.138   &lt;none&gt;          9091/TCP       33h
 prometheus-server               ClusterIP      10.32.0.75    &lt;none&gt;          80/TCP         33h
 </code></pre></div>
+</details></p>
 <p><details><summary>Deployment</summary>
 <div class="highlight"><pre><span></span><code>$ kubectl get deployments -n monitoring
 NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
