@@ -6,7 +6,7 @@ https://github.com/metallb/metallb
 Bare Metalな環境でLoadBlancerサービスを提供するaddonです。
 
 CloudProviderが提供するKubernetesサービスでは当該CloudProviderのLoadBlancerサービスを利用できます。
-AWSでは [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller) を導入することでIngressリソースでElastic Load Balancerの作成を行うことが可能です。
+AWSでは [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller) を導入することで[Ingressリソース](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/ingress/annotations/) や [Serviceリソース](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/service/nlb/) でElastic Load Balancerの作成を行うことが可能です。
 
 Bare Metalな環境で[Nginx Ingress Controller](https://kubernetes.github.io/ingress-nginx/)を導入した場合、Cluster内のPod NetworkのIPアドレスがアサインされます。
 
