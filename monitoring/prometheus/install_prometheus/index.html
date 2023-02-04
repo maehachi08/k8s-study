@@ -656,7 +656,7 @@
 curl -so ~/work/prometheus/prometheus.yaml https://raw.githubusercontent.com/prometheus-community/helm-charts/main/charts/prometheus/values.yaml
 vim ~/work/prometheus/prometheus.yaml
 </code></pre></div>
-<p><details><summary>prometheus.yaml 修正後のdiff</summary></details></p>
+<p><details><summary>prometheus.yaml 修正後のdiff</summary>
 <div class="highlight"><pre><span></span><code>$ diff -u &lt;(curl -s https://raw.githubusercontent.com/prometheus-community/helm-charts/main/charts/prometheus/values.yaml) &lt;(cat ~/work/prometheus/prometheus.yaml)
 --- /dev/fd/63  2022-10-30 14:07:09.532561438 +0000
 +++ /dev/fd/62  2022-10-30 14:07:09.540561310 +0000
@@ -688,6 +688,7 @@ vim ~/work/prometheus/prometheus.yaml
      ## pushgateway data Persistent Volume Binding Mode
      ## If defined, volumeBindingMode: &lt;volumeBindingMode&gt;
 </code></pre></div>
+</details></p>
 </li>
 <li>
 <p>install</p>

@@ -679,7 +679,7 @@
 curl -so ~/work/prometheus/grafana/grafana.yaml https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml
 vim ~/work/prometheus/grafana/grafana.yaml
 </code></pre></div>
-<p><details><summary>grafana.yaml 修正後のdiff</summary></details></p>
+<p><details><summary>grafana.yaml 修正後のdiff</summary>
 <div class="highlight"><pre><span></span><code>$ diff -u &lt;(curl -s https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml) &lt;(cat ~/work/prometheus/grafana/grafana.yaml)
 --- /dev/fd/63  2022-10-30 15:05:32.554153834 +0000
 +++ /dev/fd/62  2022-10-30 15:05:32.566153656 +0000
@@ -737,12 +737,13 @@ vim ~/work/prometheus/grafana/grafana.yaml
  #      type: cloudwatch
  #      access: proxy
 </code></pre></div>
+</details></p>
 </li>
 <li>
 <p>install</p>
 <div class="highlight"><pre><span></span><code>helm upgrade -i grafana grafana/grafana -n monitoring -f ~/work/prometheus/grafana/grafana.yaml
 </code></pre></div>
-<p><details><summary>実行ログ</summary></details></p>
+<p><details><summary>実行ログ</summary>
 <div class="highlight"><pre><span></span><code>$ helm upgrade -i grafana grafana/grafana -n monitoring -f ~/work/prometheus/grafana/grafana.yaml
 Release "grafana" does not exist. Installing it now.
 W1030 15:08:59.041312  221007 warnings.go:70] policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, unavailable in v1.25+
@@ -773,6 +774,7 @@ NOTE: It may take a few minutes for the LoadBalancer IP to be available.
 ######            the Grafana pod is terminated.                            #####
 #################################################################################
 </code></pre></div>
+</details></p>
 </li>
 <li>
 <p>grafana ServiceのMetalLBで払い出されたExternal IPアドレスを確認する
@@ -830,7 +832,7 @@ NOTE: It may take a few minutes for the LoadBalancer IP to be available.
 <p>valuesファイルの修正
     <div class="highlight"><pre><span></span><code>vim ~/work/prometheus/grafana/grafana.yaml
 </code></pre></div></p>
-<p><details><summary>grafana.yaml 修正後のdiff(<code>cadvisor-exporter</code> Dashboardも入れている例です)</summary></details></p>
+<p><details><summary>grafana.yaml 修正後のdiff(<code>cadvisor-exporter</code> Dashboardも入れている例です)</summary>
 <div class="highlight"><pre><span></span><code>$ diff -u &lt;(curl -s https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml) &lt;(cat ~/work/prometheus/grafana/grafana.yaml)
 
 ~ snip ~
@@ -855,6 +857,7 @@ NOTE: It may take a few minutes for the LoadBalancer IP to be available.
    #   some-dashboard:
    #     json: |
 </code></pre></div>
+</details></p>
 </li>
 <li>
 <p>install
