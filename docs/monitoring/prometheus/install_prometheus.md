@@ -72,7 +72,6 @@
 
 1. 作成されたリソースを確認する
     <details><summary>Service</summary>
-
     ```
     $ kubectl get services -n monitoring
     NAME                            TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
@@ -82,7 +81,6 @@
     prometheus-pushgateway          ClusterIP      10.32.0.138   <none>          9091/TCP       33h
     prometheus-server               ClusterIP      10.32.0.75    <none>          80/TCP         33h
     ```
-
     </details>
 
     <details><summary>Deployment</summary>
