@@ -487,3 +487,5 @@
         ```
         </details>
 
+1. MetricsProviderが復旧したらMetricsに基づいてReplicasが指定されるようになります
+
