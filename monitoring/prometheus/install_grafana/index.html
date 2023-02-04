@@ -802,14 +802,18 @@ NOTE: It may take a few minutes for the LoadBalancer IP to be available.
 <td align="left"><code>password</code></td>
 <td align="left">grafanaインストール時の表示を参考に以下コマンドで<code>admin</code> の <code>password</code> を取得<br/><br/><code>kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo</code></td>
 </tr>
+<tr>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../grafana_01.png"><img alt="" src="../grafana_01.png" width="730"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../grafana_02.png"><img alt="" src="../grafana_02.png" width="300"/></a></td>
+</tr>
 </tbody>
 </table>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/monitoring/prometheus/grafana_01.png"><img src="/monitoring/prometheus/grafana_01.png" style="width:300px;"/></a>
-<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/monitoring/prometheus/grafana_02.png"><img src="/monitoring/prometheus/grafana_02.png" style="width:300px;"/></a></p>
 </li>
 <li>
 <p>ログイン成功</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/monitoring/prometheus/grafana_03.png"><img src="/monitoring/prometheus/grafana_03.png" style="width:300px;"/></a></p>
+<ul>
+<li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../grafana_03.png"><img alt="" src="../grafana_03.png" width="300"/></a></li>
+</ul>
 </li>
 </ol>
 </li>
@@ -875,28 +879,26 @@ total 232
 </ol>
 <h4 id="_1">手動でインストールする場合</h4>
 <ol>
-<li>
-<p>Dashboardsページにアクセス</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/monitoring/prometheus/grafana_04.png"><img src="/monitoring/prometheus/grafana_04.png" style="width:300px;"/></a></p>
-</li>
-<li>
-<p><code>New</code> -&gt; <code>New Dashboard</code> -&gt; <code>Import</code> を選択</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/monitoring/prometheus/grafana_05.png"><img src="/monitoring/prometheus/grafana_05.png" style="width:300px;"/></a></p>
-</li>
-<li>
-<p><code>Node Exporter Full</code> の Dashboard IDを入力</p>
-<ul>
-<li><a href="https://grafana.com/grafana/dashboards/1860-node-exporter-full/">https://grafana.com/grafana/dashboards/1860-node-exporter-full/</a></li>
+<li>Dashboardsページにアクセス<ul>
+<li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../grafana_04.png"><img alt="" src="../grafana_04.png" width="300"/></a></li>
 </ul>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/monitoring/prometheus/grafana_06.png"><img src="/monitoring/prometheus/grafana_06.png" style="width:300px;"/></a></p>
 </li>
-<li>
-<p><code>Import</code> を実行する</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/monitoring/prometheus/grafana_07.png"><img src="/monitoring/prometheus/grafana_07.png" style="width:300px;"/></a></p>
+<li><code>New</code> -&gt; <code>New Dashboard</code> -&gt; <code>Import</code> を選択<ul>
+<li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../grafana_05.png"><img alt="" src="../grafana_05.png" width="300"/></a></li>
+</ul>
 </li>
-<li>
-<p><code>Node Exporter Full</code> が表示されることを確認</p>
-<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/monitoring/prometheus/grafana_08.png"><img src="/monitoring/prometheus/grafana_08.png" style="width:300px;"/></a></p>
+<li><code>Node Exporter Full</code> の Dashboard IDを入力<ul>
+<li><a href="https://grafana.com/grafana/dashboards/1860-node-exporter-full/">https://grafana.com/grafana/dashboards/1860-node-exporter-full/</a></li>
+<li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../grafana_06.png"><img alt="" src="../grafana_06.png" width="300"/></a></li>
+</ul>
+</li>
+<li><code>Import</code> を実行する<ul>
+<li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../grafana_07.png"><img alt="" src="../grafana_07.png" width="300"/></a></li>
+</ul>
+</li>
+<li><code>Node Exporter Full</code> が表示されることを確認<ul>
+<li><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../grafana_08.png"><img alt="" src="../grafana_08.png" width="300"/></a></li>
+</ul>
 </li>
 </ol>
 </article>
