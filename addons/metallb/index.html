@@ -638,7 +638,7 @@
 <a href="https://github.com/metallb/metallb">https://github.com/metallb/metallb</a></p>
 <p>Bare Metalな環境でLoadBlancerサービスを提供するaddonです。</p>
 <p>CloudProviderが提供するKubernetesサービスでは当該CloudProviderのLoadBlancerサービスを利用できます。
-AWSでは <a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller">AWS Load Balancer Controller</a> を導入することでIngressリソースでElastic Load Balancerの作成を行うことが可能です。</p>
+AWSでは <a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller">AWS Load Balancer Controller</a> を導入することで<a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/ingress/annotations/">Ingressリソース</a> や <a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/service/nlb/">Serviceリソース</a> でElastic Load Balancerの作成を行うことが可能です。</p>
 <p>Bare Metalな環境で<a href="https://kubernetes.github.io/ingress-nginx/">Nginx Ingress Controller</a>を導入した場合、Cluster内のPod NetworkのIPアドレスがアサインされます。</p>
 <p>私はRaspberry pi(ubuntu server)でKubernetes Clusterを構築しており、Node IPアドレスは自宅のWiFiルータ(<code>192.168.3.0/24</code>)から取得しています。
 Cluster Cidr(<code>10.200.0.0/16</code>)ではMacBookなどCluster外のブラウザアクセスができず、(NAT変換などを駆使すれば可能かもしれませんが) 少々不便です。</p>
