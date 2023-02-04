@@ -91,6 +91,10 @@ nav:
         - Traffic Management: addons/argo/argo-rollouts/traffic-management.md
         - Install: addons/argo/argo-rollouts/install.md
         - Basic Usage: addons/argo/argo-rollouts/basic_usage.md
+    - KEDA:
+      - About KEDA: addons/keda/about_keda.md
+      - Install KEDA: addons/keda/install.md
+      - Fallback: addons/keda/fallback.md
 
 plugins:
   - search
