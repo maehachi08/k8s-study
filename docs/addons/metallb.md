@@ -34,7 +34,6 @@ MetalLBでは `Service` リソースで `type: LoadBalancer` を指定可能と�
         - https://metallb.universe.tf/configuration/_advanced_l2_configuration/
 
     <details><summary>manifests</summary>
-
     ```
     ---
     apiVersion: metallb.io/v1beta1
@@ -63,32 +62,29 @@ MetalLBでは `Service` リソースで `type: LoadBalancer` を指定可能と�
       - matchLabels:
           kubernetes.io/hostname: k8s-node2
     ```
-
     </details>
 
 ## Kubernetes Dashboard をMetalLBで払い出したIPアドレスでアクセスしてみる
 
 1. edit of kubernetes-dashboard manifests
-    - ServiceリソースのTypeを `LoadBalancer` に変更
-    - `metallb.universe.tf/address-pool` annotationsを追記
-
-    <details>
-
-    ```
-    @@ -36,7 +36,10 @@
-         k8s-app: kubernetes-dashboard
-       name: kubernetes-dashboard
-       namespace: kubernetes-dashboard
-    +  annotations:
-    +    metallb.universe.tf/address-pool: ip-pool
-     spec:
-    +  type: LoadBalancer
-       ports:
-         - port: 443
-           targetPort: 8443
-    ```
-
-    </details>
+    - [bootstrapping kubernetes-dashboard](/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/) で作成した環境
+        - ServiceリソースのTypeを `LoadBalancer` に変更
+        - `metallb.universe.tf/address-pool` annotationsを追記
+            <details><summary>/etc/kubernetes/manifests/kubernetes-dashboard.yaml の修正後のdiff</summary>
+            ```
+            @@ -36,7 +36,10 @@
+                 k8s-app: kubernetes-dashboard
+               name: kubernetes-dashboard
+               namespace: kubernetes-dashboard
+            +  annotations:
+            +    metallb.universe.tf/address-pool: ip-pool
+             spec:
+            +  type: LoadBalancer
+               ports:
+                 - port: 443
+                   targetPort: 8443
+            ```
+            </details>
 
 1. apply kubernetes-dashboard manifests
     ```
@@ -98,7 +94,6 @@ MetalLBでは `Service` リソースで `type: LoadBalancer` を指定可能と�
 1. check service and ingress
 
     <details><summary>service</summary>
-
     ```
     $ kubectl describe svc -n kubernetes-dashboard kubernetes-dashboard
     Name:                     kubernetes-dashboard
@@ -124,11 +119,9 @@ MetalLBでは `Service` リソースで `type: LoadBalancer` を指定可能と�
       Normal  IPAllocated   53m                 metallb-controller  Assigned IP ["192.168.3.201"]
       Normal  nodeAssigned  50s (x34 over 53m)  metallb-speaker     announcing from node "k8s-master" with protocol "layer2"
     ```
-
     </details>
 
     <details><summary>ingress</summary>
-
     ```
     $ kubectl describe ingress -n kubernetes-dashboard dashboard-ingress
     Name:             dashboard-ingress
@@ -152,7 +145,6 @@ MetalLBでは `Service` リソースで `type: LoadBalancer` を指定可能と�
       ----    ------  ----               ----                      -------
       Normal  Sync    53m (x2 over 54m)  nginx-ingress-controller  Scheduled for sync
     ```
-
     </details>
 
 1. Serviceに割り当てられている `192.168.3.201` でアクセスできることを確認
