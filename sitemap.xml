@@ -51,6 +51,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://maehachi08.github.io/k8s-study/addons/kyverno/about_kyverno/</loc>
+         <lastmod>2023-02-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://maehachi08.github.io/k8s-study/addons/kyverno/installation_kyverno/</loc>
+         <lastmod>2023-02-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/openebs/about/</loc>
          <lastmod>2023-02-04</lastmod>
          <changefreq>daily</changefreq>
@@ -87,16 +97,6 @@
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/kubernetes_dashboard/</loc>
-         <lastmod>2023-02-04</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://maehachi08.github.io/k8s-study/kyverno/about_kyverno/</loc>
-         <lastmod>2023-02-04</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://maehachi08.github.io/k8s-study/kyverno/installation_kyverno/</loc>
          <lastmod>2023-02-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
