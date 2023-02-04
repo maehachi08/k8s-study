@@ -667,7 +667,7 @@ Cluster Cidr(<code>10.200.0.0/16</code>)ではMacBookなどCluster外のブラ�
 </ul>
 </li>
 </ul>
-<p><details><summary>manifests</summary></details></p>
+<p><details><summary>manifests</summary>
 <div class="highlight"><pre><span></span><code>---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -695,6 +695,7 @@ spec:
   - matchLabels:
       kubernetes.io/hostname: k8s-node2
 </code></pre></div>
+</details></p>
 </li>
 </ul>
 <h2 id="kubernetes-dashboard-metallbip">Kubernetes Dashboard をMetalLBで払い出したIPアドレスでアクセスしてみる</h2>
@@ -702,10 +703,10 @@ spec:
 <li>
 <p>edit of kubernetes-dashboard manifests</p>
 <ul>
+<li><a href="/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/">bootstrapping kubernetes-dashboard</a> で作成した環境<ul>
 <li>ServiceリソースのTypeを <code>LoadBalancer</code> に変更</li>
-<li><code>metallb.universe.tf/address-pool</code> annotationsを追記</li>
-</ul>
-<details>
+<li><code>metallb.universe.tf/address-pool</code> annotationsを追記
+    <details><summary>/etc/kubernetes/manifests/kubernetes-dashboard.yaml の修正後のdiff</summary>
 <div class="highlight"><pre><span></span><code>@@ -36,7 +36,10 @@
      k8s-app: kubernetes-dashboard
    name: kubernetes-dashboard
@@ -718,7 +719,10 @@ spec:
      - port: 443
        targetPort: 8443
 </code></pre></div>
-</details>
+</details></li>
+</ul>
+</li>
+</ul>
 </li>
 <li>
 <p>apply kubernetes-dashboard manifests
@@ -727,7 +731,7 @@ spec:
 </li>
 <li>
 <p>check service and ingress</p>
-<p><details><summary>service</summary></details></p>
+<p><details><summary>service</summary>
 <div class="highlight"><pre><span></span><code>$ kubectl describe svc -n kubernetes-dashboard kubernetes-dashboard
 Name:                     kubernetes-dashboard
 Namespace:                kubernetes-dashboard
@@ -752,7 +756,8 @@ Events:
   Normal  IPAllocated   53m                 metallb-controller  Assigned IP ["192.168.3.201"]
   Normal  nodeAssigned  50s (x34 over 53m)  metallb-speaker     announcing from node "k8s-master" with protocol "layer2"
 </code></pre></div>
-<p><details><summary>ingress</summary></details></p>
+</details></p>
+<p><details><summary>ingress</summary>
 <div class="highlight"><pre><span></span><code>$ kubectl describe ingress -n kubernetes-dashboard dashboard-ingress
 Name:             dashboard-ingress
 Labels:           &lt;none&gt;
@@ -775,6 +780,7 @@ Events:
   ----    ------  ----               ----                      -------
   Normal  Sync    53m (x2 over 54m)  nginx-ingress-controller  Scheduled for sync
 </code></pre></div>
+</details></p>
 </li>
 <li>
 <p>Serviceに割り当てられている <code>192.168.3.201</code> でアクセスできることを確認</p>
