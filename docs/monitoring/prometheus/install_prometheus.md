@@ -28,7 +28,6 @@
     ```
 
       <details><summary>prometheus.yaml 修正後のdiff</summary>
-
       ```
       $ diff -u <(curl -s https://raw.githubusercontent.com/prometheus-community/helm-charts/main/charts/prometheus/values.yaml) <(cat ~/work/prometheus/prometheus.yaml)
       --- /dev/fd/63  2022-10-30 14:07:09.532561438 +0000
@@ -61,7 +60,6 @@
            ## pushgateway data Persistent Volume Binding Mode
            ## If defined, volumeBindingMode: <volumeBindingMode>
       ```
-
       </details>
 
 1. install

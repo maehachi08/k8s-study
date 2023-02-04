@@ -21,7 +21,6 @@
     ```
 
       <details><summary>grafana.yaml 修正後のdiff</summary>
-
       ```
       $ diff -u <(curl -s https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml) <(cat ~/work/prometheus/grafana/grafana.yaml)
       --- /dev/fd/63  2022-10-30 15:05:32.554153834 +0000
@@ -80,7 +79,6 @@
        #      type: cloudwatch
        #      access: proxy
       ```
-
       </details>
 
 1. install
@@ -90,7 +88,6 @@
     ```
 
       <details><summary>実行ログ</summary>
-
       ```
       $ helm upgrade -i grafana grafana/grafana -n monitoring -f ~/work/prometheus/grafana/grafana.yaml
       Release "grafana" does not exist. Installing it now.
@@ -122,7 +119,6 @@
       ######            the Grafana pod is terminated.                            #####
       #################################################################################
       ```
-
       </details>
 
 1. grafana ServiceのMetalLBで払い出されたExternal IPアドレスを確認する
@@ -161,7 +157,6 @@
     ```
 
       <details><summary>grafana.yaml 修正後のdiff(`cadvisor-exporter` Dashboardも入れている例です)</summary>
-
       ```
       $ diff -u <(curl -s https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml) <(cat ~/work/prometheus/grafana/grafana.yaml)
 
@@ -188,7 +183,6 @@
          #     json: |
 
       ```
-
       </details>
 
 1. install
