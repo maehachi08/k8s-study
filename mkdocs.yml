@@ -6,6 +6,11 @@ site_author: maehachi08
 repo_url: https://github.com/maehachi08/k8s-study
 edit_uri: ""
 
+plugins:
+  - search
+  - glightbox
+  - mkdocs_pymdownx_material_extras
+
 # theme: readthedocs
 theme:
   name: material
@@ -28,6 +33,9 @@ theme:
 
 # https://facelessuser.github.io/pymdown-extensions/
 markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.details
   - pymdownx.tabbed
@@ -70,8 +78,6 @@ nav:
       - Install Prometheus: monitoring/prometheus/install_prometheus.md
       - Install Grafana: monitoring/prometheus/install_grafana.md
       - Install cadvisor: monitoring/prometheus/install_cadvisor.md
-  - Operations:
-    - etcd: operations/backup_etcd.md
   - Addons:
     - MetalLB: addons/metallb.md
     - OpenEBS:
@@ -90,12 +96,14 @@ nav:
     - Kyverno:
       - About Kyverno: addons/kyverno/about_kyverno.md
       - Installation Kyverno: addons/kyverno/installation_kyverno.md
+  - Cloud Native Buildpacks:
+    - About: cloud-native-buildpacks/about.md
+    - Paketo Buildpacks:
+      - Ruby: cloud-native-buildpacks/paketo-buildpacks/ruby.md
+  - Operations:
+    - etcd: operations/backup_etcd.md
   - Failure Test:
     - Failure Story: failure_test/failure_story.md
     - Point of failure: failure_test/point_of_failure.md
     - Failure Scenario:
       - Node: failure_test/failure_scenario_of_node.md
-
-plugins:
-  - search
-  - glightbox
