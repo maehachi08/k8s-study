@@ -875,8 +875,7 @@ pids    3       39      1
 </ul>
 <h3 id="_1">前提作業</h3>
 <ul>
-<li>
-<p><a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/">https://kubernetes.io/docs/setup/production-environment/container-runtimes/</a></p>
+<li><a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/">https://kubernetes.io/docs/setup/production-environment/container-runtimes/</a>
 <details>
 <div class="highlight"><pre><span></span><code>cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
@@ -896,8 +895,7 @@ EOF
 # Apply sysctl params without reboot
 sudo sysctl --system
 </code></pre></div>
-</details>
-</li>
+</details></li>
 </ul>
 <h4 id="containerd">Containerd</h4>
 <p><a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd">https://kubernetes.io/docs/setup/production-environment/container-runtimes/#containerd</a>
@@ -939,17 +937,13 @@ sudo vim /etc/containerd/config.toml
 <ol>
 <li>kernel moduleのload<ul>
 <li>overlayファイルシステムを利用するためのkernel module <code>overlay</code></li>
-<li>iptablesがbridgeを通過するパケットを処理するためのkernel module <code>br_netfilter</code>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div></li>
+<li>iptablesがbridgeを通過するパケットを処理するためのkernel module <code>br_netfilter</code></li>
 </ul>
 </li>
 <li>
 <p>kernel parameterのset</p>
 <ul>
-<li>iptablesがbridgeを通過するパケットを処理するための設定
-  <div class="highlight"><pre><span></span><code>
-</code></pre></div></li>
+<li>iptablesがbridgeを通過するパケットを処理するための設定</li>
 </ul>
 </li>
 <li>
@@ -1024,7 +1018,6 @@ sudo vim /etc/crio/crio.conf
 <li><code>[crio]</code> セクションに入れる
    <div class="highlight"><pre><span></span><code>graphroot = "/var/lib/containers/storage"
 </code></pre></div>
-<br/>
 <details><summary>/etc/containers/storage.conf</summary>
 <div class="highlight"><pre><span></span><code>[storage]
 driver = "overlay2"
@@ -1040,12 +1033,7 @@ mountopt = "nodev"
 
 [storage.options.thinpool]
 </code></pre></div>
-</details></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
+</details>
 <details><summary>/etc/crio/crio.conf</summary>
 <div class="highlight"><pre><span></span><code>[crio]
 storage_driver = "overlay2"
@@ -1146,12 +1134,17 @@ enable_metrics = false
 metrics_port = 9090
 metrics_socket = ""
 </code></pre></div>
-</details>
-<ol>
-<li>crioを再起動する
+</details></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>crioを再起動する
    <div class="highlight"><pre><span></span><code>sudo systemctl daemon-reload
 sudo systemctl restart crio
-</code></pre></div></li>
+</code></pre></div></p>
+</li>
 </ol>
 <h3 id="cli-tool">CLI TOOL</h3>
 <ol>
@@ -1160,23 +1153,20 @@ sudo systemctl restart crio
 <ul>
 <li>containerdプロジェクトで公開しているdocker-cli互換のCLI</li>
 <li><a href="https://github.com/containerd/nerdctl">https://github.com/containerd/nerdctl</a></li>
-<li>
-<p><a href="https://speakerdeck.com/ktock/dockerkaracontainerdhefalseyi-xing?slide=22">https://speakerdeck.com/ktock/dockerkaracontainerdhefalseyi-xing?slide=22</a></p>
+<li><a href="https://speakerdeck.com/ktock/dockerkaracontainerdhefalseyi-xing?slide=22">https://speakerdeck.com/ktock/dockerkaracontainerdhefalseyi-xing?slide=22</a>
 <div class="highlight"><pre><span></span><code>NERDCTL_VERSION=`curl -s -L https://api.github.com/repos/containerd/nerdctl/releases/latest | jq -r .tag_name`
 curl -L -s https://github.com/containerd/nerdctl/releases/download/${NERDCTL_VERSION}/nerdctl-`echo ${NERDCTL_VERSION} | sed -e 's/^v//'`-linux-arm64.tar.gz | sudo tar -zxC /usr/local/bin/
 
 ls -l /usr/local/bin
-</code></pre></div>
-</li>
+</code></pre></div></li>
 </ul>
 </li>
 <li>
 <p>buildkit</p>
 <ul>
 <li><a href="https://github.com/moby/buildkit">https://github.com/moby/buildkit</a></li>
-<li>
-<p><code>nerdctl build</code> を実行するために必要</p>
-<div class="highlight"><pre><span></span><code>BUILDKIT_VERSION=`curl -s -L https://api.github.com/repos/moby/buildkit/releases/latest | jq -r .tag_name`
+<li><code>nerdctl build</code> を実行するために必要
+    <div class="highlight"><pre><span></span><code>BUILDKIT_VERSION=`curl -s -L https://api.github.com/repos/moby/buildkit/releases/latest | jq -r .tag_name`
 curl -L -s https://github.com/moby/buildkit/releases/download/${BUILDKIT_VERSION}/buildkit-${BUILDKIT_VERSION}.linux-arm64.tar.gz | sudo tar -zxC /tmp/
 sudo mv /tmp/bin/* /usr/local/bin/
 ls -l /usr/local/bin
@@ -1185,8 +1175,7 @@ sudo curl -sL https://raw.githubusercontent.com/moby/buildkit/${BUILDKIT_VERSION
 sudo curl -sL https://raw.githubusercontent.com/moby/buildkit/${BUILDKIT_VERSION}/examples/systemd/system/buildkit.service -o /etc/systemd/system/buildkit.service
 sudo systemctl enable buildkit.socket buildkit.service
 sudo systemctl start buildkit.socket buildkit.service
-</code></pre></div>
-</li>
+</code></pre></div></li>
 </ul>
 </li>
 <li>
