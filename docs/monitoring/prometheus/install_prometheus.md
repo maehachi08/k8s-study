@@ -9,7 +9,7 @@
     - Ephemeral Storageの `storageClass` を OpenEBSのjiva storageのものとする( e.g. `openebs-jiva-csi-default`)
 
         !!! info
-            - [Installing OpenEBS](/addons/openebs/install/) を実施済みの前提
+            - [Installing OpenEBS](../../addons/openebs/install.md) を実施済みの前提
 
     - `Prometheus` や `Alertmanager` の WebUIを利用したい場合
         - NodeIp:NodePort でアクセスする場合
@@ -19,7 +19,7 @@
             - `annotations` に `metallb.universe.tf/address-pool: ip-pool`
 
             !!! info
-                - [MetalLB](/addons/metallb/) を実施済みの前提
+                - [MetalLB](../../addons/metallb.md) を実施済みの前提
 
     ```
     mkdir -p ~/work/prometheus
