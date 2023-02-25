@@ -92,29 +92,26 @@
 ### 前提作業
 
 - https://kubernetes.io/docs/setup/production-environment/container-runtimes/
-
     <details>
+    ```
+    cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+    overlay
+    br_netfilter
+    EOF
 
-      ```
-      cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
-      overlay
-      br_netfilter
-      EOF
+    sudo modprobe overlay
+    sudo modprobe br_netfilter
 
-      sudo modprobe overlay
-      sudo modprobe br_netfilter
+    # sysctl params required by setup, params persist across reboots
+    cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+    net.bridge.bridge-nf-call-iptables  = 1
+    net.bridge.bridge-nf-call-ip6tables = 1
+    net.ipv4.ip_forward                 = 1
+    EOF
 
-      # sysctl params required by setup, params persist across reboots
-      cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-      net.bridge.bridge-nf-call-iptables  = 1
-      net.bridge.bridge-nf-call-ip6tables = 1
-      net.ipv4.ip_forward                 = 1
-      EOF
-
-      # Apply sysctl params without reboot
-      sudo sysctl --system
-      ```
-
+    # Apply sysctl params without reboot
+    sudo sysctl --system
+    ```
     </details>
 
 #### Containerd
@@ -155,12 +152,8 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
 1. kernel moduleのload
     - overlayファイルシステムを利用するためのkernel module `overlay`
     - iptablesがbridgeを通過するパケットを処理するためのkernel module `br_netfilter`
-      ```
-      ```
 1. kernel parameterのset
     - iptablesがbridgeを通過するパケットを処理するための設定
-      ```
-      ```
 
 1. kernel moduleのload
     - overlayファイルシステムを利用するためのkernel module `overlay`
@@ -227,125 +220,125 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
            ```
            graphroot = "/var/lib/containers/storage"
            ```
-   <details><summary>/etc/containers/storage.conf</summary>
-      ```
-      [storage]
-      driver = "overlay2"
-      runroot = "/run/containers/storage"
-      graphroot = "/var/lib/containers/storage"
+    <details><summary>/etc/containers/storage.conf</summary>
+    ```
+    [storage]
+    driver = "overlay2"
+    runroot = "/run/containers/storage"
+    graphroot = "/var/lib/containers/storage"
 
-      [storage.options]
-      additionalimagestores = [
-      ]
+    [storage.options]
+    additionalimagestores = [
+    ]
 
-      [storage.options.overlay]
-      mountopt = "nodev"
+    [storage.options.overlay]
+    mountopt = "nodev"
 
-      [storage.options.thinpool]
-      ```
-   </details>
-   <details><summary>/etc/crio/crio.conf</summary>
-      ```
-      [crio]
-      storage_driver = "overlay2"
-      graphroot = "/var/lib/containers/storage"
-      log_dir = "/var/log/crio/pods"
-      version_file = "/var/run/crio/version"
-      version_file_persist = "/var/lib/crio/version"
-      clean_shutdown_file = "/var/lib/crio/clean.shutdown"
+    [storage.options.thinpool]
+    ```
+    </details>
+    <details><summary>/etc/crio/crio.conf</summary>
+    ```
+    [crio]
+    storage_driver = "overlay2"
+    graphroot = "/var/lib/containers/storage"
+    log_dir = "/var/log/crio/pods"
+    version_file = "/var/run/crio/version"
+    version_file_persist = "/var/lib/crio/version"
+    clean_shutdown_file = "/var/lib/crio/clean.shutdown"
 
-      [crio.api]
-      listen = "/var/run/crio/crio.sock"
-      stream_address = "127.0.0.1"
-      stream_port = "0"
-      stream_enable_tls = false
-      stream_idle_timeout = ""
-      stream_tls_cert = ""
-      stream_tls_key = ""
-      stream_tls_ca = ""
-      grpc_max_send_msg_size = 16777216
-      grpc_max_recv_msg_size = 16777216
+    [crio.api]
+    listen = "/var/run/crio/crio.sock"
+    stream_address = "127.0.0.1"
+    stream_port = "0"
+    stream_enable_tls = false
+    stream_idle_timeout = ""
+    stream_tls_cert = ""
+    stream_tls_key = ""
+    stream_tls_ca = ""
+    grpc_max_send_msg_size = 16777216
+    grpc_max_recv_msg_size = 16777216
 
-      [crio.runtime]
-      no_pivot = false
-      decryption_keys_path = "/etc/crio/keys/"
-      conmon = ""
-      conmon_cgroup = "system.slice"
-      conmon_env = [
-              "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-      ]
-      default_env = [
-      ]
-      seccomp_profile = ""
-      seccomp_use_default_when_empty = false
-      apparmor_profile = "crio-default"
-      irqbalance_config_file = "/etc/sysconfig/irqbalance"
-      cgroup_manager = "systemd"
-      separate_pull_cgroup = ""
-      default_capabilities = [
-              "CHOWN",
-              "DAC_OVERRIDE",
-              "FSETID",
-              "FOWNER",
-              "SETGID",
-              "SETUID",
-              "SETPCAP",
-              "NET_BIND_SERVICE",
-              "KILL",
-      ]
-      default_sysctls = [
-      ]
-      additional_devices = [
-      ]
-      hooks_dir = [
-              "/usr/share/containers/oci/hooks.d",
-      ]pids_limit = 1024
-      log_size_max = -1
-      log_to_journald = false
-      container_exits_dir = "/var/run/crio/exits"
-      container_attach_socket_dir = "/var/run/crio"
-      bind_mount_prefix = ""
-      read_only = false
-      log_level = "info"
-      log_filter = ""
-      uid_mappings = ""
-      gid_mappings = ""
-      ctr_stop_timeout = 30
-      drop_infra_ctr = false
-      infra_ctr_cpuset = ""
-      namespaces_dir = "/var/run"
-      pinns_path = ""
-      default_runtime = "runc"
+    [crio.runtime]
+    no_pivot = false
+    decryption_keys_path = "/etc/crio/keys/"
+    conmon = ""
+    conmon_cgroup = "system.slice"
+    conmon_env = [
+            "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    ]
+    default_env = [
+    ]
+    seccomp_profile = ""
+    seccomp_use_default_when_empty = false
+    apparmor_profile = "crio-default"
+    irqbalance_config_file = "/etc/sysconfig/irqbalance"
+    cgroup_manager = "systemd"
+    separate_pull_cgroup = ""
+    default_capabilities = [
+            "CHOWN",
+            "DAC_OVERRIDE",
+            "FSETID",
+            "FOWNER",
+            "SETGID",
+            "SETUID",
+            "SETPCAP",
+            "NET_BIND_SERVICE",
+            "KILL",
+    ]
+    default_sysctls = [
+    ]
+    additional_devices = [
+    ]
+    hooks_dir = [
+            "/usr/share/containers/oci/hooks.d",
+    ]pids_limit = 1024
+    log_size_max = -1
+    log_to_journald = false
+    container_exits_dir = "/var/run/crio/exits"
+    container_attach_socket_dir = "/var/run/crio"
+    bind_mount_prefix = ""
+    read_only = false
+    log_level = "info"
+    log_filter = ""
+    uid_mappings = ""
+    gid_mappings = ""
+    ctr_stop_timeout = 30
+    drop_infra_ctr = false
+    infra_ctr_cpuset = ""
+    namespaces_dir = "/var/run"
+    pinns_path = ""
+    default_runtime = "runc"
 
-      [crio.runtime.runtimes.runc]
-      runtime_path = ""
-      runtime_type = "oci"
-      runtime_root = "/run/runc"
-      allowed_annotations = [
-              "io.containers.trace-syscall",
-      ]
+    [crio.runtime.runtimes.runc]
+    runtime_path = ""
+    runtime_type = "oci"
+    runtime_root = "/run/runc"
+    allowed_annotations = [
+            "io.containers.trace-syscall",
+    ]
 
-      [crio.image]
-      default_transport = "docker://"
-      global_auth_file = ""
-      pause_image = "k8s.gcr.io/pause:3.2"
-      pause_image_auth_file = ""
-      pause_command = "/pause"
-      signature_policy = ""
-      image_volumes = "mkdir"
-      big_files_temporary_dir = ""
+    [crio.image]
+    default_transport = "docker://"
+    global_auth_file = ""
+    pause_image = "k8s.gcr.io/pause:3.2"
+    pause_image_auth_file = ""
+    pause_command = "/pause"
+    signature_policy = ""
+    image_volumes = "mkdir"
+    big_files_temporary_dir = ""
 
-      [crio.network]
-      network_dir = "/etc/cni/net.d/"
-      plugin_dirs = [
-              "/opt/cni/bin/",
-      ]
-      [crio.metrics]
-      enable_metrics = false
-      metrics_port = 9090
-      metrics_socket = ""
-      ```
-   </details>
+    [crio.network]
+    network_dir = "/etc/cni/net.d/"
+    plugin_dirs = [
+            "/opt/cni/bin/",
+    ]
+    [crio.metrics]
+    enable_metrics = false
+    metrics_port = 9090
+    metrics_socket = ""
+    ```
+    </details>
 
 1. crioを再起動する
    ```
@@ -359,7 +352,6 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
     - containerdプロジェクトで公開しているdocker-cli互換のCLI
     - https://github.com/containerd/nerdctl
     - https://speakerdeck.com/ktock/dockerkaracontainerdhefalseyi-xing?slide=22
-
         ```
         NERDCTL_VERSION=`curl -s -L https://api.github.com/repos/containerd/nerdctl/releases/latest | jq -r .tag_name`
         curl -L -s https://github.com/containerd/nerdctl/releases/download/${NERDCTL_VERSION}/nerdctl-`echo ${NERDCTL_VERSION} | sed -e 's/^v//'`-linux-arm64.tar.gz | sudo tar -zxC /usr/local/bin/
@@ -370,7 +362,6 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
 1. buildkit
     - https://github.com/moby/buildkit
     - `nerdctl build` を実行するために必要
-
         ```
         BUILDKIT_VERSION=`curl -s -L https://api.github.com/repos/moby/buildkit/releases/latest | jq -r .tag_name`
         curl -L -s https://github.com/moby/buildkit/releases/download/${BUILDKIT_VERSION}/buildkit-${BUILDKIT_VERSION}.linux-arm64.tar.gz | sudo tar -zxC /tmp/

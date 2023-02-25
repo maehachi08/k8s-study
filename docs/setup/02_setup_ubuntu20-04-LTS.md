@@ -18,32 +18,30 @@
    ```
 
     <details><summary>/etc/netplan/50-cloud-init.yaml (masterの場合)</summary>
+    ```
+    network:
+      ethernets:
+          eth0:
+              dhcp4: true
+              optional: true
+      version: 2
+      wifis:
+        wlan0:
+          optional: true
+          dhcp4: false
+          addresses:
+          - 192.168.3.50/24
+          gateway4: 192.168.3.1
+          nameservers:
+            addresses:
+            - 8.8.8.8
+            - 8.8.4.4
+            search: []
+          access-points:
+            "<SSID名>":
+              password: "<パスワード>"
 
-       ```
-       network:
-         ethernets:
-             eth0:
-                 dhcp4: true
-                 optional: true
-         version: 2
-         wifis:
-           wlan0:
-             optional: true
-             dhcp4: false
-             addresses:
-             - 192.168.3.50/24
-             gateway4: 192.168.3.1
-             nameservers:
-               addresses:
-               - 8.8.8.8
-               - 8.8.4.4
-               search: []
-             access-points:
-               "<SSID名>":
-                 password: "<パスワード>"
-
-       ```
-
+    ```
     </details>
 
 1. package更新
