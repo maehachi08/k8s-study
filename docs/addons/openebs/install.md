@@ -79,7 +79,6 @@
 
 1. リソース確認
     <details><summary>PersistentVolumeClaim</summary>
-    
     ```
     $ kubectl describe PersistentVolumeClaim jenkins-claim
     Name:          jenkins-claim
@@ -99,11 +98,9 @@
                                                  Used By:       jenkins-7f87d6d6d8-htjx9
                                                  Events:        <none>
     ```
-    
     </details>
     
     <details><summary>Service</summary>
-    
     ```
     $ kubectl describe service jenkins-svc
     Name:                     jenkins-svc
@@ -124,11 +121,9 @@
     External Traffic Policy:  Cluster
     Events:                   <none>
     ```
-    
     </details>
     
     <details>><summary>Deployment</summary>
-    
     ```
     $ kubectl describe deployment jenkins
     Name:                   jenkins
@@ -165,11 +160,9 @@
     NewReplicaSet:   jenkins-7f87d6d6d8 (1/1 replicas created)
     Events:          <none>
     ```
-    
     </details>
     
     <details><summary>Pod</summary>
-    
     ```
     $ kubectl describe pods jenkins-7f87d6d6d8-htjx9
     Name:         jenkins-7f87d6d6d8-htjx9
@@ -223,22 +216,21 @@
                                  node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
     Events:                      <none>
     ```
-    
     </details>
 
 1. Webアクセス確認
 
     | image | descrioption |
     |:---|:---|
-    | <img src="/addons/openebs/jenkins_01.png" style="width:300px;"/> | |
-    | <img src="/addons/openebs/jenkins_02.png" style="width:300px;"/> | 表示にある通り`/var/jenkins_home/secrets/initialAdminPassword`の内容を貼り付ける<br>`kubectl exec -it jenkins-7f87d6d6d8-wx8nn -- cat /var/jenkins_home/secrets/initialAdminPassword` |
-    | <img src="/addons/openebs/jenkins_03.png" style="width:300px;"/> | |
-    | <img src="/addons/openebs/jenkins_04.png" style="width:300px;"/> | |
-    | <img src="/addons/openebs/jenkins_05.png" style="width:300px;"/> | |
-    | <img src="/addons/openebs/jenkins_06.png" style="width:300px;"/> | |
-    | <img src="/addons/openebs/jenkins_07.png" style="width:300px;"/> | |
-    | <img src="/addons/openebs/jenkins_08.png" style="width:300px;"/> | |
-    | <img src="/addons/openebs/jenkins_09.png" style="width:300px;"/> | |
-    | <img src="/addons/openebs/jenkins_10.png" style="width:300px;"/> | |
-    | <img src="/addons/openebs/jenkins_11.png" style="width:300px;"/> | |
+    | ![](jenkins_01.png){ width:300px } | |
+    | ![](jenkins_02.png){ width:300px } | 表示にある通り`/var/jenkins_home/secrets/initialAdminPassword`の内容を貼り付ける<br>`kubectl exec -it jenkins-7f87d6d6d8-wx8nn -- cat /var/jenkins_home/secrets/initialAdminPassword` |
+    | ![](jenkins_03.png){ width:300px } | |
+    | ![](jenkins_04.png){ width:300px } | |
+    | ![](jenkins_05.png){ width:300px } | |
+    | ![](jenkins_06.png){ width:300px } | |
+    | ![](jenkins_07.png){ width:300px } | |
+    | ![](jenkins_08.png){ width:300px } | |
+    | ![](jenkins_09.png){ width:300px } | |
+    | ![](jenkins_10.png){ width:300px } | |
+    | ![](jenkins_11.png){ width:300px } | |
 
