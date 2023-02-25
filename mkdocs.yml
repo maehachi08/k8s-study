@@ -50,6 +50,9 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Container Runtime: container-runtime.md
+  - Kubernetes:
+    - Architecture:
+      - Garbage Collection: kubernetes/architecture/garbage-collection.md
   - Setup:
     - 01. Raspberry Pi 構成: setup/01_setup_RaspberryPi.md
     - 02. OS Install: setup/02_setup_ubuntu20-04-LTS.md
