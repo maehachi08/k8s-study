@@ -803,7 +803,7 @@ openebs-ndm-vm255                               1/1     Running   0             
 </li>
 <li>
 <p>リソース確認
-    <details><summary>PersistentVolumeClaim</summary></details></p>
+    <details><summary>PersistentVolumeClaim</summary>
 <div class="highlight"><pre><span></span><code>$ kubectl describe PersistentVolumeClaim jenkins-claim
 Name:          jenkins-claim
 Namespace:     default
@@ -822,7 +822,8 @@ Annotations:   pv.kubernetes.io/bind-completed: yes
                                              Used By:       jenkins-7f87d6d6d8-htjx9
                                              Events:        &lt;none&gt;
 </code></pre></div>
-<p><details><summary>Service</summary></details></p>
+</details></p>
+<p><details><summary>Service</summary>
 <div class="highlight"><pre><span></span><code>$ kubectl describe service jenkins-svc
 Name:                     jenkins-svc
 Namespace:                default
@@ -842,7 +843,8 @@ Session Affinity:         None
 External Traffic Policy:  Cluster
 Events:                   &lt;none&gt;
 </code></pre></div>
-<p><details>&gt;<summary>Deployment</summary></details></p>
+</details></p>
+<p><details>&gt;<summary>Deployment</summary>
 <div class="highlight"><pre><span></span><code>$ kubectl describe deployment jenkins
 Name:                   jenkins
 Namespace:              default
@@ -878,7 +880,8 @@ OldReplicaSets:  &lt;none&gt;
 NewReplicaSet:   jenkins-7f87d6d6d8 (1/1 replicas created)
 Events:          &lt;none&gt;
 </code></pre></div>
-<p><details><summary>Pod</summary></details></p>
+</details></p>
+<p><details><summary>Pod</summary>
 <div class="highlight"><pre><span></span><code>$ kubectl describe pods jenkins-7f87d6d6d8-htjx9
 Name:         jenkins-7f87d6d6d8-htjx9
 Namespace:    default
@@ -931,6 +934,7 @@ Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists fo
                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
 Events:                      &lt;none&gt;
 </code></pre></div>
+</details></p>
 </li>
 <li>
 <p>Webアクセス確認</p>
@@ -943,47 +947,47 @@ Events:                      &lt;none&gt;
 </thead>
 <tbody>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_01.png"><img src="/addons/openebs/jenkins_01.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_01.png"><img src="jenkins_01.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_02.png"><img src="/addons/openebs/jenkins_02.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_02.png"><img src="jenkins_02.png" style="width:300px;"/></a></td>
 <td align="left">表示にある通り<code>/var/jenkins_home/secrets/initialAdminPassword</code>の内容を貼り付ける<br/><code>kubectl exec -it jenkins-7f87d6d6d8-wx8nn -- cat /var/jenkins_home/secrets/initialAdminPassword</code></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_03.png"><img src="/addons/openebs/jenkins_03.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_03.png"><img src="jenkins_03.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_04.png"><img src="/addons/openebs/jenkins_04.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_04.png"><img src="jenkins_04.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_05.png"><img src="/addons/openebs/jenkins_05.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_05.png"><img src="jenkins_05.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_06.png"><img src="/addons/openebs/jenkins_06.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_06.png"><img src="jenkins_06.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_07.png"><img src="/addons/openebs/jenkins_07.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_07.png"><img src="jenkins_07.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_08.png"><img src="/addons/openebs/jenkins_08.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_08.png"><img src="jenkins_08.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_09.png"><img src="/addons/openebs/jenkins_09.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_09.png"><img src="jenkins_09.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_10.png"><img src="/addons/openebs/jenkins_10.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_10.png"><img src="jenkins_10.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 <tr>
-<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="/addons/openebs/jenkins_11.png"><img src="/addons/openebs/jenkins_11.png" style="width:300px;"/></a></td>
+<td align="left"><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="jenkins_11.png"><img src="jenkins_11.png" style="width:300px;"/></a></td>
 <td align="left"></td>
 </tr>
 </tbody>
