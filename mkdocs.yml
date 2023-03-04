@@ -86,6 +86,9 @@ nav:
     - OpenEBS:
       - About OpenEBS: addons/openebs/about.md
       - Installing OpenEBS: addons/openebs/install.md
+    - cert-manager:
+      - About: addons/cert-manager/about.md
+      - Install: addons/cert-manager/install.md
     - Argo:
       - Argo Rollouts:
         - About: addons/argo/argo-rollouts/about.md
