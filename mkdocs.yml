@@ -105,6 +105,9 @@ nav:
       - Ruby: cloud-native-buildpacks/paketo-buildpacks/ruby.md
   - Operations:
     - etcd: operations/backup_etcd.md
+  - LoadTest:
+    - Locust:
+      - About: load_test/locust/about.md
   - Failure Test:
     - Failure Story: failure_test/failure_story.md
     - Point of failure: failure_test/point_of_failure.md
