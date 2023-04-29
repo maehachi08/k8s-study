@@ -12,24 +12,24 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/addons/argo/argo-rollouts/basic_usage/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/addons/cert-manager/install/">
       
       
-        <link rel="prev" href="../install/">
+        <link rel="prev" href="../about/">
       
       
-        <link rel="next" href="../../../keda/about_keda/">
+        <link rel="next" href="../../argo/argo-rollouts/about/">
       
-      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
     
     
       
-        <title>Basic Usage - maehachi08/k8s-study</title>
+        <title>Install - maehachi08/k8s-study</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ded33207.min.css">
       
       
   
@@ -77,8 +77,8 @@
     
     
 
-<script src="../../../../assets/pymdownx-extras/material-extra-theme-8d50d708.js" type="text/javascript"></script>
-<script src="../../../../assets/pymdownx-extras/material-extra-3rdparty-a81e7739.js" type="text/javascript"></script>
+<script src="../../../assets/pymdownx-extras/material-extra-theme-8d50d708.js" type="text/javascript"></script>
+<script src="../../../assets/pymdownx-extras/material-extra-3rdparty-a81e7739.js" type="text/javascript"></script>
 
     
       
@@ -90,16 +90,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/pymdownx-extras/extra-a2b15a354f.css">
+      <link rel="stylesheet" href="../../../assets/pymdownx-extras/extra-a2b15a354f.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
         html.glightbox-open { overflow: initial; height: 100%; }
         .gslide-title { margin-top: 0px; user-select: text; }
         .gslide-desc { color: #666; user-select: text; }
@@ -110,7 +110,7 @@
             body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
+            </style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -125,7 +125,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#canary" class="md-skip">
+        <a href="#cert-manager" class="md-skip">
           Skip to content
         </a>
       
@@ -167,7 +167,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Basic Usage
+              Install
             
           </span>
         </div>
@@ -279,7 +279,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -310,7 +310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -325,7 +325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../container-runtime/" class="md-nav__link">
+      <a href="../../../container-runtime/" class="md-nav__link">
         Container Runtime
       </a>
     </li>
@@ -394,7 +394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../kubernetes/architecture/garbage-collection/" class="md-nav__link">
+      <a href="../../../kubernetes/architecture/garbage-collection/" class="md-nav__link">
         Garbage Collection
       </a>
     </li>
@@ -450,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/01_setup_RaspberryPi/" class="md-nav__link">
+      <a href="../../../setup/01_setup_RaspberryPi/" class="md-nav__link">
         01. Raspberry Pi 構成
       </a>
     </li>
@@ -464,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
+      <a href="../../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
         02. OS Install
       </a>
     </li>
@@ -478,7 +478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/03_common_settings/" class="md-nav__link">
+      <a href="../../../setup/03_common_settings/" class="md-nav__link">
         03. master/nodeで共通手順
       </a>
     </li>
@@ -492,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/04_creation_certificate/" class="md-nav__link">
+      <a href="../../../setup/04_creation_certificate/" class="md-nav__link">
         04. 認証局の設定とTLS証明書の作成
       </a>
     </li>
@@ -506,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/05_creating_config/" class="md-nav__link">
+      <a href="../../../setup/05_creating_config/" class="md-nav__link">
         05. 認証のためのkubeconfigの作成
       </a>
     </li>
@@ -547,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -561,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
+      <a href="../../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
         02. bootstrapping etcd
       </a>
     </li>
@@ -575,7 +575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
+      <a href="../../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
         03. bootstrapping kube-apiserver
       </a>
     </li>
@@ -589,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
+      <a href="../../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
         04. bootstrapping kube-controller-manager
       </a>
     </li>
@@ -603,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
+      <a href="../../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
         05. bootstrapping kube-scheduler
       </a>
     </li>
@@ -617,7 +617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
         06. kube-apiserver から kubelet へのアクセス権を設定する
       </a>
     </li>
@@ -631,7 +631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/06_master/07_controller_health_check/" class="md-nav__link">
+      <a href="../../../setup/06_master/07_controller_health_check/" class="md-nav__link">
         07. Kubernetes API のヘルスチェック
       </a>
     </li>
@@ -679,7 +679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
         01. bootstrapping kubelet
       </a>
     </li>
@@ -693,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
+      <a href="../../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
         02. bootstrapping kube-proxy
       </a>
     </li>
@@ -714,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
+      <a href="../../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
         08. bootstrapping flannel
       </a>
     </li>
@@ -728,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
+      <a href="../../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
         09. bootstrapping coredns
       </a>
     </li>
@@ -742,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
+      <a href="../../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
         10. bootstrapping nginx ingress controller
       </a>
     </li>
@@ -756,7 +756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
+      <a href="../../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
         11. bootstrapping external-dns
       </a>
     </li>
@@ -805,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+      <a href="../../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
         bootstrapping metrics_server
       </a>
     </li>
@@ -819,7 +819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
+      <a href="../../../monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
         bootstrapping kubernetes-dashboard
       </a>
     </li>
@@ -860,7 +860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../monitoring/prometheus/install_prometheus/" class="md-nav__link">
+      <a href="../../../monitoring/prometheus/install_prometheus/" class="md-nav__link">
         Install Prometheus
       </a>
     </li>
@@ -874,7 +874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../monitoring/prometheus/install_grafana/" class="md-nav__link">
+      <a href="../../../monitoring/prometheus/install_grafana/" class="md-nav__link">
         Install Grafana
       </a>
     </li>
@@ -888,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../monitoring/prometheus/install_cadvisor/" class="md-nav__link">
+      <a href="../../../monitoring/prometheus/install_cadvisor/" class="md-nav__link">
         Install cadvisor
       </a>
     </li>
@@ -946,7 +946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../metallb/" class="md-nav__link">
+      <a href="../../metallb/" class="md-nav__link">
         MetalLB
       </a>
     </li>
@@ -987,7 +987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../openebs/about/" class="md-nav__link">
+      <a href="../../openebs/about/" class="md-nav__link">
         About OpenEBS
       </a>
     </li>
@@ -1001,9 +1001,114 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../openebs/install/" class="md-nav__link">
+      <a href="../../openebs/install/" class="md-nav__link">
         Installing OpenEBS
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+          cert-manager
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          cert-manager
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Install
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Install
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    インストール
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1027,71 +1132,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
-          cert-manager
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_6_3">
-          <span class="md-nav__icon md-icon"></span>
-          cert-manager
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../cert-manager/about/" class="md-nav__link">
-        About
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../cert-manager/install/" class="md-nav__link">
-        Install
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
       
       
       
@@ -1100,7 +1141,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_6_4">
           <span class="md-nav__icon md-icon"></span>
           Argo
@@ -1111,16 +1152,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_1" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4_1" >
       
       
       
@@ -1129,7 +1168,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_1_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_4_1_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_6_4_1">
           <span class="md-nav__icon md-icon"></span>
           Argo Rollouts
@@ -1142,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/" class="md-nav__link">
+      <a href="../../argo/argo-rollouts/about/" class="md-nav__link">
         About
       </a>
     </li>
@@ -1156,7 +1195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../traffic-management/" class="md-nav__link">
+      <a href="../../argo/argo-rollouts/traffic-management/" class="md-nav__link">
         Traffic Management
       </a>
     </li>
@@ -1170,7 +1209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+      <a href="../../argo/argo-rollouts/install/" class="md-nav__link">
         Install
       </a>
     </li>
@@ -1182,109 +1221,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Basic Usage
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../argo/argo-rollouts/basic_usage/" class="md-nav__link">
         Basic Usage
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#canary" class="md-nav__link">
-    canary
-  </a>
-  
-    <nav class="md-nav" aria-label="canary">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manifests" class="md-nav__link">
-    manifests
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy" class="md-nav__link">
-    初回deploy
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2deploy" class="md-nav__link">
-    2回目のdeploy
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bluegreen" class="md-nav__link">
-    blue/green
-  </a>
-  
-    <nav class="md-nav" aria-label="blue/green">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manifests_1" class="md-nav__link">
-    manifests
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy_1" class="md-nav__link">
-    初回deploy
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2deploy_1" class="md-nav__link">
-    2回目のdeploy
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1337,7 +1278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../keda/about_keda/" class="md-nav__link">
+      <a href="../../keda/about_keda/" class="md-nav__link">
         About KEDA
       </a>
     </li>
@@ -1351,7 +1292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../keda/install/" class="md-nav__link">
+      <a href="../../keda/install/" class="md-nav__link">
         Install KEDA
       </a>
     </li>
@@ -1365,7 +1306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../keda/fallback/" class="md-nav__link">
+      <a href="../../keda/fallback/" class="md-nav__link">
         Fallback
       </a>
     </li>
@@ -1413,7 +1354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kyverno/about_kyverno/" class="md-nav__link">
+      <a href="../../kyverno/about_kyverno/" class="md-nav__link">
         About Kyverno
       </a>
     </li>
@@ -1427,7 +1368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../kyverno/installation_kyverno/" class="md-nav__link">
+      <a href="../../kyverno/installation_kyverno/" class="md-nav__link">
         Installation Kyverno
       </a>
     </li>
@@ -1483,7 +1424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloud-native-buildpacks/about/" class="md-nav__link">
+      <a href="../../../cloud-native-buildpacks/about/" class="md-nav__link">
         About
       </a>
     </li>
@@ -1524,7 +1465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../cloud-native-buildpacks/paketo-buildpacks/ruby/" class="md-nav__link">
+      <a href="../../../cloud-native-buildpacks/paketo-buildpacks/ruby/" class="md-nav__link">
         Ruby
       </a>
     </li>
@@ -1580,7 +1521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/backup_etcd/" class="md-nav__link">
+      <a href="../../../operations/backup_etcd/" class="md-nav__link">
         etcd
       </a>
     </li>
@@ -1656,7 +1597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../load_test/locust/about/" class="md-nav__link">
+      <a href="../../../load_test/locust/about/" class="md-nav__link">
         About
       </a>
     </li>
@@ -1712,7 +1653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../failure_test/failure_story/" class="md-nav__link">
+      <a href="../../../failure_test/failure_story/" class="md-nav__link">
         Failure Story
       </a>
     </li>
@@ -1726,7 +1667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../failure_test/point_of_failure/" class="md-nav__link">
+      <a href="../../../failure_test/point_of_failure/" class="md-nav__link">
         Point of failure
       </a>
     </li>
@@ -1767,7 +1708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../failure_test/failure_scenario_of_node/" class="md-nav__link">
+      <a href="../../../failure_test/failure_scenario_of_node/" class="md-nav__link">
         Node
       </a>
     </li>
@@ -1805,6 +1746,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1813,70 +1756,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#canary" class="md-nav__link">
-    canary
+  <a href="#_1" class="md-nav__link">
+    インストール
   </a>
-  
-    <nav class="md-nav" aria-label="canary">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manifests" class="md-nav__link">
-    manifests
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy" class="md-nav__link">
-    初回deploy
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2deploy" class="md-nav__link">
-    2回目のdeploy
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bluegreen" class="md-nav__link">
-    blue/green
-  </a>
-  
-    <nav class="md-nav" aria-label="blue/green">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manifests_1" class="md-nav__link">
-    manifests
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy_1" class="md-nav__link">
-    初回deploy
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2deploy_1" class="md-nav__link">
-    2回目のdeploy
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1896,797 +1778,12 @@
                   
 
 
-  <h1>Basic Usage</h1>
-
-<h3 id="canary">canary</h3>
-<h4 id="manifests">manifests</h4>
+<h1 id="cert-manager">cert-manager</h1>
+<h2 id="_1">インストール</h2>
 <ul>
-<li>今回はServiceやIngressを指定しないためPod数の増減となります</li>
-<li>canary へのtraffic shift が分かりやすいように <code>.spec.replicas</code> は <code>5</code> とします</li>
-<li>
-<p>今回は以下のようなstepでcanary traffic への割り振りを行います</p>
-<table>
-<thead>
-<tr>
-<th align="left">#</th>
-<th align="left">step</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">0</td>
-<td align="left">20%のtrafficをcanaryに割り振る</td>
-</tr>
-<tr>
-<td align="left">1</td>
-<td align="left">60sec pause</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">80%のtrafficをcanaryに割り振る</td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left">60sec pause</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">100%のtrafficをcanaryに割り振る</td>
-</tr>
-<tr>
-<td align="left">5</td>
-<td align="left">canary を stable に切り替え</td>
-</tr>
-</tbody>
-</table>
-<p><details><summary>argo-rollouts/nginx.yaml</summary>
-<div class="highlight"><pre><span></span><code>---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: rollout-test-canary-nginx-conf
-data:
-  nginx.conf: |
-    user nginx;
-    worker_processes  1;
-    error_log  /var/log/nginx/error.log;
-    events {
-      worker_connections  1024;
-    }
-    http {
-      server {
-          listen       80;
-          server_name  _;
-
-          location / {
-              root   html;
-              index  index.html index.htm;
-          }
-
-          location /nginx_status {
-              stub_status on;
-              access_log off;
-              allow 127.0.0.1;
-              deny all;
-          }
-
-      }
-    }
-
----
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
-metadata:
-  name: rollout-test-canary-nginx
-spec:
-  strategy:
-    canary:
-      steps:
-      - setWeight: 20
-      - pause: {duration: 60}
-      - setWeight: 80
-      - pause: {duration: 60}
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 5
-  template:
-    metadata:
-      annotations:
-        prometheus.io/scrape: &#39;true&#39;
-        prometheus.io/port: &#39;9113&#39;
-      labels:
-        app: nginx
-    spec:
-      volumes:
-      - name: nginx-conf
-        configMap:
-          name: rollout-test-canary-nginx-conf
-          items:
-            - key: nginx.conf
-              path: nginx.conf
-      containers:
-      - name: nginx
-        image: nginx:1.14.1
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - mountPath: /etc/nginx/nginx.conf
-          readOnly: true
-          name: nginx-conf
-          subPath: nginx.conf
-      - name: nginx-exporter
-        image: nginx/nginx-prometheus-exporter:0.11.0
-        args:
-          - -nginx.scrape-uri=http://localhost/nginx_status
-        ports:
-          - containerPort: 9113
-</code></pre></div>
-</details></p>
-</li>
+<li><a href="https://cert-manager.io/docs/installation/helm/">https://cert-manager.io/docs/installation/helm/</a></li>
+<li><a href="https://cert-manager.io/docs/usage/kubectl-plugin/">https://cert-manager.io/docs/usage/kubectl-plugin/</a></li>
 </ul>
-<h4 id="deploy">初回deploy</h4>
-<ol>
-<li>
-<p>deploy後の起動確認
-    <details><summary>list</summary>
-    <div class="highlight"><pre><span></span><code>$ kubectl argo rollouts list rollouts
-NAME                STRATEGY   STATUS        STEP  SET-WEIGHT  READY  DESIRED  UP-TO-DATE  AVAILABLE
-rollout-test-canary-nginx  Canary     Healthy       4/4   100         5/5    5        5           5
-</code></pre></div>
-    </details></p>
-<p><details><summary>get</summary>
-<div class="highlight"><pre><span></span><code>$ kubectl argo rollouts get rollout rollout-test-canary-nginx
-Name:            rollout-test-canary-nginx
-Namespace:       default
-Status:          ✔ Healthy
-Strategy:        Canary
-  Step:          4/4
-  SetWeight:     100
-  ActualWeight:  100
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (stable)
-                 nginx:1.14.1 (stable)
-Replicas:
-  Desired:       5
-  Current:       5
-  Updated:       5
-  Ready:         5
-  Available:     5
-
-NAME                                            KIND        STATUS     AGE    INFO
-⟳ rollout-test-canary-nginx                            Rollout     ✔ Healthy  2m58s
-└──# revision:1
-   └──⧉ rollout-test-canary-nginx-598c9cf7c8           ReplicaSet  ✔ Healthy  2m58s  stable
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-47h6s  Pod         ✔ Running  2m58s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-dkq5v  Pod         ✔ Running  2m58s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-ph8pf  Pod         ✔ Running  2m58s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-pw8md  Pod         ✔ Running  2m58s  ready:2/2
-      └──□ rollout-test-canary-nginx-598c9cf7c8-rqbr5  Pod         ✔ Running  2m58s  ready:2/2
-</code></pre></div>
-</details></p>
-</li>
-</ol>
-<h4 id="2deploy">2回目のdeploy</h4>
-<ol>
-<li><code>nginx:1.14.2</code> へbump upしてdeploy</li>
-<li>
-<p><code>kubectl argo rollouts get rollout rollout-test-canary-nginx -w</code> で状態遷移を確認
-    <details><summary>0. 20%のtrafficをcanaryに割り振る</summary>
-    <div class="highlight"><pre><span></span><code>Name:            rollout-test-canary-nginx
-Namespace:       default
-Status:          ◌ Progressing
-Message:         more replicas need to be updated
-Strategy:        Canary
-  Step:          0/4
-  SetWeight:     20
-  ActualWeight:  0
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (canary, stable)
-                 nginx:1.14.1 (stable)
-                 nginx:1.14.2 (canary)
-Replicas:
-  Desired:       5
-  Current:       5
-  Updated:       1
-  Ready:         4
-  Available:     4
-
-NAME                                            KIND        STATUS         AGE    INFO
-⟳ rollout-test-canary-nginx                            Rollout     ◌ Progressing  4m57s
-├──# revision:2
-│  └──⧉ rollout-test-canary-nginx-bc478cd89            ReplicaSet  ◌ Progressing  7s     canary
-│     └──□ rollout-test-canary-nginx-bc478cd89-w7clb   Pod         ✔ Running      6s     ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-canary-nginx-598c9cf7c8           ReplicaSet  ✔ Healthy      4m57s  stable
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-dkq5v  Pod         ✔ Running      4m57s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-ph8pf  Pod         ✔ Running      4m57s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-pw8md  Pod         ✔ Running      4m57s  ready:2/2
-      └──□ rollout-test-canary-nginx-598c9cf7c8-rqbr5  Pod         ✔ Running      4m57s  ready:2/2
-</code></pre></div>
-    </details></p>
-<p><details><summary>1. 60sec pause</summary>
-<div class="highlight"><pre><span></span><code>Name:            rollout-test-canary-nginx
-Namespace:       default
-Status:          ॥ Paused
-Message:         CanaryPauseStep
-Strategy:        Canary
-  Step:          1/4
-  SetWeight:     20
-  ActualWeight:  20
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (canary, stable)
-                 nginx:1.14.1 (stable)
-                 nginx:1.14.2 (canary)
-Replicas:
-  Desired:       5
-  Current:       5
-  Updated:       1
-  Ready:         5
-  Available:     5
-
-NAME                                            KIND        STATUS     AGE    INFO
-⟳ rollout-test-canary-nginx                            Rollout     ॥ Paused   4m57s
-├──# revision:2
-│  └──⧉ rollout-test-canary-nginx-bc478cd89            ReplicaSet  ✔ Healthy  7s     canary
-│     └──□ rollout-test-canary-nginx-bc478cd89-w7clb   Pod         ✔ Running  6s     ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-canary-nginx-598c9cf7c8           ReplicaSet  ✔ Healthy  4m57s  stable
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-dkq5v  Pod         ✔ Running  4m57s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-ph8pf  Pod         ✔ Running  4m57s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-pw8md  Pod         ✔ Running  4m57s  ready:2/2
-      └──□ rollout-test-canary-nginx-598c9cf7c8-rqbr5  Pod         ✔ Running  4m57s  ready:2/2
-</code></pre></div>
-</details></p>
-<p><details><summary>2. 80%のtrafficをcanaryに割り振る</summary>
-<div class="highlight"><pre><span></span><code>Name:            rollout-test-canary-nginx
-Namespace:       default
-Status:          ◌ Progressing
-Message:         more replicas need to be updated
-Strategy:        Canary
-  Step:          2/4
-  SetWeight:     80
-  ActualWeight:  25
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (canary, stable)
-                 nginx:1.14.1 (stable)
-                 nginx:1.14.2 (canary)
-Replicas:
-  Desired:       5
-  Current:       4
-  Updated:       1
-  Ready:         4
-  Available:     4
-
-NAME                                            KIND        STATUS               AGE    INFO
-⟳ rollout-test-canary-nginx                            Rollout     ◌ Progressing        5m57s
-├──# revision:2
-│  └──⧉ rollout-test-canary-nginx-bc478cd89            ReplicaSet  ◌ Progressing        67s    canary
-│     ├──□ rollout-test-canary-nginx-bc478cd89-w7clb   Pod         ✔ Running            66s    ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-9dcqt   Pod         ◌ Pending            0s     ready:0/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-cgf6w   Pod         ◌ ContainerCreating  0s     ready:0/2
-│     └──□ rollout-test-canary-nginx-bc478cd89-hjlrp   Pod         ◌ Pending            0s     ready:0/2
-└──# revision:1
-   └──⧉ rollout-test-canary-nginx-598c9cf7c8           ReplicaSet  ✔ Healthy            5m57s  stable
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-dkq5v  Pod         ✔ Running            5m57s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-ph8pf  Pod         ✔ Running            5m57s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-pw8md  Pod         ◌ Terminating        5m57s  ready:2/2
-      └──□ rollout-test-canary-nginx-598c9cf7c8-rqbr5  Pod         ✔ Running            5m57s  ready:2/2
-</code></pre></div>
-</details></p>
-<p><details><summary>3. 60sec pause</summary>
-<div class="highlight"><pre><span></span><code>Name:            rollout-test-canary-nginx
-Namespace:       default
-Status:          ॥ Paused
-Message:         CanaryPauseStep
-Strategy:        Canary
-  Step:          3/4
-  SetWeight:     80
-  ActualWeight:  80
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (canary, stable)
-                 nginx:1.14.1 (stable)
-                 nginx:1.14.2 (canary)
-Replicas:
-  Desired:       5
-  Current:       5
-  Updated:       4
-  Ready:         5
-  Available:     5
-
-NAME                                            KIND        STATUS         AGE    INFO
-⟳ rollout-test-canary-nginx                            Rollout     ॥ Paused       6m14s
-├──# revision:2
-│  └──⧉ rollout-test-canary-nginx-bc478cd89            ReplicaSet  ✔ Healthy      84s    canary
-│     ├──□ rollout-test-canary-nginx-bc478cd89-w7clb   Pod         ✔ Running      83s    ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-9dcqt   Pod         ✔ Running      17s    ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-cgf6w   Pod         ✔ Running      17s    ready:2/2
-│     └──□ rollout-test-canary-nginx-bc478cd89-hjlrp   Pod         ✔ Running      17s    ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-canary-nginx-598c9cf7c8           ReplicaSet  ✔ Healthy      6m14s  stable
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-dkq5v  Pod         ✔ Running      6m14s  ready:2/2
-      ├──□ rollout-test-canary-nginx-598c9cf7c8-ph8pf  Pod         ◌ Terminating  6m14s  ready:2/2
-      └──□ rollout-test-canary-nginx-598c9cf7c8-rqbr5  Pod         ◌ Terminating  6m14s  ready:2/2
-</code></pre></div>
-</details></p>
-<p><details><summary>4. 100%のtrafficをcanaryに割り振る</summary>
-<div class="highlight"><pre><span></span><code>Name:            rollout-test-canary-nginx
-Namespace:       default
-Status:          ◌ Progressing
-Message:         more replicas need to be updated
-Strategy:        Canary
-  Step:          4/4
-  SetWeight:     100
-  ActualWeight:  100
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (canary, stable)
-                 nginx:1.14.1 (stable)
-                 nginx:1.14.2 (canary)
-Replicas:
-  Desired:       5
-  Current:       5
-  Updated:       4
-  Ready:         5
-  Available:     5
-
-NAME                                            KIND        STATUS         AGE    INFO
-⟳ rollout-test-canary-nginx                            Rollout     ◌ Progressing  7m13s
-├──# revision:2
-│  └──⧉ rollout-test-canary-nginx-bc478cd89            ReplicaSet  ◌ Progressing  2m23s  canary
-│     ├──□ rollout-test-canary-nginx-bc478cd89-w7clb   Pod         ✔ Running      2m22s  ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-9dcqt   Pod         ✔ Running      76s    ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-cgf6w   Pod         ✔ Running      76s    ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-hjlrp   Pod         ✔ Running      76s    ready:2/2
-│     └──□ rollout-test-canary-nginx-bc478cd89-ct9xs   Pod         ◌ Pending      0s     ready:0/2
-└──# revision:1
-   └──⧉ rollout-test-canary-nginx-598c9cf7c8           ReplicaSet  • ScaledDown   7m13s  stable
-      └──□ rollout-test-canary-nginx-598c9cf7c8-dkq5v  Pod         ◌ Terminating  7m13s  ready:2/2
-
-
-snip...
-
-
-Name:            rollout-test-canary-nginx
-Namespace:       default
-Status:          ◌ Progressing
-Message:         updated replicas are still becoming available
-Strategy:        Canary
-  Step:          4/4
-  SetWeight:     100
-  ActualWeight:  100
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (canary)
-                 nginx:1.14.2 (canary)
-Replicas:
-  Desired:       5
-  Current:       5
-  Updated:       5
-  Ready:         4
-  Available:     4
-
-NAME                                           KIND        STATUS         AGE    INFO
-⟳ rollout-test-canary-nginx                           Rollout     ◌ Progressing  7m22s
-├──# revision:2
-│  └──⧉ rollout-test-canary-nginx-bc478cd89           ReplicaSet  ◌ Progressing  2m32s  canary
-│     ├──□ rollout-test-canary-nginx-bc478cd89-w7clb  Pod         ✔ Running      2m31s  ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-9dcqt  Pod         ✔ Running      85s    ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-cgf6w  Pod         ✔ Running      85s    ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-hjlrp  Pod         ✔ Running      85s    ready:2/2
-│     └──□ rollout-test-canary-nginx-bc478cd89-ct9xs  Pod         ✔ Running      9s     ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-canary-nginx-598c9cf7c8          ReplicaSet  • ScaledDown   7m22s  stable
-</code></pre></div>
-</details></p>
-<p><details><summary>5. canary を stable に切り替え</summary>
-<div class="highlight"><pre><span></span><code>Name:            rollout-test-canary-nginx
-Namespace:       default
-Status:          ✔ Healthy
-Strategy:        Canary
-  Step:          4/4
-  SetWeight:     100
-  ActualWeight:  100
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (stable)
-                 nginx:1.14.2 (stable)
-Replicas:
-  Desired:       5
-  Current:       5
-  Updated:       5
-  Ready:         5
-  Available:     5
-
-NAME                                           KIND        STATUS        AGE    INFO
-⟳ rollout-test-canary-nginx                           Rollout     ✔ Healthy     7m23s
-├──# revision:2
-│  └──⧉ rollout-test-canary-nginx-bc478cd89           ReplicaSet  ✔ Healthy     2m33s  stable
-│     ├──□ rollout-test-canary-nginx-bc478cd89-w7clb  Pod         ✔ Running     2m32s  ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-9dcqt  Pod         ✔ Running     86s    ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-cgf6w  Pod         ✔ Running     86s    ready:2/2
-│     ├──□ rollout-test-canary-nginx-bc478cd89-hjlrp  Pod         ✔ Running     86s    ready:2/2
-│     └──□ rollout-test-canary-nginx-bc478cd89-ct9xs  Pod         ✔ Running     10s    ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-canary-nginx-598c9cf7c8          ReplicaSet  • ScaledDown  7m23s
-</code></pre></div>
-</details></p>
-</li>
-</ol>
-<hr />
-<h3 id="bluegreen">blue/green</h3>
-<h4 id="manifests_1">manifests</h4>
-<ul>
-<li>
-<p>Argo Rolloutの <code>blue/green</code> はServiceからtraffic routingするReplicaSetを切り替えることで実現します。
-  そのため、<code>Service</code>も併せて作成します。</p>
-<p><details><summary>argo-rollouts/nginx_blue-green.yaml</summary>
-<div class="highlight"><pre><span></span><code>---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: rollout-test-bluegreen-nginx-conf
-data:
-  nginx.conf: |
-    user nginx;
-    worker_processes  1;
-    error_log  /var/log/nginx/error.log;
-    events {
-      worker_connections  1024;
-    }
-    http {
-      server {
-          listen       80;
-          server_name  _;
-
-          location / {
-              root   html;
-              index  index.html index.htm;
-          }
-
-          location /nginx_status {
-              stub_status on;
-              access_log off;
-              allow 127.0.0.1;
-              deny all;
-          }
-
-      }
-    }
-
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: rollout-test-bluegreen-active
-spec:
-  selector:
-    app: rollout-test-bluegreen-nginx
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: rollout-test-bluegreen-preview
-spec:
-  selector:
-    app: rollout-test-bluegreen-nginx
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-
----
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
-metadata:
-  name: rollout-test-bluegreen-nginx
-spec:
-  strategy:
-    blueGreen:
-      activeService: rollout-test-bluegreen-active
-      previewService: rollout-test-bluegreen-preview
-
-  selector:
-    matchLabels:
-      app: rollout-test-bluegreen-nginx
-  replicas: 5
-  template:
-    metadata:
-      annotations:
-        prometheus.io/scrape: &#39;true&#39;
-        prometheus.io/port: &#39;9113&#39;
-      labels:
-        app: rollout-test-bluegreen-nginx
-    spec:
-      volumes:
-      - name: nginx-conf
-        configMap:
-          name: rollout-test-bluegreen-nginx-conf
-          items:
-            - key: nginx.conf
-              path: nginx.conf
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - mountPath: /etc/nginx/nginx.conf
-          readOnly: true
-          name: nginx-conf
-          subPath: nginx.conf
-      - name: nginx-exporter
-        image: nginx/nginx-prometheus-exporter:0.11.0
-        args:
-          - -nginx.scrape-uri=http://localhost/nginx_status
-        ports:
-          - containerPort: 9113
-</code></pre></div>
-</details></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<ul>
-<li><code>Service</code>よりも先に<code>Rollout</code>が作成された場合、以下のように<code>Degraded</code>となりますので注意が必要です<ul>
-<li><code>Rollout</code> よりも先に <code>Service</code> を作成する</li>
-<li>同じmanifestsファイルに記載する場合、上から順にリソースを作成していくため記載順も注意すること</li>
-<li><a href="https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/">https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/</a><blockquote>
-<p>The resources will be created in the order they appear in the file. Therefore, it's best to specify the service first, since that will ensure the scheduler can spread the pods associated with the service as they are created by the controller(s), such as Deployment.</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code>$ kubectl argo rollouts get rollout rollout-test-bluegreen-nginx
-Name:            rollout-test-bluegreen-nginx
-Namespace:       default
-Status:          ✖ Degraded
-Message:         InvalidSpec: The Rollout &quot;rollout-test-bluegreen-nginx&quot; is invalid: spec.strategy.blueGreen.activeService: Invalid value: &quot;rollout-test-bluegreen-active&quot;: service &quot;rollout-test-bl
-uegreen-active&quot; not found
-Strategy:        BlueGreen
-Replicas:
-  Desired:       5
-  Current:       0
-  Updated:       0
-  Ready:         0
-  Available:     0
-</code></pre></div>
-</div>
-</li>
-</ul>
-<h4 id="deploy_1">初回deploy</h4>
-<ol>
-<li>
-<p>deploy後の起動確認
-    <details><summary>get</summary>
-    <div class="highlight"><pre><span></span><code>$ kubectl argo rollouts get rollout rollout-test-bluegreen-nginx
-Name:            rollout-test-bluegreen-nginx
-Namespace:       default
-Status:          ✔ Healthy
-Strategy:        BlueGreen
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (stable, active)
-                 nginx:1.14.1 (stable, active)
-Replicas:
-  Desired:       5
-  Current:       5
-  Updated:       5
-  Ready:         5
-  Available:     5
-
-NAME                                                      KIND        STATUS     AGE  INFO
-⟳ rollout-test-bluegreen-nginx                            Rollout     ✔ Healthy  16s
-└──# revision:1
-   └──⧉ rollout-test-bluegreen-nginx-5bb9dbdb65           ReplicaSet  ✔ Healthy  16s  stable,active
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-6rpsr  Pod         ✔ Running  15s  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9jcz9  Pod         ✔ Running  15s  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9v7vb  Pod         ✔ Running  15s  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-gg6kv  Pod         ✔ Running  15s  ready:2/2
-      └──□ rollout-test-bluegreen-nginx-5bb9dbdb65-s87hs  Pod         ✔ Running  15s  ready:2/2
-</code></pre></div>
-    </details></p>
-<p><details><summary>Service</summary>
-<div class="highlight"><pre><span></span><code>$ kubectl get service
-NAME                             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
-
-snip...
-
-rollout-test-bluegreen-active    ClusterIP   10.32.0.33    &lt;none&gt;        80/TCP           46s
-rollout-test-bluegreen-preview   ClusterIP   10.32.0.253   &lt;none&gt;        80/TCP           46s
-</code></pre></div>
-</details></p>
-</li>
-</ol>
-<h4 id="2deploy_1">2回目のdeploy</h4>
-<ol>
-<li><code>nginx:1.14.2</code> へbump upしてdeploy</li>
-<li>
-<p><code>kubectl argo rollouts get rollout rollout-test-bluegreen-nginx -w</code> で状態遷移を確認
-    <details><summary>1. 新しいReplicaSetが作成され、Podが起動する</summary>
-    <div class="highlight"><pre><span></span><code>Name:            rollout-test-bluegreen-nginx
-Namespace:       default
-Status:          ◌ Progressing
-Message:         active service cutover pending
-Strategy:        BlueGreen
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (active, preview, stable)
-                 nginx:1.14.1 (stable, active)
-                 nginx:1.14.2 (preview)
-Replicas:
-  Desired:       5
-  Current:       10
-  Updated:       5
-  Ready:         5
-  Available:     5
-
-NAME                                                      KIND        STATUS         AGE  INFO
-⟳ rollout-test-bluegreen-nginx                            Rollout     ◌ Progressing  14m
-├──# revision:2
-│  └──⧉ rollout-test-bluegreen-nginx-559fd99986           ReplicaSet  ◌ Progressing  13s  preview
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-4kr6t  Pod         ✔ Running      13s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-jbgnb  Pod         ✔ Running      13s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-pzpdn  Pod         ✔ Running      13s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-9p276  Pod         ✔ Running      12s  ready:2/2
-│     └──□ rollout-test-bluegreen-nginx-559fd99986-n87x2  Pod         ✔ Running      12s  ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-bluegreen-nginx-5bb9dbdb65           ReplicaSet  ✔ Healthy      14m  stable,active
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-6rpsr  Pod         ✔ Running      14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9jcz9  Pod         ✔ Running      14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9v7vb  Pod         ✔ Running      14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-gg6kv  Pod         ✔ Running      14m  ready:2/2
-      └──□ rollout-test-bluegreen-nginx-5bb9dbdb65-s87hs  Pod         ✔ Running      14m  ready:2/2
-</code></pre></div>
-    </details></p>
-<p><details><summary>2. active serviceが新しいReplicaSetに向き、古いReplicaSetがscale downするまでscaleDownDelaySeconds` sec(default: 30) delay</summary>
-<div class="highlight"><pre><span></span><code>Name:            rollout-test-bluegreen-nginx
-Namespace:       default
-Status:          ✔ Healthy
-Strategy:        BlueGreen
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (active, stable)
-                 nginx:1.14.1
-                 nginx:1.14.2 (stable, active)
-Replicas:
-  Desired:       5
-  Current:       10
-  Updated:       5
-  Ready:         5
-  Available:     5
-
-NAME                                                      KIND        STATUS     AGE  INFO
-⟳ rollout-test-bluegreen-nginx                            Rollout     ✔ Healthy  14m
-├──# revision:2
-│  └──⧉ rollout-test-bluegreen-nginx-559fd99986           ReplicaSet  ✔ Healthy  14s  stable,active
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-4kr6t  Pod         ✔ Running  14s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-jbgnb  Pod         ✔ Running  14s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-pzpdn  Pod         ✔ Running  14s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-9p276  Pod         ✔ Running  13s  ready:2/2
-│     └──□ rollout-test-bluegreen-nginx-559fd99986-n87x2  Pod         ✔ Running  13s  ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-bluegreen-nginx-5bb9dbdb65           ReplicaSet  ✔ Healthy  14m  delay:28s
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-6rpsr  Pod         ✔ Running  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9jcz9  Pod         ✔ Running  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9v7vb  Pod         ✔ Running  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-gg6kv  Pod         ✔ Running  14m  ready:2/2
-      └──□ rollout-test-bluegreen-nginx-5bb9dbdb65-s87hs  Pod         ✔ Running  14m  ready:2/2
-
-
-Name:            rollout-test-bluegreen-nginx
-Namespace:       default
-Status:          ✔ Healthy
-Strategy:        BlueGreen
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (active, stable)
-                 nginx:1.14.1
-                 nginx:1.14.2 (stable, active)
-Replicas:
-  Desired:       5
-  Current:       10
-  Updated:       5
-  Ready:         5
-  Available:     5
-
-NAME                                                      KIND        STATUS     AGE  INFO
-⟳ rollout-test-bluegreen-nginx                            Rollout     ✔ Healthy  14m
-├──# revision:2
-│  └──⧉ rollout-test-bluegreen-nginx-559fd99986           ReplicaSet  ✔ Healthy  42s  stable,active
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-4kr6t  Pod         ✔ Running  42s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-jbgnb  Pod         ✔ Running  42s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-pzpdn  Pod         ✔ Running  42s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-9p276  Pod         ✔ Running  41s  ready:2/2
-│     └──□ rollout-test-bluegreen-nginx-559fd99986-n87x2  Pod         ✔ Running  41s  ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-bluegreen-nginx-5bb9dbdb65           ReplicaSet  ✔ Healthy  14m  delay:0s
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-6rpsr  Pod         ✔ Running  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9jcz9  Pod         ✔ Running  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9v7vb  Pod         ✔ Running  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-gg6kv  Pod         ✔ Running  14m  ready:2/2
-      └──□ rollout-test-bluegreen-nginx-5bb9dbdb65-s87hs  Pod         ✔ Running  14m  ready:2/2
-</code></pre></div>
-</details></p>
-<p><details><summary>4. <code>scaleDownDelaySeconds</code> secが経過</summary>
-<div class="highlight"><pre><span></span><code>Name:            rollout-test-bluegreen-nginx
-Namespace:       default
-Status:          ✔ Healthy
-Strategy:        BlueGreen
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (active, stable)
-                 nginx:1.14.1
-                 nginx:1.14.2 (stable, active)
-Replicas:
-  Desired:       5
-  Current:       10
-  Updated:       5
-  Ready:         5
-  Available:     5
-
-NAME                                                      KIND        STATUS     AGE  INFO
-⟳ rollout-test-bluegreen-nginx                            Rollout     ✔ Healthy  14m
-├──# revision:2
-│  └──⧉ rollout-test-bluegreen-nginx-559fd99986           ReplicaSet  ✔ Healthy  43s  stable,active
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-4kr6t  Pod         ✔ Running  43s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-jbgnb  Pod         ✔ Running  43s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-pzpdn  Pod         ✔ Running  43s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-9p276  Pod         ✔ Running  42s  ready:2/2
-│     └──□ rollout-test-bluegreen-nginx-559fd99986-n87x2  Pod         ✔ Running  42s  ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-bluegreen-nginx-5bb9dbdb65           ReplicaSet  ✔ Healthy  14m  delay:passed
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-6rpsr  Pod         ✔ Running  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9jcz9  Pod         ✔ Running  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9v7vb  Pod         ✔ Running  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-gg6kv  Pod         ✔ Running  14m  ready:2/2
-      └──□ rollout-test-bluegreen-nginx-5bb9dbdb65-s87hs  Pod         ✔ Running  14m  ready:2/2
-</code></pre></div>
-</details></p>
-<p><details><summary>5. 古いReplicaSetがscale downする</summary>
-<div class="highlight"><pre><span></span><code>Name:            rollout-test-bluegreen-nginx
-Namespace:       default
-Status:          ✔ Healthy
-Strategy:        BlueGreen
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (stable, active)
-                 nginx:1.14.2 (stable, active)
-Replicas:
-  Desired:       5
-  Current:       10
-  Updated:       5
-  Ready:         5
-  Available:     5
-
-NAME                                                      KIND        STATUS         AGE  INFO
-⟳ rollout-test-bluegreen-nginx                            Rollout     ✔ Healthy      14m
-├──# revision:2
-│  └──⧉ rollout-test-bluegreen-nginx-559fd99986           ReplicaSet  ✔ Healthy      43s  stable,active
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-4kr6t  Pod         ✔ Running      43s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-jbgnb  Pod         ✔ Running      43s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-pzpdn  Pod         ✔ Running      43s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-9p276  Pod         ✔ Running      42s  ready:2/2
-│     └──□ rollout-test-bluegreen-nginx-559fd99986-n87x2  Pod         ✔ Running      42s  ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-bluegreen-nginx-5bb9dbdb65           ReplicaSet  • ScaledDown   14m
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-6rpsr  Pod         ◌ Terminating  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9jcz9  Pod         ◌ Terminating  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-9v7vb  Pod         ◌ Terminating  14m  ready:2/2
-      ├──□ rollout-test-bluegreen-nginx-5bb9dbdb65-gg6kv  Pod         ◌ Terminating  14m  ready:2/2
-      └──□ rollout-test-bluegreen-nginx-5bb9dbdb65-s87hs  Pod         ◌ Terminating  14m  ready:2/2
-</code></pre></div>
-</details></p>
-<p><details><summary>6. 古いReplicaSetのscale downが完了</summary>
-<div class="highlight"><pre><span></span><code>Name:            rollout-test-bluegreen-nginx
-Namespace:       default
-Status:          ✔ Healthy
-Strategy:        BlueGreen
-Images:          nginx/nginx-prometheus-exporter:0.11.0 (stable, active)
-                 nginx:1.14.2 (stable, active)
-Replicas:
-  Desired:       5
-  Current:       5
-  Updated:       5
-  Ready:         5
-  Available:     5
-
-NAME                                                      KIND        STATUS        AGE  INFO
-⟳ rollout-test-bluegreen-nginx                            Rollout     ✔ Healthy     14m
-├──# revision:2
-│  └──⧉ rollout-test-bluegreen-nginx-559fd99986           ReplicaSet  ✔ Healthy     52s  stable,active
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-4kr6t  Pod         ✔ Running     52s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-jbgnb  Pod         ✔ Running     52s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-pzpdn  Pod         ✔ Running     52s  ready:2/2
-│     ├──□ rollout-test-bluegreen-nginx-559fd99986-9p276  Pod         ✔ Running     51s  ready:2/2
-│     └──□ rollout-test-bluegreen-nginx-559fd99986-n87x2  Pod         ✔ Running     51s  ready:2/2
-└──# revision:1
-   └──⧉ rollout-test-bluegreen-nginx-5bb9dbdb65           ReplicaSet  • ScaledDown  14m
-</code></pre></div>
-</details></p>
-</li>
-</ol>
 
 
 
@@ -2713,7 +1810,7 @@ NAME                                                      KIND        STATUS    
     >
       
         <a
-          href="../install/"
+          href="../about/"
           class="md-footer__link md-footer__link--prev"
           rel="prev"
         >
@@ -2725,14 +1822,14 @@ NAME                                                      KIND        STATUS    
               <span class="md-footer__direction">
                 Previous
               </span>
-              Install
+              About
             </div>
           </div>
         </a>
       
       
         <a
-          href="../../../keda/about_keda/"
+          href="../../argo/argo-rollouts/about/"
           class="md-footer__link md-footer__link--next"
           rel="next"
         >
@@ -2741,7 +1838,7 @@ NAME                                                      KIND        STATUS    
               <span class="md-footer__direction">
                 Next
               </span>
-              About KEDA
+              About
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -2776,12 +1873,12 @@ NAME                                                      KIND        STATUS    
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.51198bba.min.js"></script>
       
-        <script src="../../../../assets/pymdownx-extras/extra-loader-11e3a2e3.js"></script>
+        <script src="../../../assets/pymdownx-extras/extra-loader-11e3a2e3.js"></script>
       
     
   <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
