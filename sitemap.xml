@@ -2,277 +2,282 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://maehachi08.github.io/k8s-study/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/container-runtime/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/metallb/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/argo/argo-rollouts/about/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/argo/argo-rollouts/basic_usage/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/argo/argo-rollouts/install/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/argo/argo-rollouts/traffic-management/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/cert-manager/about/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/cert-manager/install/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/keda/about_keda/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/keda/fallback/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/keda/install/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/keda/keda_behavior/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/kyverno/about_kyverno/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/kyverno/installation_kyverno/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/openebs/about/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/addons/openebs/install/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/autoscaler/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/aws-eks/aws-load-balancer-controller/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/cloud-native-buildpacks/about/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/cloud-native-buildpacks/paketo-buildpacks/ruby/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/failure_test/failure_scenario_of_node/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/failure_test/failure_story/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/failure_test/point_of_failure/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/kubernetes/architecture/garbage-collection/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/kubernetes_dashboard/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/load_test/locust/about/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/monitoring/metrics-server/bootstrapping_metrics_server/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/monitoring/prometheus/install_cadvisor/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/monitoring/prometheus/install_grafana/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/monitoring/prometheus/install_prometheus/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/operations/backup_etcd/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://maehachi08.github.io/k8s-study/operations/cluster-upgrade/</loc>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/paketo/about/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/pod_security/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/secrets/about_secrets/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/01_setup_RaspberryPi/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/02_setup_ubuntu20-04-LTS/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/03_common_settings/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/04_creation_certificate/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/05_creating_config/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/06_master/01_bootstrapping_kubelet/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/06_master/02_bootstrapping_etcd/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/06_master/03_bootstrapping_kube-apiserver/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/06_master/04_bootstrapping_kube-controller-manager/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/06_master/05_bootstrapping_kube-scheduler/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/06_master/07_controller_health_check/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/07_worker/01_bootstrapping_kubelet/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/07_worker/02_bootstrapping_kube-proxy/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/08_flannel/bootstrapping_flannel/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/09_coredns/bootstrapping_coredns/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/setup/11_external_dns/bootstrapping_external_dns/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maehachi08.github.io/k8s-study/static_pod/</loc>
-         <lastmod>2023-04-29</lastmod>
+         <lastmod>2023-06-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -12,20 +12,20 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/failure_test/point_of_failure/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/operations/cluster-upgrade/">
       
       
-        <link rel="prev" href="../failure_story/">
+        <link rel="prev" href="../backup_etcd/">
       
       
-        <link rel="next" href="../failure_scenario_of_node/">
+        <link rel="next" href="../../load_test/locust/about/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
       
-        <title>Point of failure - maehachi08/k8s-study</title>
+        <title>Cluster Upgrade - maehachi08/k8s-study</title>
       
     
     
@@ -125,7 +125,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#point-of-failure" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -167,7 +167,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Point of failure
+              Cluster Upgrade
             
           </span>
         </div>
@@ -1447,14 +1447,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
       
@@ -1463,7 +1465,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           Operations
@@ -1476,7 +1478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/backup_etcd/" class="md-nav__link">
+      <a href="../backup_etcd/" class="md-nav__link">
         etcd
       </a>
     </li>
@@ -1488,11 +1490,88 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../operations/cluster-upgrade/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Cluster Upgrade
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Cluster Upgrade
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    参考
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    アップグレード戦略
+  </a>
+  
+    <nav class="md-nav" aria-label="アップグレード戦略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    準備
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    アップグレード
+  </a>
+  
+    <nav class="md-nav" aria-label="アップグレード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-eks" class="md-nav__link">
+    AWS EKS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1593,16 +1672,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
       
       
       
@@ -1611,7 +1688,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_10">
           <span class="md-nav__icon md-icon"></span>
           Failure Test
@@ -1624,7 +1701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../failure_story/" class="md-nav__link">
+      <a href="../../failure_test/failure_story/" class="md-nav__link">
         Failure Story
       </a>
     </li>
@@ -1636,102 +1713,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Point of failure
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../failure_test/point_of_failure/" class="md-nav__link">
         Point of failure
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#point-of-failure" class="md-nav__link">
-    Point of failure
-  </a>
-  
-    <nav class="md-nav" aria-label="Point of failure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#kubernetes-component" class="md-nav__link">
-    Kubernetes Component
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubernetes Component">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#controll-plane" class="md-nav__link">
-    Controll Plane
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#worker-node" class="md-nav__link">
-    Worker Node
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#addons" class="md-nav__link">
-    Addons
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#controller" class="md-nav__link">
-    Controller
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#autoscale" class="md-nav__link">
-    AutoScale
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1770,7 +1756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../failure_scenario_of_node/" class="md-nav__link">
+      <a href="../../failure_test/failure_scenario_of_node/" class="md-nav__link">
         Node
       </a>
     </li>
@@ -1816,52 +1802,38 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#point-of-failure" class="md-nav__link">
-    Point of failure
+  <a href="#_1" class="md-nav__link">
+    参考
   </a>
   
-    <nav class="md-nav" aria-label="Point of failure">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    アップグレード戦略
+  </a>
+  
+    <nav class="md-nav" aria-label="アップグレード戦略">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#kubernetes-component" class="md-nav__link">
-    Kubernetes Component
+  <a href="#_3" class="md-nav__link">
+    準備
   </a>
   
-    <nav class="md-nav" aria-label="Kubernetes Component">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    アップグレード
+  </a>
+  
+    <nav class="md-nav" aria-label="アップグレード">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#controll-plane" class="md-nav__link">
-    Controll Plane
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#worker-node" class="md-nav__link">
-    Worker Node
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#addons" class="md-nav__link">
-    Addons
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#controller" class="md-nav__link">
-    Controller
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#autoscale" class="md-nav__link">
-    AutoScale
+  <a href="#aws-eks" class="md-nav__link">
+    AWS EKS
   </a>
   
 </li>
@@ -1892,64 +1864,71 @@
                   
 
 
-  <h1>Point of failure</h1>
+  <h1>Cluster Upgrade</h1>
 
-<h2 id="point-of-failure">Point of failure</h2>
-<h3 id="kubernetes-component">Kubernetes Component</h3>
-<h4 id="controll-plane">Controll Plane</h4>
+<h2 id="_1">参考</h2>
 <ul>
-<li>etcd</li>
-<li>kube-apiserver</li>
-<li>kube-controller-manager</li>
-<li>kube-scheduler</li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/cluster-upgrade/">https://kubernetes.io/docs/tasks/administer-cluster/cluster-upgrade/</a></li>
+<li><a href="https://kubernetes.io/docs/reference/using-api/deprecation-guide/">https://kubernetes.io/docs/reference/using-api/deprecation-guide/</a></li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/update-cluster.html">https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/update-cluster.html</a></li>
+<li><a href="https://speakerdeck.com/shmurata/strategy-to-upgrade-kubernetes-clusters-in-production">https://speakerdeck.com/shmurata/strategy-to-upgrade-kubernetes-clusters-in-production</a></li>
+<li><a href="https://repost.aws/ja/knowledge-center/eks-plan-upgrade-cluster">https://repost.aws/ja/knowledge-center/eks-plan-upgrade-cluster</a></li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#kubernetes-release-calendar">https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#kubernetes-release-calendar</a></li>
 </ul>
-<h4 id="worker-node">Worker Node</h4>
-<ul>
-<li>resources(cpu, memory, disk, network...)</li>
-<li>OOM Killer</li>
-<li>kubelet</li>
-<li>kube-proxy</li>
-<li>cni</li>
-<li>container-runtime</li>
-</ul>
-<h4 id="addons">Addons</h4>
-<ul>
-<li>
-<p>参考</p>
-<ul>
-<li><a href="https://github.com/kubernetes/kubernetes/tree/master/cluster/addons">https://github.com/kubernetes/kubernetes/tree/master/cluster/addons</a></li>
-<li><a href="https://registry.terraform.io/modules/particuleio/addons/kubernetes/latest">https://registry.terraform.io/modules/particuleio/addons/kubernetes/latest</a></li>
-<li><a href="https://aws.amazon.com/jp/blogs/news/introducing-amazon-eks-add-ons-jp/">https://aws.amazon.com/jp/blogs/news/introducing-amazon-eks-add-ons-jp/</a></li>
-<li><a href="https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/eks-add-ons.html">https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/eks-add-ons.html</a></li>
+<h2 id="_2">アップグレード戦略</h2>
+<ol>
+<li>Live Upgrade(in-place upgrade)<ul>
+<li><a href="https://speakerdeck.com/shmurata/strategy-to-upgrade-kubernetes-clusters-in-production?slide=23">https://speakerdeck.com/shmurata/strategy-to-upgrade-kubernetes-clusters-in-production?slide=23</a></li>
 </ul>
 </li>
-<li>
-<p>CoreDNS</p>
-</li>
-<li>Amazon VPC CNI(EKS)</li>
-</ul>
-<h4 id="controller">Controller</h4>
-<ul>
-<li>Ingress Controller</li>
-<li>External-dns</li>
-</ul>
-<h4 id="autoscale">AutoScale</h4>
-<ul>
-<li>MetricsServer</li>
-<li>
-<p>Pod</p>
-<ul>
-<li>HPA</li>
-<li>VPA</li>
+<li>Blue/Green Upgrade<ul>
+<li><a href="https://speakerdeck.com/shmurata/strategy-to-upgrade-kubernetes-clusters-in-production?slide=32">https://speakerdeck.com/shmurata/strategy-to-upgrade-kubernetes-clusters-in-production?slide=32</a></li>
 </ul>
 </li>
-<li>
-<p>Node(Horizontal Scale)</p>
-<ul>
-<li>Cluster Autoscaler</li>
+</ol>
+<h3 id="_3">準備</h3>
+<ol>
+<li>Kubernetesバージョンの変更点の確認<ul>
+<li><a href="https://github.com/kubernetes/kubernetes/tree/master/CHANGELOG">https://github.com/kubernetes/kubernetes/tree/master/CHANGELOG</a></li>
+<li><a href="https://github.com/kubernetes/kubernetes/releases">https://github.com/kubernetes/kubernetes/releases</a></li>
+<li><a href="https://kubernetes.io/releases/">https://kubernetes.io/releases/</a></li>
+<li>AWS EKS</li>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html">https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html</a></li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/update-cluster.html">https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/update-cluster.html</a></li>
+</ul>
+</li>
+<li>非推奨や削除されたAPIを使っているaddonを見つける<ul>
+<li><a href="https://kubernetes.io/docs/reference/using-api/deprecation-guide/">https://kubernetes.io/docs/reference/using-api/deprecation-guide/</a></li>
+<li>Pluto<ul>
+<li><a href="https://github.com/FairwindsOps/pluto">https://github.com/FairwindsOps/pluto</a></li>
+<li>Kubernetesの非推奨(deplicated api)を自動検出する</li>
+<li><a href="https://kakakakakku.hatenablog.com/entry/2022/07/20/091424">https://kakakakakku.hatenablog.com/entry/2022/07/20/091424</a></li>
+<li><a href="https://zenn.dev/johnn26/articles/detect-kubernetes-deplicated-api-automatically">https://zenn.dev/johnn26/articles/detect-kubernetes-deplicated-api-automatically</a></li>
+</ul>
+</li>
+<li>e.g.<ul>
+<li>Kyverno<ul>
+<li><a href="https://kyverno.io/policies/best-practices/check_deprecated_apis/check_deprecated_apis/">https://kyverno.io/policies/best-practices/check_deprecated_apis/check_deprecated_apis/</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Node</p>
+</li>
+<li>
+<p>Addonのアップグレード計画</p>
+</li>
+</ol>
+<h3 id="_4">アップグレード</h3>
+<h4 id="aws-eks">AWS EKS</h4>
+<ol>
+<li>EKS Cluster Upgrade</li>
+<li>ManagedNodeGroup Upgrade</li>
+<li>eks-optimized AMIをUpgreade対象のcluster versionと一致するものにする</li>
+</ol>
 
 
 
@@ -1976,7 +1955,7 @@
     >
       
         <a
-          href="../failure_story/"
+          href="../backup_etcd/"
           class="md-footer__link md-footer__link--prev"
           rel="prev"
         >
@@ -1988,14 +1967,14 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Failure Story
+              etcd
             </div>
           </div>
         </a>
       
       
         <a
-          href="../failure_scenario_of_node/"
+          href="../../load_test/locust/about/"
           class="md-footer__link md-footer__link--next"
           rel="next"
         >
@@ -2004,7 +1983,7 @@
               <span class="md-footer__direction">
                 Next
               </span>
-              Node
+              About
             </div>
           </div>
           <div class="md-footer__button md-icon">
