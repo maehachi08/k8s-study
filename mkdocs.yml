@@ -108,6 +108,7 @@ nav:
       - Ruby: cloud-native-buildpacks/paketo-buildpacks/ruby.md
   - Operations:
     - etcd: operations/backup_etcd.md
+    - Cluster Upgrade: operations/cluster-upgrade.md
   - LoadTest:
     - Locust:
       - About: load_test/locust/about.md
