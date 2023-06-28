@@ -33,7 +33,7 @@
 
 1. image build
    ```
-   sudo buildah bud -t k8s-kube-controller-manager --file=Dockerfile_kube-controller-manager.armhf ./
+   sudo nerdctl build --namespace k8s.io -t k8s-kube-controller-manager --file=Dockerfile_kube-controller-manager.armhf ./
    ```
 
 1. pod manifestsを `/etc/kubelet.d` へ作成する
@@ -64,7 +64,7 @@
            hostNetwork: true
            containers:
              - name: kube-controller-manager
-               image: localhost/k8s-kube-controller-manager:latest
+               image: k8s-kube-controller-manager:latest
                imagePullPolicy: IfNotPresent
                resources:
                  requests:

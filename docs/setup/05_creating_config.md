@@ -7,7 +7,7 @@
 ### kubelet
 
 ```
-KUBERNETES_PUBLIC_ADDRESS=192.168.10.50
+KUBERNETES_PUBLIC_ADDRESS=k8s-master
 
 for instance in k8s-master k8s-node1 k8s-node2; do
     kubectl config set-cluster kubernetes \
@@ -34,7 +34,7 @@ done
 ### kube-proxy
 
 ```
-KUBERNETES_PUBLIC_ADDRESS=192.168.10.50
+KUBERNETES_PUBLIC_ADDRESS=k8s-master
 
 kubectl config set-cluster kubernetes \
     --certificate-authority=ca.pem \
@@ -59,7 +59,7 @@ kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
 ### kube-controller-manager
 
 ```
-KUBE_API_SERVER_ADDRESS=192.168.10.50
+KUBE_API_SERVER_ADDRESS=k8s-master
 
 kubectl config set-cluster kubernetes \
     --certificate-authority=ca.pem \
@@ -84,7 +84,7 @@ kubectl config use-context default --kubeconfig=kube-controller-manager.kubeconf
 ### kube-scheduler
 
 ```
-KUBE_API_SERVER_ADDRESS=192.168.10.50
+KUBE_API_SERVER_ADDRESS=k8s-master
 
 kubectl config set-cluster kubernetes \
     --certificate-authority=ca.pem \
@@ -110,7 +110,7 @@ kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
 ### admin
 
 ```
-KUBERNETES_PUBLIC_ADDRESS=192.168.10.50
+KUBERNETES_PUBLIC_ADDRESS=k8s-master
 
 kubectl config set-cluster kubernetes \
     --certificate-authority=ca.pem \

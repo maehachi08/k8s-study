@@ -10,10 +10,7 @@
 
 ### 構築
 
-- https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal
-    ```
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/baremetal/deploy.yaml
-    ```
+- https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal-clusters
 
 ### 動作確認
 
@@ -24,10 +21,9 @@ $ kubectl describe ingressclasses nginx
 Name:         nginx
 Labels:       app.kubernetes.io/component=controller
               app.kubernetes.io/instance=ingress-nginx
-              app.kubernetes.io/managed-by=Helm
               app.kubernetes.io/name=ingress-nginx
-              app.kubernetes.io/version=1.0.0
-              helm.sh/chart=ingress-nginx-4.0.1
+              app.kubernetes.io/part-of=ingress-nginx
+              app.kubernetes.io/version=1.3.0
 Annotations:  <none>
 Controller:   k8s.io/ingress-nginx
 Events:       <none>
@@ -90,33 +86,33 @@ Events:       <none>
               port:
                 number: 8080
           rules:
-            - http:
+          - http:
               paths:
-                - path: /
-                  pathType: Prefix
-                  backend:
-                    service:
-                      name: nginx-service
-                      port:
-                        number: 8080
-            # external-dns.alpha.kubernetes.io/hostname annotationsを指定せずrule毎に設定する例
-            # - host: <Route53にA recordとして登録したいFQDN>
-            #   http:
-            #     paths:
-            #       - path: /
-            #         pathType: Prefix
-            #         backend:
-            #           service:
-            #             name: nginx-service
-            #             port:
-            #               number: 8080
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: nginx-service
+                    port:
+                      number: 8080
+          # external-dns.alpha.kubernetes.io/hostname annotationsを指定せずrule毎に設定する例
+          # - host: <Route53にA recordとして登録したいFQDN>
+          #   http:
+          #     paths:
+          #       - path: /
+          #         pathType: Prefix
+          #         backend:
+          #           service:
+          #             name: nginx-service
+          #             port:
+          #               number: 8080
         EOF
         ```
     </details>
 
 1. `<Route53にA recordとして登録したいFQDN>` の箇所を修正する
     ```
-    sudo vim /etc.kubernetes/manifests/04_nginx_ingress_controller.yaml
+    sudo vim /etc/kubernetes/manifests/04_nginx_ingress_controller.yaml
     ```
 
 1. リソース作成
@@ -214,3 +210,6 @@ Events:       <none>
         - https://github.com/kubernetes/ingress-nginx/issues/7448
         - https://github.com/kubernetes/ingress-nginx/blob/3c0bfc1ca3eb48246b12e77d40bde1162633efae/deploy/static/provider/baremetal/deploy.yaml
 
+- `error validating data: ValidationError`
+    - `--validate=false` を付加する
+    - ValidatingWebhookConfiguration を削除する ([issue comment](https://github.com/kubernetes/ingress-nginx/issues/5968#issuecomment-692719933))

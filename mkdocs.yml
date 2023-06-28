@@ -6,6 +6,11 @@ site_author: maehachi08
 repo_url: https://github.com/maehachi08/k8s-study
 edit_uri: ""
 
+plugins:
+  - search
+  - glightbox
+  - mkdocs_pymdownx_material_extras
+
 # theme: readthedocs
 theme:
   name: material
@@ -28,15 +33,26 @@ theme:
 
 # https://facelessuser.github.io/pymdown-extensions/
 markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.details
   - pymdownx.tabbed
   - pymdownx.magiclink
   - attr_list
+  - md_in_html
   - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
   - Home: index.md
+  - Container Runtime: container-runtime.md
+  - Kubernetes:
+    - Architecture:
+      - Garbage Collection: kubernetes/architecture/garbage-collection.md
   - Setup:
     - 01. Raspberry Pi 構成: setup/01_setup_RaspberryPi.md
     - 02. OS Install: setup/02_setup_ubuntu20-04-LTS.md
@@ -58,21 +74,45 @@ nav:
     - 09. bootstrapping coredns: setup/09_coredns/bootstrapping_coredns.md
     - 10. bootstrapping nginx ingress controller: setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller.md
     - 11. bootstrapping external-dns: setup/11_external_dns/bootstrapping_external_dns.md
+  - Monitoring:
+    - bootstrapping metrics_server: monitoring/metrics-server/bootstrapping_metrics_server.md
+    - bootstrapping kubernetes-dashboard: monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard.md
+    - Prometheus / Grafana:
+      - Install Prometheus: monitoring/prometheus/install_prometheus.md
+      - Install Grafana: monitoring/prometheus/install_grafana.md
+      - Install cadvisor: monitoring/prometheus/install_cadvisor.md
+  - Addons:
+    - MetalLB: addons/metallb.md
+    - OpenEBS:
+      - About OpenEBS: addons/openebs/about.md
+      - Installing OpenEBS: addons/openebs/install.md
+    - cert-manager:
+      - About: addons/cert-manager/about.md
+      - Install: addons/cert-manager/install.md
+    - Argo:
+      - Argo Rollouts:
+        - About: addons/argo/argo-rollouts/about.md
+        - Traffic Management: addons/argo/argo-rollouts/traffic-management.md
+        - Install: addons/argo/argo-rollouts/install.md
+        - Basic Usage: addons/argo/argo-rollouts/basic_usage.md
+    - KEDA:
+      - About KEDA: addons/keda/about_keda.md
+      - Install KEDA: addons/keda/install.md
+      - Fallback: addons/keda/fallback.md
+    - Kyverno:
+      - About Kyverno: addons/kyverno/about_kyverno.md
+      - Installation Kyverno: addons/kyverno/installation_kyverno.md
+  - Cloud Native Buildpacks:
+    - About: cloud-native-buildpacks/about.md
+    - Paketo Buildpacks:
+      - Ruby: cloud-native-buildpacks/paketo-buildpacks/ruby.md
+  - Operations:
+    - etcd: operations/backup_etcd.md
+  - LoadTest:
+    - Locust:
+      - About: load_test/locust/about.md
   - Failure Test:
     - Failure Story: failure_test/failure_story.md
     - Point of failure: failure_test/point_of_failure.md
     - Failure Scenario:
       - Node: failure_test/failure_scenario_of_node.md
-  - Kyverno:
-    - 01. About Kyverno: kyverno/about_kyverno.md
-    - 02. Installation Kyverno: kyverno/installation_kyverno.md
-  - Monitoring:
-    - bootstrapping metrics_server: monitoring/metrics-server/bootstrapping_metrics_server.md
-    - bootstrapping kubernetes-dashboard: monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard.md
-  - Operations:
-    - etcd: operations/backup_etcd.md
-  - Addons:
-    - MetalLB: addons/metallb.md
-
-plugins:
-  - search
