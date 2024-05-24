@@ -12,13 +12,9 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/cloud-native-buildpacks/paketo-buildpacks/ruby/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/eks/aws-efs-csi-driver/troubleshoot/">
       
       
-        <link rel="prev" href="../../about/">
-      
-      
-        <link rel="next" href="../../../operations/backup_etcd/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -26,7 +22,7 @@
     
     
       
-        <title>Ruby - maehachi08/k8s-study</title>
+        <title>Troubleshoot - maehachi08/k8s-study</title>
       
     
     
@@ -123,11 +119,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#paketo-buildpacksruby-on-railsoci-imagebuild" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -166,7 +157,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ruby
+              Troubleshoot
             
           </span>
         </div>
@@ -528,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/" class="md-nav__link">
+      <a href="../../amazon-vpc-cni-plugin-for-kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -549,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/custom-networking/" class="md-nav__link">
+      <a href="../../amazon-vpc-cni-plugin-for-kubernetes/custom-networking/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -570,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/security_group_for_pod/" class="md-nav__link">
+      <a href="../../amazon-vpc-cni-plugin-for-kubernetes/security_group_for_pod/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -591,7 +582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/network-policy/" class="md-nav__link">
+      <a href="../../amazon-vpc-cni-plugin-for-kubernetes/network-policy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -655,7 +646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eks/aws-efs-csi-driver/about/" class="md-nav__link">
+      <a href="../about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1978,19 +1969,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -2004,7 +1993,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Cloud Native Buildpacks
@@ -2018,7 +2007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../../cloud-native-buildpacks/about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2036,19 +2025,17 @@
                 
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
         
           
           <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
@@ -2062,7 +2049,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8_2">
             <span class="md-nav__icon md-icon"></span>
             Paketo Buildpacks
@@ -2073,30 +2060,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Ruby
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../cloud-native-buildpacks/paketo-buildpacks/ruby/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2105,44 +2072,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      参考
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#image-build" class="md-nav__link">
-    <span class="md-ellipsis">
-      image build
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2518,34 +2447,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      参考
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#image-build" class="md-nav__link">
-    <span class="md-ellipsis">
-      image build
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -2561,298 +2462,9 @@
                   
 
 
-<h1 id="paketo-buildpacksruby-on-railsoci-imagebuild">Paketo BuildpacksでRuby on RailsアプリケーションをOCI imageにbuildする</h1>
-<h2 id="_1">参考</h2>
-<ul>
-<li><a href="https://paketo.io/docs/reference/ruby-reference/">https://paketo.io/docs/reference/ruby-reference/</a></li>
-<li><a href="https://paketo.io/docs/howto/ruby/">https://paketo.io/docs/howto/ruby/</a></li>
-<li><a href="https://github.com/paketo-buildpacks/ruby">https://github.com/paketo-buildpacks/ruby</a></li>
-<li><a href="https://github.com/paketo-buildpacks/full-builder">https://github.com/paketo-buildpacks/full-builder</a></li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><code>mysql2</code> library のようにnative extentionを一緒にインストールする必要のあるgem libraryをインストールするためには full builder image(<code>paketobuildpacks/builder:full</code>) を指定する必要があります。
-- <a href="https://github.com/paketo-buildpacks/ruby/issues/862">https://github.com/paketo-buildpacks/ruby/issues/862</a></p>
-<div class="highlight"><pre><span></span><code>$ pack build puma-sample --buildpack paketo-buildpacks/ruby --builder paketobuildpacks/builder:full
-</code></pre></div>
-<p><details><summary><code>paketobuildpacks/builder:base</code> では以下エラーとなりました</summary>
-<div class="highlight"><pre><span></span><code>      Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+  <h1>Troubleshoot</h1>
 
-      current directory:
-      /layers/paketo-buildpacks_bundle-install/launch-gems/ruby/3.2.0/gems/mysql2-0.5.5/ext/mysql2
-      /layers/paketo-buildpacks_mri/mri/bin/ruby -I
-      /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0 extconf.rb
-      checking for rb_absint_size()... yes
-      checking for rb_absint_singlebit_p()... yes
-      checking for rb_gc_mark_movable()... yes
-      checking for rb_wait_for_single_fd()... yes
-      checking for rb_enc_interned_str() in ruby.h... yes
-      *** extconf.rb failed ***
-      Could not create Makefile due to some reason, probably lack of necessary
-      libraries and/or headers.  Check the mkmf.log file for more details.  You may
-      need configuration options.
-
-      Provided configuration options:
-        --with-opt-dir
-        --without-opt-dir
-        --with-opt-include
-        --without-opt-include=${opt-dir}/include
-        --with-opt-lib
-        --without-opt-lib=${opt-dir}/lib
-        --with-make-prog
-        --without-make-prog
-        --srcdir=.
-        --curdir
-        --ruby=/layers/paketo-buildpacks_mri/mri/bin/$(RUBY_BASE_NAME)
-        --with-openssl-dir
-        --without-openssl-dir
-        --with-mysql-dir
-        --without-mysql-dir
-        --with-mysql-include
-        --without-mysql-include=${mysql-dir}/include
-        --with-mysql-lib
-        --without-mysql-lib=${mysql-dir}/lib
-        --with-mysql-config
-        --without-mysql-config
-        --with-mysqlclient-dir
-        --without-mysqlclient-dir
-        --with-mysqlclient-include
-        --without-mysqlclient-include=${mysqlclient-dir}/include
-        --with-mysqlclient-lib
-        --without-mysqlclient-lib=${mysqlclient-dir}/lib
-        --with-mysqlclientlib
-        --without-mysqlclientlib
-      /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/mkmf.rb:1083:in `block in
-      find_library&#39;: undefined method `split&#39; for nil:NilClass (NoMethodError)
-
-          paths = paths.flat_map {|path| path.split(File::PATH_SEPARATOR)}
-                                             ^^^^^^
-        from /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/mkmf.rb:1083:in `each&#39;
-      from /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/mkmf.rb:1083:in
-      `flat_map&#39;
-      from /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/mkmf.rb:1083:in
-      `find_library&#39;
-        from extconf.rb:131:in `&lt;main&gt;&#39;
-
-      To see why this extension failed to compile, please check the mkmf.log which can
-      be found here:
-
-      /layers/paketo-buildpacks_bundle-install/launch-gems/ruby/3.2.0/extensions/x86_64-linux/3.2.0-static/mysql2-0.5.5/mkmf.log
-
-      extconf failed, exit code 1
-
-      Gem files will remain installed in
-      /layers/paketo-buildpacks_bundle-install/launch-gems/ruby/3.2.0/gems/mysql2-0.5.5
-      for inspection.
-      Results logged to
-      /layers/paketo-buildpacks_bundle-install/launch-gems/ruby/3.2.0/extensions/x86_64-linux/3.2.0-static/mysql2-0.5.5/gem_make.out
-
-      /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/rubygems/ext/builder.rb:102:in
-      `run&#39;
-      /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/rubygems/ext/ext_conf_builder.rb:28:in
-      `build&#39;
-      /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/rubygems/ext/builder.rb:170:in
-      `build_extension&#39;
-      /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/rubygems/ext/builder.rb:204:in
-      `block in build_extensions&#39;
-      /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/rubygems/ext/builder.rb:201:in
-      `each&#39;
-      /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/rubygems/ext/builder.rb:201:in
-      `build_extensions&#39;
-      /layers/paketo-buildpacks_mri/mri/lib/ruby/3.2.0/rubygems/installer.rb:843:in
-      `build_extensions&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/rubygems_gem_installer.rb:72:in
-      `build_extensions&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/rubygems_gem_installer.rb:28:in
-      `install&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/source/rubygems.rb:200:in
-      `install&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/installer/gem_installer.rb:54:in
-      `install&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/installer/gem_installer.rb:16:in
-      `install_from_spec&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/installer/parallel_installer.rb:155:in
-      `do_install&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/installer/parallel_installer.rb:146:in
-      `block in worker_pool&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/worker.rb:62:in
-      `apply_func&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/worker.rb:57:in
-      `block in process_queue&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/worker.rb:54:in
-      `loop&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/worker.rb:54:in
-      `process_queue&#39;
-      /layers/paketo-buildpacks_bundler/bundler/gems/bundler-2.4.6/lib/bundler/worker.rb:90:in
-      `block (2 levels) in create_threads&#39;
-
-      An error occurred while installing mysql2 (0.5.5), and Bundler cannot continue.
-
-      In Gemfile:
-        mysql2
-failed to execute bundle install output:
-
-error: exit status 5
-ERROR: failed to build: exit status 1
-ERROR: failed to build: executing lifecycle: failed with status code: 51
-</code></pre></div>
-</details></p>
-</div>
-<h2 id="image-build">image build</h2>
-<ol>
-<li>build
-    <details><summary><code>paketobuildpacks/builder:full</code> builderでrails appのimage作成</summary>
-    <div class="highlight"><pre><span></span><code>$ pack build puma-sample --buildpack paketo-buildpacks/ruby --builder paketobuildpacks/builder:full
-full: Pulling from paketobuildpacks/builder
-e58c18cab017: Already exists
-
-041be6a6e80e: Pull complete
-4612107b91b7: Pull complete
-273978fd99f5: Pull complete
-4f4fb700ef54: Pull complete
-Digest: sha256:6deb1900981341c9e0dd66537b20cb64fdb7f26111a46ceb3681ba6fdf9dfea0
-Status: Downloaded newer image for paketobuildpacks/builder:full
-full-cnb: Pulling from paketobuildpacks/run
-e58c18cab017: Already exists
-e5e9174b359f: Already exists
-5e91d2c23726: Pull complete
-9c0a2c4cca94: Pull complete
-05f59ae6b933: Pull complete
-ec4575052267: Pull complete
-068822fb393b: Pull complete
-Digest: sha256:8338a316a476ca8d9c8f2b82b59816c21ffce1863de45150de1229c56c747d0d
-Status: Downloaded newer image for paketobuildpacks/run:full-cnb
-===&gt; ANALYZING
-Previous image with name &quot;puma-sample&quot; not found
-===&gt; DETECTING
-5 of 12 buildpacks participating
-paketo-buildpacks/ca-certificates 3.5.1
-paketo-buildpacks/mri             0.11.1
-paketo-buildpacks/bundler         0.7.4
-paketo-buildpacks/bundle-install  0.6.3
-paketo-buildpacks/puma            0.4.15
-===&gt; RESTORING
-===&gt; BUILDING
-
-Paketo Buildpack for CA Certificates 3.5.1
-  https://github.com/paketo-buildpacks/ca-certificates
-  Launch Helper: Contributing to layer
-    Creating /layers/paketo-buildpacks_ca-certificates/helper/exec.d/ca-certificates-helper
-Paketo Buildpack for MRI 0.11.1
-  Resolving MRI version
-    Candidate version sources (in priority order):
-      Gemfile   -&gt; &quot;3.2.1&quot;
-      &lt;unknown&gt; -&gt; &quot;&quot;
-
-    Selected MRI version (using Gemfile): 3.2.1
-
-  Executing build process
-    Installing MRI 3.2.1
-      Completed in 16.232s
-
-  Generating SBOM for /layers/paketo-buildpacks_mri/mri
-      Completed in 34ms
-
-  Configuring build environment
-    GEM_PATH         -&gt; &quot;/home/cnb/.local/share/gem/ruby/3.2.0:/layers/paketo-buildpacks_mri/mri/lib/ruby/gems/3.2.0&quot;
-    MALLOC_ARENA_MAX -&gt; &quot;2&quot;
-
-  Configuring launch environment
-    GEM_PATH         -&gt; &quot;/home/cnb/.local/share/gem/ruby/3.2.0:/layers/paketo-buildpacks_mri/mri/lib/ruby/gems/3.2.0&quot;
-    MALLOC_ARENA_MAX -&gt; &quot;2&quot;
-
-Paketo Buildpack for Bundler 0.7.4
-  Resolving Bundler version
-    Candidate version sources (in priority order):
-      Gemfile.lock -&gt; &quot;2.*.*&quot;
-      &lt;unknown&gt;    -&gt; &quot;&quot;
-
-    Selected bundler version (using Gemfile.lock): 2.4.6
-
-  Executing build process
-    Installing Bundler 2.4.6
-      Completed in 1.763s
-
-  Generating SBOM for /layers/paketo-buildpacks_bundler/bundler
-      Completed in 5ms
-
-  Configuring build environment
-    GEM_PATH -&gt; &quot;$GEM_PATH:/layers/paketo-buildpacks_bundler/bundler&quot;
-
-  Configuring launch environment
-    GEM_PATH -&gt; &quot;$GEM_PATH:/layers/paketo-buildpacks_bundler/bundler&quot;
-
-Paketo Buildpack for Bundle Install 0.6.3
-  Executing launch environment install process
-    Running &#39;bundle config --global clean true&#39;
-    Running &#39;bundle config --global path /layers/paketo-buildpacks_bundle-install/launch-gems&#39;
-    Running &#39;bundle config --global without development:test&#39;
-    Running &#39;bundle config --global cache_path --parseable&#39;
-
-    Running &#39;bundle install&#39;
-      Fetching gem metadata from https://rubygems.org/..........
-      Resolving dependencies...
-
-      &lt;snip...&gt;
-
-      Fetching mysql2 0.5.5
-      Installing logstash-event 1.2.02
-      Fetching tzinfo 1.2.11
-      Installing mysql2 0.5.5 with native extensions
-
-      &lt;snip...&gt;
-
-      Installing puma 4.3.12 with native extensions
-      Fetching rails 6.0.6.1
-      Installing rails 6.0.6.1
-      Fetching bootsnap 1.16.0
-      Installing bootsnap 1.16.0 with native extensions
-      Bundle complete! 17 Gemfile dependencies, 70 gems now installed.
-      Gems in the groups &#39;development&#39; and &#39;test&#39; were not installed.
-      Bundled gems are installed into `/layers/paketo-buildpacks_bundle-install/launch-gems`
-      Completed in 1m51.974s
-
-  Generating SBOM for /layers/paketo-buildpacks_bundle-install/launch-gems
-      Completed in 11.999s
-
-  Configuring launch environment
-    BUNDLE_USER_CONFIG -&gt; &quot;/layers/paketo-buildpacks_bundle-install/launch-gems/config&quot;
-
-Paketo Buildpack for Puma 0.4.15
-  Assigning launch processes:
-    web (default): bash -c bundle exec puma --bind tcp://0.0.0.0:${PORT:-9292}
-
-===&gt; EXPORTING
-Adding layer &#39;paketo-buildpacks/ca-certificates:helper&#39;
-Adding layer &#39;paketo-buildpacks/mri:mri&#39;
-Adding layer &#39;paketo-buildpacks/bundler:bundler&#39;
-Adding layer &#39;paketo-buildpacks/bundle-install:launch-gems&#39;
-Adding layer &#39;launch.sbom&#39;
-Adding 1/1 app layer(s)
-Adding layer &#39;launcher&#39;
-Adding layer &#39;config&#39;
-Adding layer &#39;process-types&#39;
-Adding label &#39;io.buildpacks.lifecycle.metadata&#39;
-Adding label &#39;io.buildpacks.build.metadata&#39;
-Adding label &#39;io.buildpacks.project.metadata&#39;
-Setting default process type &#39;web&#39;
-Saving puma-sample...
-*** Images (8236d63db653):
-      puma-sample
-Adding cache layer &#39;paketo-buildpacks/mri:mri&#39;
-Adding cache layer &#39;paketo-buildpacks/bundler:bundler&#39;
-Adding cache layer &#39;cache.sbom&#39;
-Successfully built image puma-sample
-</code></pre></div>
-    </details></li>
-<li>
-<p>image確認</p>
-<div class="highlight"><pre><span></span><code>$ docker images rails-api-server
-REPOSITORY         TAG       IMAGE ID       CREATED        SIZE
-rails-api-server   latest    635f3a7771df   43 years ago   956MB
-</code></pre></div>
-</li>
-</ol>
+<p><a href="https://repost.aws/ja/knowledge-center/eks-troubleshoot-efs-volume-mount-issues">https://repost.aws/ja/knowledge-center/eks-troubleshoot-efs-volume-mount-issues</a></p>
 
 
 
@@ -2880,50 +2492,6 @@ rails-api-server   latest    635f3a7771df   43 years ago   956MB
         
 
 <footer class="md-footer">
-  
-    <nav
-      class="md-footer__inner md-grid"
-      aria-label="footer.title"
-    >
-      
-        <a
-          href="../../about/"
-          class="md-footer__link md-footer__link--prev"
-          rel="prev"
-        >
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              About
-            </div>
-          </div>
-        </a>
-      
-      
-        <a
-          href="../../../operations/backup_etcd/"
-          class="md-footer__link md-footer__link--next"
-          rel="next"
-        >
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              etcd
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
