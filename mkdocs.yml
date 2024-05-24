@@ -59,6 +59,8 @@ nav:
       - Custom Networking: eks/amazon-vpc-cni-plugin-for-kubernetes/custom-networking.md
       - SecurityGroup For Pod: eks/amazon-vpc-cni-plugin-for-kubernetes/security_group_for_pod.md
       - Network Policy: eks/amazon-vpc-cni-plugin-for-kubernetes//network-policy.md
+    - aws-efs-csi-driver:
+      - About: eks/aws-efs-csi-driver/about.md
   - Setup:
     - 01. Raspberry Pi 構成: setup/01_setup_RaspberryPi.md
     - 02. OS Install: setup/02_setup_ubuntu20-04-LTS.md
