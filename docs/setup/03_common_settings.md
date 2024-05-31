@@ -384,7 +384,7 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
 1. cri-tools(crictl) インストール
     - https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md
        ```
-       VERSION="v1.22.0"
+       VERSION="v1.30.1"
        ARCH="arm64"
        DOWNLOAD_URL="https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-${VERSION}-linux-${ARCH}.tar.gz"
        curl -L ${DOWNLOAD_URL} | sudo tar -zxC /usr/local/bin

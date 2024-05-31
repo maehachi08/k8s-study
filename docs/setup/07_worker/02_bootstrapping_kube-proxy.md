@@ -12,7 +12,7 @@
     cat << 'EOF' > Dockerfile_kube-proxy.armhf
     FROM arm64v8/ubuntu:bionic
 
-    ARG VERSION="v1.22.0"
+    ARG VERSION="v1.30.1"
     ARG ARCH="arm64"
 
     RUN set -ex \
@@ -110,15 +110,13 @@
         metadata:
           labels:
             name: kube-proxy
-          annotations:
-            scheduler.alpha.kubernetes.io/critical-pod: ''
         spec:
           # https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
           priorityClassName: system-node-critical
           hostNetwork: true
           containers:
             - name: kube-proxy
-              image: localhost/k8s-kube-proxy:latest
+              image: k8s-kube-proxy:latest
               securityContext:
                 capabilities:
                   add:
@@ -133,7 +131,7 @@
                 requests:
                   cpu: "256m"
               volumeMounts:
-              - name: kube-proxy-configuration-volume
+              - name: kube-proxy-configuration
                 mountPath: /var/lib/kube-proxy/kube-proxy-config.yaml
               - name: conntrack-command
                 mountPath: /usr/sbin/conntrack
