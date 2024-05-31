@@ -19,7 +19,7 @@
 ### `kubelet` バイナリをダウンロード
 
    ```
-   VERSION="v1.22.0"
+   VERSION="v1.30.1"
    ARCH="arm64"
 
    sudo wget -P /usr/bin/ https://dl.k8s.io/${VERSION}/bin/linux/${ARCH}/kubelet
@@ -79,6 +79,7 @@
   clusterDomain: "cluster.local"
   clusterDNS:
     - "10.32.0.10"
+  resolvConf: "/run/systemd/resolve/resolv.conf"
   podCIDR: "10.200.0.0/24"
   runtimeRequestTimeout: "15m"
   tlsCertFile: "/var/lib/kubelet/${host}.pem"
@@ -144,8 +145,6 @@
    ExecStart=/usr/bin/kubelet \
      --config=/var/lib/kubelet/kubelet-config.yaml \
      --kubeconfig=/var/lib/kubelet/kubeconfig \
-     --network-plugin=cni \
-     --container-runtime=remote \
      --container-runtime-endpoint=unix:///run/containerd/containerd.sock \
      --register-node=true \
      --v=2
