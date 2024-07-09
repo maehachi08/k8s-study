@@ -12,21 +12,25 @@
         <meta name="author" content="maehachi08">
       
       
-        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/aws-eks/aws-load-balancer-controller/">
+        <link rel="canonical" href="https://maehachi08.github.io/k8s-study/kubernetes/architecture/gateway-api/">
       
       
+        <link rel="prev" href="../garbage-collection/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+        <link rel="next" href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
-        <title>aws-load-balancer-controller - maehachi08/k8s-study</title>
+        <title>Gateway API - maehachi08/k8s-study</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
       
   
@@ -77,8 +81,8 @@
 
       
     
-<script src="../../assets/pymdownx-extras/material-extra-theme-TVq-kNRT.js" type="text/javascript"></script>
-<script src="../../assets/pymdownx-extras/material-extra-3rdparty-E-i8w1WA.js" type="text/javascript"></script>
+<script src="../../../assets/pymdownx-extras/material-extra-theme-TVq-kNRT.js" type="text/javascript"></script>
+<script src="../../../assets/pymdownx-extras/material-extra-3rdparty-E-i8w1WA.js" type="text/javascript"></script>
 
     
       
@@ -90,16 +94,16 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/pymdownx-extras/extra-fb5a2a1c86.css">
+      <link rel="stylesheet" href="../../../assets/pymdownx-extras/extra-fb5a2a1c86.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
     html.glightbox-open { overflow: initial; height: 100%; }
     .gslide-title { margin-top: 0px; user-select: text; }
     .gslide-desc { color: #666; user-select: text; }
@@ -108,7 +112,7 @@
     .gdesc-inner { font-size: 0.75rem; }
     body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
     body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -120,7 +124,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aws-load-balancer-controller" class="md-skip">
+        <a href="#gateway-api" class="md-skip">
           Skip to content
         </a>
       
@@ -162,7 +166,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              aws-load-balancer-controller
+              Gateway API
             
           </span>
         </div>
@@ -278,7 +282,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
+    <a href="../../.." title="maehachi08/k8s-study" class="md-nav__button md-logo" aria-label="maehachi08/k8s-study" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -308,7 +312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -328,7 +332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../container-runtime/" class="md-nav__link">
+      <a href="../../../container-runtime/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -345,17 +349,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -369,7 +375,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Kubernetes
@@ -380,17 +386,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -404,7 +412,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             Architecture
@@ -418,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../kubernetes/architecture/garbage-collection/" class="md-nav__link">
+      <a href="../garbage-collection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -436,10 +444,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../kubernetes/architecture/gateway-api/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Gateway API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -448,6 +476,161 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about" class="md-nav__link">
+    <span class="md-ellipsis">
+      About
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="About">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backendtlspolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      BackendTLSPolicy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencegrant" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceGrant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progressive-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Progressive delivery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Mesh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argo-rollouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argo Rollouts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Provider
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cloud Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Cloud
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -545,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../eks/amazon-vpc-cni-plugin-for-kubernetes/" class="md-nav__link">
+      <a href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -566,7 +749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../eks/amazon-vpc-cni-plugin-for-kubernetes/custom-networking/" class="md-nav__link">
+      <a href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/custom-networking/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -587,7 +770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../eks/amazon-vpc-cni-plugin-for-kubernetes/security_group_for_pod/" class="md-nav__link">
+      <a href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/security_group_for_pod/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -608,7 +791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../eks/amazon-vpc-cni-plugin-for-kubernetes/network-policy/" class="md-nav__link">
+      <a href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/network-policy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -672,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../eks/aws-efs-csi-driver/about/" class="md-nav__link">
+      <a href="../../../eks/aws-efs-csi-driver/about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -743,7 +926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/01_setup_RaspberryPi/" class="md-nav__link">
+      <a href="../../../setup/01_setup_RaspberryPi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -764,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
+      <a href="../../../setup/02_setup_ubuntu20-04-LTS/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -785,7 +968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/03_common_settings/" class="md-nav__link">
+      <a href="../../../setup/03_common_settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -806,7 +989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/04_creation_certificate/" class="md-nav__link">
+      <a href="../../../setup/04_creation_certificate/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -827,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/05_creating_config/" class="md-nav__link">
+      <a href="../../../setup/05_creating_config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -883,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/01_bootstrapping_kubelet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -904,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
+      <a href="../../../setup/06_master/02_bootstrapping_etcd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -925,7 +1108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
+      <a href="../../../setup/06_master/03_bootstrapping_kube-apiserver/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -946,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
+      <a href="../../../setup/06_master/04_bootstrapping_kube-controller-manager/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -967,7 +1150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
+      <a href="../../../setup/06_master/05_bootstrapping_kube-scheduler/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -988,7 +1171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
+      <a href="../../../setup/06_master/06_configuration_rbac_to_access_from-apiserver-to-kubelet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1009,7 +1192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/06_master/07_controller_health_check/" class="md-nav__link">
+      <a href="../../../setup/06_master/07_controller_health_check/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1073,7 +1256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
+      <a href="../../../setup/07_worker/01_bootstrapping_kubelet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1094,7 +1277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
+      <a href="../../../setup/07_worker/02_bootstrapping_kube-proxy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1123,7 +1306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
+      <a href="../../../setup/08_flannel/bootstrapping_flannel/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1144,7 +1327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
+      <a href="../../../setup/09_coredns/bootstrapping_coredns/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1165,7 +1348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
+      <a href="../../../setup/10_nginx_ingress_controller/bootstrapping_nginx_ingress_controller/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1186,7 +1369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
+      <a href="../../../setup/11_external_dns/bootstrapping_external_dns/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1249,7 +1432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
+      <a href="../../../monitoring/metrics-server/bootstrapping_metrics_server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1270,7 +1453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
+      <a href="../../../monitoring/kubernetes-dashboard/bootstrapping_kubernetes-dashboard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1326,7 +1509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/prometheus/install_prometheus/" class="md-nav__link">
+      <a href="../../../monitoring/prometheus/install_prometheus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1347,7 +1530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/prometheus/install_grafana/" class="md-nav__link">
+      <a href="../../../monitoring/prometheus/install_grafana/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1368,7 +1551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../monitoring/prometheus/install_cadvisor/" class="md-nav__link">
+      <a href="../../../monitoring/prometheus/install_cadvisor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1439,7 +1622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/metallb/" class="md-nav__link">
+      <a href="../../../addons/metallb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1495,7 +1678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/openebs/about/" class="md-nav__link">
+      <a href="../../../addons/openebs/about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1516,7 +1699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/openebs/install/" class="md-nav__link">
+      <a href="../../../addons/openebs/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1580,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/cert-manager/about/" class="md-nav__link">
+      <a href="../../../addons/cert-manager/about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1601,7 +1784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/cert-manager/install/" class="md-nav__link">
+      <a href="../../../addons/cert-manager/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1700,7 +1883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/argo/argo-rollouts/about/" class="md-nav__link">
+      <a href="../../../addons/argo/argo-rollouts/about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1721,7 +1904,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/argo/argo-rollouts/traffic-management/" class="md-nav__link">
+      <a href="../../../addons/argo/argo-rollouts/traffic-management/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1742,7 +1925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/argo/argo-rollouts/install/" class="md-nav__link">
+      <a href="../../../addons/argo/argo-rollouts/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1763,7 +1946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/argo/argo-rollouts/basic_usage/" class="md-nav__link">
+      <a href="../../../addons/argo/argo-rollouts/basic_usage/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1835,7 +2018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/keda/about_keda/" class="md-nav__link">
+      <a href="../../../addons/keda/about_keda/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1856,7 +2039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/keda/install/" class="md-nav__link">
+      <a href="../../../addons/keda/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1877,7 +2060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/keda/fallback/" class="md-nav__link">
+      <a href="../../../addons/keda/fallback/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1941,7 +2124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/kyverno/about_kyverno/" class="md-nav__link">
+      <a href="../../../addons/kyverno/about_kyverno/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1962,7 +2145,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../addons/kyverno/installation_kyverno/" class="md-nav__link">
+      <a href="../../../addons/kyverno/installation_kyverno/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2033,7 +2216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-native-buildpacks/about/" class="md-nav__link">
+      <a href="../../../cloud-native-buildpacks/about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2089,7 +2272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cloud-native-buildpacks/paketo-buildpacks/ruby/" class="md-nav__link">
+      <a href="../../../cloud-native-buildpacks/paketo-buildpacks/ruby/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2160,7 +2343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/backup_etcd/" class="md-nav__link">
+      <a href="../../../operations/backup_etcd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2181,7 +2364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/cluster-upgrade/" class="md-nav__link">
+      <a href="../../../operations/cluster-upgrade/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2279,7 +2462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../load_test/locust/about/" class="md-nav__link">
+      <a href="../../../load_test/locust/about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2350,7 +2533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_story/" class="md-nav__link">
+      <a href="../../../failure_test/failure_story/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2371,7 +2554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/point_of_failure/" class="md-nav__link">
+      <a href="../../../failure_test/point_of_failure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2427,7 +2610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../failure_test/failure_scenario_of_node/" class="md-nav__link">
+      <a href="../../../failure_test/failure_scenario_of_node/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2483,11 +2666,137 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
-      参考
+      References
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about" class="md-nav__link">
+    <span class="md-ellipsis">
+      About
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="About">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backendtlspolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      BackendTLSPolicy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#referencegrant" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceGrant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progressive-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Progressive delivery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Mesh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argo-rollouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argo Rollouts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Provider
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cloud Provider">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Cloud
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2507,10 +2816,143 @@
                   
 
 
-<h1 id="aws-load-balancer-controller">aws-load-balancer-controller</h1>
-<h2 id="_1">参考</h2>
+<h1 id="gateway-api">Gateway API</h1>
+<h2 id="references">References</h2>
 <ul>
-<li><a href="https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/">https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/">https://gateway-api.sigs.k8s.io/</a></li>
+<li><a href="https://github.com/kubernetes-sigs/gateway-api/releases">https://github.com/kubernetes-sigs/gateway-api/releases</a></li>
+<li><a href="https://medium.com/google-cloud-jp/gke-gateway-4150649d8c37">https://medium.com/google-cloud-jp/gke-gateway-4150649d8c37</a></li>
+<li><a href="https://medium.com/google-cloud-jp/gke-gateway2-317ed62f727f">https://medium.com/google-cloud-jp/gke-gateway2-317ed62f727f</a></li>
+<li><a href="https://amsy810.hateblo.jp/entry/2023/12/01/090000">https://amsy810.hateblo.jp/entry/2023/12/01/090000</a></li>
+<li><a href="https://qiita.com/ipppppei/items/6edb78b513c7bbe55d91">https://qiita.com/ipppppei/items/6edb78b513c7bbe55d91</a></li>
+<li><a href="https://thinkit.co.jp/article/19625">https://thinkit.co.jp/article/19625</a></li>
+<li><a href="https://zenn.dev/pkkudo/articles/cb1942011d81ae">https://zenn.dev/pkkudo/articles/cb1942011d81ae</a></li>
+</ul>
+<h2 id="about">About</h2>
+<p>Gateway APIはClusterの外にいるClientからClusterの中にあるServiceへのtraffic routingを管理する目的で策定されました。</p>
+<p>Gatewayリソース(基礎となるネットワークゲートウェイ/プロキシサーバ) を中心としたリソースのコレクションであり、シンプルな機能提供にとどまるIngressに対してプロトコルやtraffic routingなど運用面で不足している機能などが追加されたNetwork機能を提供するものです。</p>
+<p><a href="https://kubernetes.io/blog/2023/10/31/gateway-api-ga/">2023/10/31にv1.0: GA Release</a> されたKubernetes Projectです。</p>
+<blockquote>
+<p>Gateway API is an official Kubernetes project focused on L4 and L7 routing in Kubernetes. This project represents the next generation of Kubernetes Ingress, Load Balancing, and Service Mesh APIs. From the outset, it has been designed to be generic, expressive, and role-oriented.
+-- <cite><a href="https://gateway-api.sigs.k8s.io/">Introduction</a> から引用</cite></p>
+</blockquote>
+<p>Ingressにはいくつかの課題があります。<br>
+refs <a href="https://blog.nginx.org/blog/5-reasons-to-try-the-kubernetes-gateway-api">https://blog.nginx.org/blog/5-reasons-to-try-the-kubernetes-gateway-api</a></p>
+<ol>
+<li>インフラ管理者/Cluster管理者/アプリケーション開発者 間の責任分界点が明確ではなかった</li>
+<li>L7しかサポートしていない</li>
+<li>細かなtraffic routingはingress controller(Nginx IngressControllerやAWS load-balancer-controllerなど) ごとに提供されるannotationで管理するため環境依存が発生する</li>
+</ol>
+<p>Gateway APIはこれらの問題を解決することも考慮し策定されました。</p>
+<ol>
+<li>以下のようなリソースモデルにより役割が分かれている<ul>
+<li><a class="glightbox" href="https://gateway-api.sigs.k8s.io/images/resource-model.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://gateway-api.sigs.k8s.io/images/resource-model.png" /></a></li>
+</ul>
+</li>
+<li>L4とL7をサポート</li>
+<li>HTTPS/HTTP だけでなくTLSやTCP/UDPなど様々なtraffic routingをサポート<ul>
+<li><a href="https://gateway-api.sigs.k8s.io/guides/">https://gateway-api.sigs.k8s.io/guides/</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="architecture">Architecture</h3>
+<ul>
+<li><a href="https://gateway-api.sigs.k8s.io/concepts/api-overview/">https://gateway-api.sigs.k8s.io/concepts/api-overview/</a></li>
+<li><a href="https://docs.nginx.com/nginx-gateway-fabric/overview/gateway-architecture/">https://docs.nginx.com/nginx-gateway-fabric/overview/gateway-architecture/</a></li>
+</ul>
+<h3 id="resources">Resources</h3>
+<ul>
+<li><a href="https://gateway-api.sigs.k8s.io/concepts/api-overview/">https://gateway-api.sigs.k8s.io/concepts/api-overview/</a><ul>
+<li><code>GatewayClass</code><ul>
+<li><a href="https://gateway-api.sigs.k8s.io/api-types/gatewayclass/">https://gateway-api.sigs.k8s.io/api-types/gatewayclass/</a></li>
+</ul>
+</li>
+<li><code>Gateway</code><ul>
+<li><a href="https://gateway-api.sigs.k8s.io/api-types/gateway/">https://gateway-api.sigs.k8s.io/api-types/gateway/</a></li>
+</ul>
+</li>
+<li><code>xRoute</code><ul>
+<li><code>HTTPRoute</code><ul>
+<li><a href="https://gateway-api.sigs.k8s.io/guides/http-routing/">https://gateway-api.sigs.k8s.io/guides/http-routing/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/api-types/httproute/">https://gateway-api.sigs.k8s.io/api-types/httproute/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRoute">https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRoute</a></li>
+</ul>
+</li>
+<li><code>TLSRoute</code><ul>
+<li><a href="https://gateway-api.sigs.k8s.io/guides/tls/">https://gateway-api.sigs.k8s.io/guides/tls/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.TLSRoute">https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.TLSRoute</a></li>
+</ul>
+</li>
+<li><code>TCPRoute</code> / <code>UDPRoute</code><ul>
+<li><a href="https://gateway-api.sigs.k8s.io/guides/tcp/">https://gateway-api.sigs.k8s.io/guides/tcp/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.TCPRoute">https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.TCPRoute</a></li>
+</ul>
+</li>
+<li><code>GRPCRoute</code><ul>
+<li><a href="https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.1.0">v1.1.0</a> でGA release</li>
+<li><a href="https://gateway-api.sigs.k8s.io/guides/grpc-routing/">https://gateway-api.sigs.k8s.io/guides/grpc-routing/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/api-types/grpcroute/">https://gateway-api.sigs.k8s.io/api-types/grpcroute/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.GRPCRoute">https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.GRPCRoute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>ReferenceGrant</code><ul>
+<li><a href="https://gateway-api.sigs.k8s.io/api-types/referencegrant/">https://gateway-api.sigs.k8s.io/api-types/referencegrant/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.ReferenceGrant">https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1alpha2.ReferenceGrant</a></li>
+</ul>
+</li>
+<li><code>BackendTLSPolicy</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="backendtlspolicy">BackendTLSPolicy</h3>
+<p><a href="https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.1.0">v1.1.0</a>では <code>v1alpha3</code> の機能です。</p>
+<p>Gateway から backend serviceにHTTPSでtraffic routingする場合のTLS設定です。Cluster外のclientからのTLS暗号をbackend serviceで終端させる <code>passthrough</code> と Cluster外のclientからのTLS暗号をGatewayで終端させてGatewayとbackend serviceで新たなTLS暗号を行う <code>edge</code> があります。</p>
+<ul>
+<li><a href="https://gateway-api.sigs.k8s.io/guides/tls/">https://gateway-api.sigs.k8s.io/guides/tls/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/api-types/backendtlspolicy/">https://gateway-api.sigs.k8s.io/api-types/backendtlspolicy/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/geps/gep-1897/">https://gateway-api.sigs.k8s.io/geps/gep-1897/</a></li>
+</ul>
+<h3 id="referencegrant">ReferenceGrant</h3>
+<ul>
+<li><a href="https://gateway-api.sigs.k8s.io/api-types/referencegrant/">https://gateway-api.sigs.k8s.io/api-types/referencegrant/</a><ul>
+<li><a href="https://qiita.com/ipppppei/items/8e6e1f0e77de10e2446d">https://qiita.com/ipppppei/items/8e6e1f0e77de10e2446d</a></li>
+<li><a href="https://thinkit.co.jp/article/21458">https://thinkit.co.jp/article/21458</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="progressive-delivery">Progressive delivery</h3>
+<p>xRouteリソースの <code>BackendRef</code> には <strong><code>weight</code></strong> properties があり、Progressive deliveryをサポートします。</p>
+<p>Argo RolloutsもGateway APIでのProgressive deliveryをサポートしています。</p>
+<ul>
+<li><a href="https://gateway-api.sigs.k8s.io/implementations/#argo-rollouts">https://gateway-api.sigs.k8s.io/implementations/#argo-rollouts</a></li>
+<li><a href="https://argo-rollouts.readthedocs.io/en/stable/features/traffic-management/plugins/#gateway-API">https://argo-rollouts.readthedocs.io/en/stable/features/traffic-management/plugins/#gateway-API</a></li>
+<li><a href="https://github.com/argoproj-labs/rollouts-plugin-trafficrouter-gatewayapi/">https://github.com/argoproj-labs/rollouts-plugin-trafficrouter-gatewayapi/</a></li>
+</ul>
+<h3 id="service-mesh">Service Mesh</h3>
+<p>Gateway APIはClusterの外にいるClientからClusterの中にあるServiceへのtraffic routingを管理する目的で策定されました。しかし時が経つにつれてService Meshに対する関心が高まってきており、Gateway APIを同一Cluster内のeast/west traffic routingに利用する方法を策定する目的で <a href="https://gateway-api.sigs.k8s.io/mesh/gamma/">GAMMA(Gateway API for Mesh Management and Administration) Initiative</a> が立ち上がりました。</p>
+<p>2024/05/9に <a href="https://github.com/kubernetes-sigs/gateway-api/releases/tag/v1.1.0">v1.1.0</a> で <a href="https://gateway-api.sigs.k8s.io/mesh/">Gateway API for Service Mesh</a> がGA Releaseされました。それに伴いIstio v1.22で <a href="https://istio.io/latest/blog/2024/gateway-mesh-ga/">Gateway API Mesh Support Promoted To Stable</a> となりました。</p>
+<ul>
+<li><a href="https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/">https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/</a></li>
+<li><a href="https://developer.mamezou-tech.com/blogs/2022/07/24/k8s-gateway-api-intro/">https://developer.mamezou-tech.com/blogs/2022/07/24/k8s-gateway-api-intro/</a></li>
+</ul>
+<h3 id="implementations">Implementations</h3>
+<p><a href="https://gateway-api.sigs.k8s.io/implementations/">https://gateway-api.sigs.k8s.io/implementations/</a></p>
+<p>Gateway APIを実装した製品群</p>
+<h4 id="argo-rollouts">Argo Rollouts</h4>
+<ul>
+<li><a href="https://rollouts-plugin-trafficrouter-gatewayapi.readthedocs.io/en/latest/">https://rollouts-plugin-trafficrouter-gatewayapi.readthedocs.io/en/latest/</a></li>
+</ul>
+<h2 id="cloud-provider">Cloud Provider</h2>
+<h3 id="aws">AWS</h3>
+<ul>
+<li><a href="https://www.gateway-api-controller.eks.aws.dev/latest/">https://www.gateway-api-controller.eks.aws.dev/latest/</a></li>
+<li><a href="https://github.com/aws/aws-application-networking-k8s">AWS Gateway API Controller for VPC Lattice</a></li>
+</ul>
+<h3 id="google-cloud">Google Cloud</h3>
+<ul>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api?hl=ja">https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api?hl=ja</a></li>
 </ul>
 
 
@@ -2540,6 +2982,50 @@
 
 <footer class="md-footer">
   
+    <nav
+      class="md-footer__inner md-grid"
+      aria-label="footer.title"
+    >
+      
+        <a
+          href="../garbage-collection/"
+          class="md-footer__link md-footer__link--prev"
+          rel="prev"
+        >
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Garbage Collection
+            </div>
+          </div>
+        </a>
+      
+      
+        <a
+          href="../../../eks/amazon-vpc-cni-plugin-for-kubernetes/"
+          class="md-footer__link md-footer__link--next"
+          rel="next"
+        >
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              About
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
@@ -2566,12 +3052,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
-        <script src="../../assets/pymdownx-extras/extra-loader-MCFnu0Wd.js"></script>
+        <script src="../../../assets/pymdownx-extras/extra-loader-MCFnu0Wd.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
