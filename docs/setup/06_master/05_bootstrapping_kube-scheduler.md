@@ -8,7 +8,7 @@
       cat << 'EOF' > Dockerfile_kube-scheduler.armhf
       FROM arm64v8/ubuntu:bionic
 
-      ARG VERSION="v1.22.0"
+      ARG VERSION="v1.30.1"
       ARG ARCH="arm64"
 
       RUN set -ex \
@@ -35,7 +35,7 @@
             ```
             cat << EOF > kube-scheduler.yaml
             ---
-            apiVersion: kubescheduler.config.k8s.io/v1beta1
+            apiVersion: kubescheduler.config.k8s.io/v1
             kind: KubeSchedulerConfiguration
             clientConnection:
               kubeconfig: "/var/lib/kubernetes/kube-scheduler.kubeconfig"

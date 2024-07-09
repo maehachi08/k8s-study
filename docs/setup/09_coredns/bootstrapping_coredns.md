@@ -31,6 +31,12 @@ CoreDNSはあらゆる処理をPluginとして実装しています。CoreDNS単
 
 ## 手順
 
+
+sudo sed -i "s/^nameserver\s127.0.0.53$/nameserver ${NAMESERVER_ADDRESSES}/" /run/systemd/resolve/stub-resolv.conf
+sudo systemctl restart systemd-resolved
+sudo systemctl restart kubelet
+sudo systemctl restart containerd
+
 1. coredns k8s manifestsを[公式](https://github.com/coredns/deployment)から取得する
     ```
     git clone https://github.com/coredns/deployment.git coredns_deployment
