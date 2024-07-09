@@ -43,6 +43,7 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - admonition
+  - footnotes
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
@@ -53,6 +54,7 @@ nav:
   - Kubernetes:
     - Architecture:
       - Garbage Collection: kubernetes/architecture/garbage-collection.md
+      - Gateway API: kubernetes/architecture/gateway-api.md
   - EKS:
     - amazon-vpc-cni-plugin-for-kubernetes:
       - About: eks/amazon-vpc-cni-plugin-for-kubernetes/README.md
