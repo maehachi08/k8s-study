@@ -8,7 +8,33 @@
    <details><summary>Dockerfile_etcd.armhf</summary>
       ```
       cat << 'EOF' > Dockerfile_etcd.armhf
-      FROM quay.io/coreos/etcd:v3.4.20
+      FROM arm64v8/ubuntu:bionic AS etcd-builder
+
+      RUN set -ex \
+        && apt update \
+        && apt install -y git tar zip curl \
+        && apt clean
+
+      RUN set -ex \
+        && curl -L https://go.dev/dl/go1.22.3.linux-arm64.tar.gz | tar -zxC /usr/local
+
+      RUN set -ex \
+        && git clone https://github.com/etcd-io/etcd.git -b v3.5.13 /tmp/etcd\
+        && cd /tmp/etcd \
+        && PATH=$PATH:/usr/local/go/bin:~/go/bin ./build
+
+
+
+      FROM arm64v8/ubuntu:bionic
+
+      COPY --from=etcd-builder /tmp/etcd/bin/etcd /usr/local/bin/
+      COPY --from=etcd-builder /tmp/etcd/bin/etcdctl /usr/local/bin/
+
+      RUN set -ex \
+        && apt update \
+        && apt clean \
+        && install -o root -g root -m 700 -d /var/lib/etcd \
+        && install -o root -g root -m 644 -d /etc/etcd
 
       COPY ca.pem /etc/etcd/
       COPY kubernetes-key.pem /etc/etcd/
@@ -17,8 +43,6 @@
       ENV ETCD_UNSUPPORTED_ARCH=arm64
 
       EXPOSE 2379 2380
-
-      VOLUME ["/etcd-data"]
 
       ENTRYPOINT ["/usr/local/bin/etcd"]
       EOF

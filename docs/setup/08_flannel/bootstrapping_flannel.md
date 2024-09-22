@@ -28,6 +28,18 @@
 1. manifestsを修正する
     - `net-conf.json` の `Network` をcontroller-managerの`--cluster-cidr`で指定した値に変更する
     - etcdに用いたcertificateやadminのkubeconfigをkube-flannelコンテナへbind mountする
+
+       ```
+               volumeMounts:
+               - name: var-lib-kubernetes-dir
+                 mountPath: /var/lib/kubernetes/
+
+             volumes:
+             - name: var-lib-kubernetes-dir
+               hostPath:
+                 path: /var/lib/kubernetes
+       ```
+
     - `/opt/bin/flanneld` の起動オプション
         - `--kubeconfig-file`
         - `--etcd-endpoints`
