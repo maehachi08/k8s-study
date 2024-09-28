@@ -19,7 +19,7 @@
 ### `kubelet` バイナリをダウンロード
 
    ```
-   VERSION="v1.30.1"
+   VERSION="v1.31.1"
    ARCH="arm64"
 
    sudo wget -P /usr/bin/ https://dl.k8s.io/${VERSION}/bin/linux/${ARCH}/kubelet

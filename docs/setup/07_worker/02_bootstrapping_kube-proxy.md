@@ -12,7 +12,7 @@
     cat << 'EOF' > Dockerfile_kube-proxy.armhf
     FROM arm64v8/ubuntu:bionic
 
-    ARG VERSION="v1.30.1"
+    ARG VERSION="v1.31.1"
     ARG ARCH="arm64"
 
     RUN set -ex \
