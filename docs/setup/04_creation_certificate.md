@@ -139,6 +139,8 @@ done
 ```
 
 - 以下ファイルが生成されていることを確認
+    - `k8s-master-key.pem`
+    - `k8s-master.pem`
     - `k8s-node1-key.pem`
     - `k8s-node1.pem`
     - `k8s-node2-key.pem`
@@ -403,8 +405,26 @@ cfssl gencert \
 
 ### 証明書をmaster/nodeへコピーする
 
-- master
-- node
+```
+host=k8s-master
+#host=k8s-node1
+#host=k8s-node2
+
+sudo mkdir -p /var/lib/kubernetes
+sudo cp ca.pem \
+        ca-key.pem \
+        kubernetes-key.pem \
+        kubernetes.pem \
+        service-account-key.pem \
+        service-account.pem \
+        front-proxy-ca.pem \
+        front-proxy.pem \
+        front-proxy-key.pem \
+        /var/lib/kubernetes/
+
+sudo mkdir -p /var/lib/kubelet
+sudo cp ${host}.pem  ${host}-key.pem /var/lib/kubelet/
+```
 
 ## 参考文献
    - https://kubernetes.io/ja/docs/setup/best-practices/certificates/

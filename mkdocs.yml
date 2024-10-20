@@ -65,7 +65,7 @@ nav:
       - About: eks/aws-efs-csi-driver/about.md
   - Setup:
     - 01. Raspberry Pi 構成: setup/01_setup_RaspberryPi.md
-    - 02. OS Install: setup/02_setup_ubuntu20-04-LTS.md
+    - 02. OS Install: setup/02_setup_ubuntu24-04-LTS.md
     - 03. master/nodeで共通手順: setup/03_common_settings.md
     - 04. 認証局の設定とTLS証明書の作成: setup/04_creation_certificate.md
     - 05. 認証のためのkubeconfigの作成: setup/05_creating_config.md

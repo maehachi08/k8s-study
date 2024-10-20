@@ -8,32 +8,16 @@
       cat << 'EOF' > Dockerfile_kube-apiserver.armhf
       FROM arm64v8/ubuntu:bionic
 
-      ARG VERSION="v1.30.1"
+      ARG VERSION="v1.31.1"
       ARG ARCH="arm64"
 
       RUN set -ex \
         && apt update \
+        && apt upgrade -y \
         && apt install -y wget \
         && apt clean \
         && wget --quiet -P /usr/bin/ https://dl.k8s.io/$VERSION/bin/linux/$ARCH/kube-apiserver \
-        && chmod +x /usr/bin/kube-apiserver \
-        && install -o root -g root -m 755 -d /var/lib/kubernetes \
-        && install -o root -g root -m 755 -d /etc/kubernetes/config \
-        && install -o root -g root -m 755 -d /etc/kubernetes/webhook
-
-      COPY ca.pem \
-           ca-key.pem \
-           kubernetes-key.pem \
-           kubernetes.pem \
-           service-account-key.pem \
-           service-account.pem \
-           encryption-config.yaml \
-           front-proxy-ca.pem \
-           front-proxy.pem \
-           front-proxy-key.pem \
-           /var/lib/kubernetes/
-
-      COPY authorization-config.yaml /etc/kubernetes/webhook/
+        && chmod +x /usr/bin/kube-apiserver
 
       EXPOSE 6443
 
@@ -64,6 +48,8 @@
                             secret: ${ENCRYPTION_KEY}
                     - identity: {}
               EOF
+
+              sudo cp encryption-config.yaml /var/lib/kubernetes/
               ```
            </details>
 
@@ -100,16 +86,20 @@
               user: api-server-webhook
             name: webhook
           EOF
+
+          sudo mkdir -p /etc/kubernetes/webhook
+          sudo cp authorization-config.yaml /etc/kubernetes/webhook/
           ```
        </details>
 
 1. image build
    ```
-   sudo nerdctl build --namespace k8s.io -t k8s-kube-apiserver --file=Dockerfile_kube-apiserver.armhf ./
+   sudo nerdctl build --namespace k8s.io -t k8s-kube-apiserver:v1.31.1 --file=Dockerfile_kube-apiserver.armhf ./
    ```
 
 1. pod manifestsを `/etc/kubelet.d` へ作成する
     - `--advertise-address` オプションはIPアドレスで指定する必要がある(hostnameでは起動しなかった)
+    - `--etcd-servers` オプションのFQDNは証明書のFQDNと一致させる必要がある
       <details><summary>/etc/kubelet.d/kube-api-server.yaml</summary>
          ```
          KUBE_API_SERVER_ADDRESS=192.168.3.50
@@ -119,7 +109,7 @@
          apiVersion: v1
          kind: Pod
          metadata:
-           name: kube-apiserver
+           name: kube-apiserver-v1.31.1
            namespace: kube-system
            annotations:
              seccomp.security.alpha.kubernetes.io/pod: runtime/default
@@ -131,10 +121,24 @@
            # https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
            priorityClassName: system-node-critical
            hostNetwork: true
+           volumes:
+           - name: kubernetes-dir
+             hostPath:
+               path: /var/lib/kubernetes
+               type: Directory
+           - name: kubernetes-webhook-dir
+             hostPath:
+               path: /etc/kubernetes/webhook
+               type: Directory
            containers:
              - name: kube-apiserver
-               image: k8s-kube-apiserver:latest
+               image: k8s-kube-apiserver:v1.31.1
                imagePullPolicy: IfNotPresent
+               volumeMounts:
+               - mountPath: /var/lib/kubernetes
+                 name: kubernetes-dir
+               - mountPath: /etc/kubernetes/webhook
+                 name: kubernetes-webhook-dir
                resources:
                  requests:
                    memory: "512Mi"
@@ -142,10 +146,9 @@
                    memory: "1024Mi"
                command:
                  - /usr/bin/kube-apiserver
-                 - --advertise-address=k8s-master
+                 - --advertise-address=${KUBE_API_SERVER_ADDRESS}
                  - --allow-privileged=true
                  - --anonymous-auth=false
-                 - --apiserver-count=1
                  - --audit-log-maxage=30
                  - --audit-log-maxbackup=3
                  - --audit-log-maxsize=100
@@ -167,11 +170,9 @@
                  - --kubelet-client-certificate=/var/lib/kubernetes/kubernetes.pem
                  - --kubelet-client-key=/var/lib/kubernetes/kubernetes-key.pem
                  - --runtime-config=authentication.k8s.io/v1beta1=true
-                 - --feature-gates=APIPriorityAndFairness=false
                  - --service-account-key-file=/var/lib/kubernetes/service-account.pem
                  - --service-account-signing-key-file=/var/lib/kubernetes/service-account-key.pem
                  - --service-account-issuer=api
-                 - --service-account-api-audiences=api
                  - --service-cluster-ip-range=10.32.0.0/24
                  - --service-node-port-range=30000-32767
                  - --tls-cert-file=/var/lib/kubernetes/kubernetes.pem

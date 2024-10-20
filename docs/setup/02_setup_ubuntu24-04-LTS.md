@@ -1,9 +1,9 @@
 ## OS Setup
 
-### UbuntuServer20.04.2LTS Setup
+### UbuntuServer24.04.1LTS Setup
 
 1. GeeekPiケースの組み立て & 結線 & 起動確認
-1. [Raspberry Pi Imager](https://www.raspberrypi.org/software/) でSDカードにUbuntuServer20.04.2LTS(64bit) をインストール
+1. [Raspberry Pi Imager](https://www.raspberrypi.org/software/) でSDカードにUbuntuServer24.04.1LTS(64bit) をインストール
 1. Raspberry Pi 4へSDカードを挿入し起動
 1. wifi設定
    ```

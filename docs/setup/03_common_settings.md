@@ -50,15 +50,14 @@
         ```
         $ sudo sed -e 's/\s/\n/g' /boot/firmware/cmdline.txt
         console=serial0,115200
+        multipath=off
+        dwc_otg.lpm_enable=0
         console=tty1
-        root=PARTUUID=fb7271c3-02
+        root=LABEL=writable
         rootfstype=ext4
-        elevator=deadline
-        fsck.repair=yes
         rootwait
-        quiet
-        splash
-        plymouth.ignore-serial-consoles
+        fixrtc
+        cfg80211.ieee80211_regdom=JP
         cgroup_enable=cpuset
         cgroup_memory=1
         cgroup_enable=memory
@@ -384,7 +383,7 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
 1. cri-tools(crictl) インストール
     - https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md
        ```
-       VERSION="v1.30.1"
+       VERSION="v1.31.1"
        ARCH="arm64"
        DOWNLOAD_URL="https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-${VERSION}-linux-${ARCH}.tar.gz"
        curl -L ${DOWNLOAD_URL} | sudo tar -zxC /usr/local/bin
@@ -444,4 +443,12 @@ https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-
 
 ### kubectl インストール
 
-- https://kubernetes.io/ja/docs/tasks/tools/install-kubectl/
+- https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+    ```
+    VERSION="v1.31.1"
+    curl -LO "https://dl.k8s.io/release/${VERSION}/bin/linux/arm64/kubectl"
+    chmod +x kubectl
+    chown root:root kubectl
+    sudo mv kubectl /usr/local/bin/
+    ls -l /usr/local/bin/
+    ```

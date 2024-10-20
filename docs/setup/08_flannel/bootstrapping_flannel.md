@@ -18,7 +18,7 @@
     ```
 
 1. flannel k8s manifestsを公式から取得する
-   - masterブランチから取得していますが2021/03/06 時点では release tag `v0.13.1-rc2` の内容
+   - masterブランチから取得していますが2024/10/16 時点では release tag `v0.25.7` の内容
 
       ```
       sudo mkdir -p /etc/kubernetes/manifests

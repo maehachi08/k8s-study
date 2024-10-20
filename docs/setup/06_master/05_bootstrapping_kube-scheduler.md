@@ -2,13 +2,18 @@
 
 ## 手順
 
+1. kubeconfigを配置する
+    ```
+    sudo cp kube-scheduler.kubeconfig /var/lib/kubernetes/
+    ```
+
 1. `Dockerfile_kube-scheduler.armhf` を作成する
    <details><summary>Dockerfile_kube-scheduler.armhf</summary>
       ```
       cat << 'EOF' > Dockerfile_kube-scheduler.armhf
       FROM arm64v8/ubuntu:bionic
 
-      ARG VERSION="v1.30.1"
+      ARG VERSION="v1.31.1"
       ARG ARCH="arm64"
 
       RUN set -ex \
@@ -16,12 +21,7 @@
         && apt install -y wget \
         && apt clean \
         && wget -P /usr/bin/ https://dl.k8s.io/$VERSION/bin/linux/$ARCH/kube-scheduler \
-        && chmod +x /usr/bin/kube-scheduler \
-        && install -o root -g root -m 755 -d /var/lib/kubernetes \
-        && install -o root -g root -m 755 -d /etc/kubernetes/config
-
-      COPY kube-scheduler.yaml /etc/kubernetes/config/
-      COPY kube-scheduler.kubeconfig /var/lib/kubernetes/
+        && chmod +x /usr/bin/kube-scheduler
 
       ENTRYPOINT ["/usr/bin/kube-scheduler"]
       EOF
@@ -42,12 +42,15 @@
             leaderElection:
               leaderElect: false
             EOF
+
+            sudo mkdir -p /etc/kubernetes/config
+            sudo cp kube-scheduler.yaml /etc/kubernetes/config/
             ```
          </details>
 
 1. image build
    ```
-   sudo nerdctl build --namespace k8s.io -t k8s-kube-scheduler --file=Dockerfile_kube-scheduler.armhf ./
+   sudo nerdctl build --namespace k8s.io -t k8s-kube-scheduler:v1.31.1 --file=Dockerfile_kube-scheduler.armhf ./
    ```
 
 1. pod manifestsを `/etc/kubelet.d` へ作成する
@@ -58,7 +61,7 @@
       apiVersion: v1
       kind: Pod
       metadata:
-        name: kube-scheduler
+        name: kube-scheduler-v1.31.1
         namespace: kube-system
         labels:
           tier: control-plane
@@ -68,10 +71,24 @@
         # https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
         priorityClassName: system-node-critical
         hostNetwork: true
+        volumes:
+        - name: kubernetes-dir
+          hostPath:
+            path: /var/lib/kubernetes
+            type: Directory
+        - name: kubernetes-config-dir
+          hostPath:
+            path: /etc/kubernetes/config
+            type: Directory
         containers:
           - name: kube-scheduler
-            image: k8s-kube-scheduler:latest
+            image: k8s-kube-scheduler:v1.31.1
             imagePullPolicy: IfNotPresent
+            volumeMounts:
+            - mountPath: /var/lib/kubernetes
+              name: kubernetes-dir
+            - mountPath: /etc/kubernetes/config
+              name: kubernetes-config-dir
             resources:
               requests:
                 cpu: "256m"

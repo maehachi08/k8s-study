@@ -19,7 +19,7 @@
 ### `kubelet` バイナリをダウンロード
 
    ```
-   VERSION="v1.30.1"
+   VERSION="v1.31.1"
    ARCH="arm64"
 
    sudo wget -P /usr/bin/ https://dl.k8s.io/${VERSION}/bin/linux/${ARCH}/kubelet
@@ -36,8 +36,7 @@
    sudo install -o root -g root -m 755 -d /etc/kubelet.d
    sudo install -o root -g root -m 755 -d /var/lib/kubernetes
    sudo install -o root -g root -m 755 -d /var/lib/kubelet
-   sudo cp ca.pem /var/lib/kubernetes/
-   sudo cp ${host}.pem ${host}-key.pem ${host}.kubeconfig /var/lib/kubelet/
+   sudo cp ${host}.pem ${host}-key.pem /var/lib/kubelet/
    sudo cp ${host}.kubeconfig /var/lib/kubelet/kubeconfig
    ```
 
@@ -63,9 +62,9 @@
   #   - webhook.enabled: true の場合はkube-api-server側でも諸処の設定が必要
   authentication:
     anonymous:
-      enabled: true
-    webhook:
       enabled: false
+    webhook:
+      enabled: true
       cacheTTL: "2m"
     x509:
       clientCAFile: "/var/lib/kubernetes/ca.pem"
@@ -74,7 +73,7 @@
   #   - authorization.mode のdefault動作は AlwaysAllow
   #   - authorization.mode: Webhook の場合は kube-api-serverで authorization.k8s.io/v1beta1 の有効設定が必要
   authorization:
-    mode: AlwaysAllow
+    mode: Webhook
 
   clusterDomain: "cluster.local"
   clusterDNS:
@@ -96,17 +95,25 @@
   # kube-reserved
   #   - k8s system daemons(kubelet, container runtime, node problem detector) 用にリソースを確保する
   enforceNodeAllocatable: ["pods","kube-reserved","system-reserved"]
-  cgroupsPerQOS: true
-  cgroupDriver: systemd
-  cgroupRoot: /
-  systemCgroups: /systemd/system.slice
-  systemReservedCgroup: /system.slice
+  cgroupsPerQOS: trueservedCgroup: "/system.slice/kubelet.service"
+  kubeReserved:
+    cpu: 1024m
+    memory: 1024Mi
+  cgroupDriver: "systemd"
+  cgroupRoot: "/"
+  systemCgroups: "/system.slice"
+  systemReservedCgroup: "/system.slice"
   systemReserved:
     cpu: 256m
     memory: 256Mi
-  runtimeCgroups: /kube.slice/containerd.service
-  kubeletCgroups: /kube.slice/kubelet.service
-  kubeReservedCgroup: /kube.slice
+  runtimeCgroups: "/system.slice/containerd.service"
+  kubeletCgroups: "/system.slice/kubelet.service"
+
+  # https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/
+  # Note that Kubelet does not create kubeReservedCgroup if it doesn't exist. The kubelet will fail to start if an invalid cgroup is specified. With systemd cgroup driver, you should follow a specific pattern for the name of the cgroup you define: the name should be the value you set for kubeReservedCgroup, with .slice appended.
+  #
+  # Create /sys/fs/cgroup/kubelet.service.slice for kubeReservedCgroup.
+  kubeReservedCgroup: "/kubelet.service"
   kubeReserved:
     cpu: 1024m
     memory: 1024Mi
@@ -127,20 +134,9 @@
    Restart=on-failure
    RestartSec=5
 
+   # Create /sys/fs/cgroup/kubelet.service.slice for kubeReservedCgroup.
    ExecStartPre=/usr/bin/mkdir -p \
-     /sys/fs/cgroup/kube.slice \
-     /sys/fs/cgroup/system.slice \
-     /sys/fs/cgroup/systemd/kube.slice \
-     /sys/fs/cgroup/cpuset/kube.slice \
-     /sys/fs/cgroup/cpuset/system.slice \
-     /sys/fs/cgroup/pids/kube.slice \
-     /sys/fs/cgroup/pids/system.slice \
-     /sys/fs/cgroup/memory/kube.slice \
-     /sys/fs/cgroup/memory/system.slice \
-     /sys/fs/cgroup/cpu,cpuacct/kube.slice \
-     /sys/fs/cgroup/cpu,cpuacct/system.slice \
-     /sys/fs/cgroup/hugetlb/system.slice \
-     /sys/fs/cgroup/hugetlb/kube.slice
+     /sys/fs/cgroup/kubelet.service.slice
 
    ExecStart=/usr/bin/kubelet \
      --config=/var/lib/kubelet/kubelet-config.yaml \

@@ -130,9 +130,7 @@ kubectl config set-context default \
     --kubeconfig=admin.kubeconfig
 
 kubectl config use-context default --kubeconfig=admin.kubeconfig
-
-sudo mkdir -p /var/lib/kubernetes/
-sudo cp admin.kubeconfig /var/lib/kubernetes/admin.kubeconfig
+sudo cp admin.kubeconfig /var/lib/kubernetes/
 ```
 
 ## 参考資料
