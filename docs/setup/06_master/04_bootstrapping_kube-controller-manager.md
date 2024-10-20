@@ -2,6 +2,11 @@
 
 ## 手順
 
+1. kubeconfigを配置する
+    ```
+    sudo cp kube-controller-manager.kubeconfig /var/lib/kubernetes/
+    ```
+
 1. `Dockerfile_kube-controller-manager.armhf` を作成する
    <details><summary>Dockerfile_kube-controller-manager.armhf</summary>
       ```
@@ -13,18 +18,11 @@
 
       RUN set -ex \
         && apt update \
+        && apt upgrade -y \
         && apt install -y wget \
         && apt clean \
         && wget -P /usr/bin/ https://dl.k8s.io/$VERSION/bin/linux/$ARCH/kube-controller-manager \
-        && chmod +x /usr/bin/kube-controller-manager \
-        && install -o root -g root -m 755 -d /var/lib/kubernetes \
-        && install -o root -g root -m 755 -d /etc/kubernetes/config
-
-      COPY ca.pem \
-           ca-key.pem \
-           service-account-key.pem \
-           kube-controller-manager.kubeconfig \
-           /var/lib/kubernetes/
+        && chmod +x /usr/bin/kube-controller-manager
 
       ENTRYPOINT ["/usr/bin/kube-controller-manager"]
       EOF
@@ -33,7 +31,7 @@
 
 1. image build
    ```
-   sudo nerdctl build --namespace k8s.io -t k8s-kube-controller-manager --file=Dockerfile_kube-controller-manager.armhf ./
+   sudo nerdctl build --namespace k8s.io -t k8s-kube-controller-manager:v1.31.1 --file=Dockerfile_kube-controller-manager.armhf ./
    ```
 
 1. pod manifestsを `/etc/kubelet.d` へ作成する
@@ -52,7 +50,7 @@
          apiVersion: v1
          kind: Pod
          metadata:
-           name: kube-controller-manager
+           name: kube-controller-manager-v1.31.1
            namespace: kube-system
            labels:
              tier: control-plane
@@ -62,10 +60,18 @@
            # https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
            priorityClassName: system-node-critical
            hostNetwork: true
+           volumes:
+           - name: kubernetes-dir
+             hostPath:
+               path: /var/lib/kubernetes
+               type: Directory
            containers:
              - name: kube-controller-manager
-               image: k8s-kube-controller-manager:latest
+               image: k8s-kube-controller-manager:v1.31.1
                imagePullPolicy: IfNotPresent
+               volumeMounts:
+               - mountPath: /var/lib/kubernetes
+                 name: kubernetes-dir
                resources:
                  requests:
                    cpu: "256m"

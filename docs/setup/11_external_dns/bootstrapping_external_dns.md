@@ -4,9 +4,11 @@
 
 - https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.2/guide/integrations/external_dns/
 
-### kubernetes 1.22 対応状況について
+### kubernetes 1.31 対応状況について
 
-- [v0.10.0](https://github.com/kubernetes-sigs/external-dns/releases/tag/v0.10.0) で対応済み
+- https://github.com/kubernetes-sigs/external-dns/blob/master/README.md#kubernetes-version-compatibility
+    - [v0.10.0](https://github.com/kubernetes-sigs/external-dns/releases/tag/v0.10.0) で対応済み
+
 
 ### オンプレでAWS Route53向けexternal-dns controllerの起動方法について
 

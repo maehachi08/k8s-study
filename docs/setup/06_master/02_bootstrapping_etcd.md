@@ -16,10 +16,10 @@
         && apt clean
 
       RUN set -ex \
-        && curl -L https://go.dev/dl/go1.22.3.linux-arm64.tar.gz | tar -zxC /usr/local
+        && curl -L https://go.dev/dl/go1.23.1.linux-arm64.tar.gz | tar -zxC /usr/local
 
       RUN set -ex \
-        && git clone https://github.com/etcd-io/etcd.git -b v3.5.13 /tmp/etcd\
+        && git clone https://github.com/etcd-io/etcd.git -b v3.5.16 /tmp/etcd \
         && cd /tmp/etcd \
         && PATH=$PATH:/usr/local/go/bin:~/go/bin ./build
 
@@ -32,15 +32,8 @@
 
       RUN set -ex \
         && apt update \
-        && apt clean \
-        && install -o root -g root -m 700 -d /var/lib/etcd \
-        && install -o root -g root -m 644 -d /etc/etcd
-
-      COPY ca.pem /etc/etcd/
-      COPY kubernetes-key.pem /etc/etcd/
-      COPY kubernetes.pem /etc/etcd/
-
-      ENV ETCD_UNSUPPORTED_ARCH=arm64
+        && apt upgrade -y \
+        && apt clean
 
       EXPOSE 2379 2380
 
@@ -51,8 +44,8 @@
 
 1. image build
    ```
-   sudo mkdir -p /etcd-data
-   sudo nerdctl build --namespace k8s.io -t k8s-etcd --file=Dockerfile_etcd.armhf ./
+   sudo mkdir -p /var/lib/etcd_data
+   sudo nerdctl build --namespace k8s.io -t k8s-etcd:v3.5.16 --file=Dockerfile_etcd.armhf ./
    ```
 
 1. pod manifestsを `/etc/kubelet.d` へ作成する
@@ -63,9 +56,7 @@
       apiVersion: v1
       kind: Pod
       metadata:
-        annotations:
-          kubeadm.kubernetes.io/etcd.advertise-client-urls: https://k8s-master:2379
-        name: etcd
+        name: etcd-v3.5.16
         namespace: kube-system
         labels:
           tier: control-plane
@@ -76,20 +67,33 @@
         priorityClassName: system-node-critical
         hostNetwork: true
         volumes:
-        - name: etcd-data-volume
+        - name: kubernetes-dir
           hostPath:
-            path: /etcd-data
+            path: /var/lib/kubernetes
+            type: Directory
+        - name: etcd-data-dir
+          hostPath:
+            path: /var/lib/etcd_data
             type: Directory
         containers:
           - name: etcd
-            image: k8s-etcd:latest
+            image: k8s-etcd:v3.5.16
             imagePullPolicy: IfNotPresent
             volumeMounts:
-            - mountPath: /etcd-data
-              name: etcd-data-volume
+            - mountPath: /var/lib/kubernetes
+              name: kubernetes-dir
+            - mountPath: /var/lib/etcd_data
+              name: etcd-data-dir
             env:
             - name: ETCD_UNSUPPORTED_ARCH
               value: "arm64"
+            ports:
+            - containerPort: 2379
+              protocol: TCP
+              targetPort: 2379
+            - containerPort: 2380
+              protocol: TCP
+              targetPort: 2380
             resources:
               requests:
                 cpu: 0.5
@@ -99,18 +103,18 @@
                 memory: "384Mi"
             command:
               - /usr/local/bin/etcd
-              - --data-dir=/etcd-data
+              - --data-dir=/var/lib/etcd_data
               - --advertise-client-urls=https://k8s-master:2379,https://k8s-master:2380
               - --listen-client-urls=https://0.0.0.0:2379
               - --initial-advertise-peer-urls=https://k8s-master:2380
               - --listen-peer-urls=https://0.0.0.0:2380
               - --name=etcd0
-              - --cert-file=/etc/etcd/kubernetes.pem
-              - --key-file=/etc/etcd/kubernetes-key.pem
-              - --peer-cert-file=/etc/etcd/kubernetes.pem
-              - --peer-key-file=/etc/etcd/kubernetes-key.pem
-              - --trusted-ca-file=/etc/etcd/ca.pem
-              - --peer-trusted-ca-file=/etc/etcd/ca.pem
+              - --cert-file=/var/lib/kubernetes/kubernetes.pem
+              - --key-file=/var/lib/kubernetes/kubernetes-key.pem
+              - --peer-cert-file=/var/lib/kubernetes/kubernetes.pem
+              - --peer-key-file=/var/lib/kubernetes/kubernetes-key.pem
+              - --trusted-ca-file=/var/lib/kubernetes/ca.pem
+              - --peer-trusted-ca-file=/var/lib/kubernetes/ca.pem
               - --peer-client-cert-auth
               - --client-cert-auth
               - --initial-cluster-token=etcd-cluster-1

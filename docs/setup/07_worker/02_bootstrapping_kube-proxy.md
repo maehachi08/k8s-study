@@ -6,6 +6,10 @@
 
 ## 手順
 
+1. kube-proxy-985dw
+    ```
+    sudo cp kube-proxy.kubeconfig /var/lib/kubernetes/
+    ```
 1. `Dockerfile_kube-proxy.armhf` を作成する
   <details><summary>Dockerfile_kube-proxy.armhf</summary>
     ```
@@ -20,11 +24,7 @@
       && apt install -y wget \
       && apt clean \
       && wget -P /usr/bin/ https://dl.k8s.io/$VERSION/bin/linux/$ARCH/kube-proxy \
-      && chmod +x /usr/bin/kube-proxy \
-      && install -o root -g root -m 755 -d /var/lib/kube-proxy \
-      && install -o root -g root -m 755 -d /etc/kubernetes/config
-
-    COPY kube-proxy.kubeconfig /var/lib//kube-proxy/kubeconfig
+      && chmod +x /usr/bin/kube-proxy
 
     ENTRYPOINT ["/usr/bin/kube-proxy"]
     EOF
@@ -33,7 +33,7 @@
 
 1. image build
    ```
-   sudo nerdctl build --namespace k8s.io -f Dockerfile_kube-proxy.armhf -t k8s-kube-proxy ./
+   sudo nerdctl build --namespace k8s.io -f Dockerfile_kube-proxy.armhf -t k8s-kube-proxy:v1.31.1 ./
    ```
 
 1. kernel parameter
@@ -48,7 +48,7 @@
 
    sudo sysctl --system
 
-   cat <<EOF | sudo tee /etc/modprobe.d/kube-proxy.conf
+   cat <<EOF | sudo tee /etc/modprobe.d/nf_conntrack.conf
    options nf_conntrack hashsize=32768
    EOF
 
@@ -71,12 +71,12 @@
       name: kube-proxy-configuration
       namespace: kube-system
     data:
-      config.conf: |-
+      kube-proxy-config.yaml: |-
         ---
         apiVersion: kubeproxy.config.k8s.io/v1alpha1
         kind: KubeProxyConfiguration
         clientConnection:
-          kubeconfig: "/var/lib/kube-proxy/kubeconfig"
+          kubeconfig: "/var/lib/kubernetes/kube-proxy.kubeconfig"
         mode: "iptables"
         clusterCIDR: "${cluster_cidr}"
 
@@ -114,9 +114,10 @@
           # https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
           priorityClassName: system-node-critical
           hostNetwork: true
+          dnsPolicy: ClusterFirstWithHostNet
           containers:
             - name: kube-proxy
-              image: k8s-kube-proxy:latest
+              image: k8s-kube-proxy:v1.31.1
               securityContext:
                 capabilities:
                   add:
@@ -131,8 +132,12 @@
                 requests:
                   cpu: "256m"
               volumeMounts:
+              - mountPath: /var/lib/kubernetes
+                name: kubernetes-dir
+              - mountPath: /etc/kubernetes/config
+                name: kubernetes-config-dir
               - name: kube-proxy-configuration
-                mountPath: /var/lib/kube-proxy/kube-proxy-config.yaml
+                mountPath: /var/lib/kube-proxy
               - name: conntrack-command
                 mountPath: /usr/sbin/conntrack
               - name: iptables-command
@@ -150,6 +155,14 @@
               - name: sys-dir
                 mountPath: /sys
           volumes:
+          - name: kubernetes-dir
+            hostPath:
+              path: /var/lib/kubernetes
+              type: Directory
+          - name: kubernetes-config-dir
+            hostPath:
+              path: /etc/kubernetes/config
+              type: Directory
           - name: kube-proxy-configuration
             configMap:
               name: kube-proxy-configuration
