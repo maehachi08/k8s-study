@@ -10,6 +10,7 @@ plugins:
   - search
   - glightbox
   - mkdocs_pymdownx_material_extras
+  - caption
 
 # theme: readthedocs
 theme:
@@ -92,6 +93,10 @@ nav:
       - Install Grafana: monitoring/prometheus/install_grafana.md
       - Install cadvisor: monitoring/prometheus/install_cadvisor.md
   - Addons:
+    - Karpenter:
+      - About Karpenter: addons/karpenter/about.md
+      - Concepts: addons/karpenter/concepts.md
+      - Migration to V1: addons/karpenter/migration_to_v1.md
     - MetalLB: addons/metallb.md
     - OpenEBS:
       - About OpenEBS: addons/openebs/about.md
